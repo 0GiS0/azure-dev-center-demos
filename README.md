@@ -145,3 +145,26 @@ You should see something like this:
 And once you launch the dev box you can configure `In Session Settings`:
 
 <img src="images/In Session Settings.png" />
+
+### Check the usage
+
+```bash
+az devcenter admin usage list -l $LOCATION \
+--query "[].{name:name.value, currentValue:currentValue}" \
+-o table
+```
+
+You'll get something like this:
+
+```bash
+Name                CurrentValue
+------------------  --------------
+devBoxDefinitions   2
+devCenters          2
+general_i_v2        8
+networkConnections  0
+general_a_v1        0
+general_a_v2        0
+pools               0
+projects            0
+```
