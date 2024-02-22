@@ -30,6 +30,8 @@ DEV_CENTER_ID=$(az devcenter admin devcenter create \
 
 ### Create a Project 📝
 
+Projects in Dev Box should represent a team or a group of people that will use the same dev boxes. For example, you can create a project for your backend team, another for your frontend team, and so on.
+
 ```bash
 DEV_CENTER_PROJECT="my-project"
 
@@ -167,4 +169,10 @@ general_a_v1        0
 general_a_v2        0
 pools               0
 projects            0
+```
+
+### Clean up
+
+```bash
+az group delete --name $RESOURCE_GROUP --yes --no-wait
 ```
