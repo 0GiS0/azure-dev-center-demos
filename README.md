@@ -141,3 +141,7 @@ The URL for the developer portal is https://devportal.microsoft.com
 You should see something like this:
 
 <img src="images/Dev Box portal.png" />
+
+And once you launch the dev box you can configure `In Session Settings`:
+
+<img src="images/In Session Settings.png" />
