@@ -143,20 +143,31 @@ IDENTITY_ID=$(az identity show --name $IMAGE_BUILDER_IDENTITY --resource-group $
 sed -i -e "s%<subscriptionID>%$SUBSCRIPTION_ID%g" tmp/win11-with-vscode.json
 sed -i -e "s%<rgName>%$RESOURCE_GROUP%g" tmp/win11-with-vscode.json
 sed -i -e "s%<region1>%$LOCATION%g" tmp/win11-with-vscode.json
-# sed -i -e "s%<region2>%$ADITIONAL_LOCATION%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<imageName>%$IMAGE_NAME%g" tmp/win11-with-vscode.json
+# # sed -i -e "s%<region2>%$ADITIONAL_LOCATION%g" tmp-image-builder/win11-with-vscode.json
+# sed -i -e "s%<imageName>%$IMAGE_NAME%g" tmp/win11-with-vscode.json
 sed -i -e "s%<runOutputName>%$RUN_OUTPUT_NAME%g" tmp/win11-with-vscode.json
 sed -i -e "s%<sharedImageGalName>%$GALLERY_NAME%g" tmp/win11-with-vscode.json
 sed -i -e "s%<imgBuilderId>%$IDENTITY_ID%g" tmp/win11-with-vscode.json
 sed -i -e "s%<imageDefName>%$IMAGE_DEF%g" tmp/win11-with-vscode.json
 
+(Get-Content -path $templateFilePath -Raw ) -replace '<subscriptionID>',$subscriptionID | Set-Content -Path $templateFilePath 
+(Get-Content -path $templateFilePath -Raw ) -replace '<rgName>',$imageResourceGroup | Set-Content -Path $templateFilePath 
+(Get-Content -path $templateFilePath -Raw ) -replace '<runOutputName>',$runOutputName | Set-Content -Path $templateFilePath  
+(Get-Content -path $templateFilePath -Raw ) -replace '<imageDefName>',$imageDefName | Set-Content -Path $templateFilePath  
+(Get-Content -path $templateFilePath -Raw ) -replace '<sharedImageGalName>',$galleryName| Set-Content -Path $templateFilePath  
+(Get-Content -path $templateFilePath -Raw ) -replace '<region1>',$location | Set-Content -Path $templateFilePath  
+(Get-Content -path $templateFilePath -Raw ) -replace '<region2>',$replRegion2 | Set-Content -Path $templateFilePath  
+((Get-Content -path $templateFilePath -Raw) -replace '<imgBuilderId>',$identityNameResourceId) | Set-Content -Path $templateFilePath
+
 
 # Create parameters file
+
+IMAGE_TEMPLATE="vscodeWinTemplate"
 
 cat <<EOF > tmp/win11-with-vscode-parameters.json
 {
   "imageTemplateName": {
-    "value": "vscodeWinTemplate"
+    "value": "$IMAGE_TEMPLATE"
   },
   "api-version": {
     "value": "2020-02-14"
@@ -171,8 +182,16 @@ EOF
 ```bash
 az group deployment create \
 --resource-group $RESOURCE_GROUP \
---template-file /tmp/win11-with-vscode.json \
+--template-file tmp/win11-with-vscode.json \
 --parameters @tmp/win11-with-vscode-parameters.json
+```
+
+Build the image using run command
+
+```bash
+az image builder run \
+--name $IMAGE_TEMPLATE \
+--resource-group $RESOURCE_GROUP
 ```
 
 
