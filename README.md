@@ -1,4 +1,4 @@
-## Install Azure DevBox extension
+#### Install Azure DevBox extension
 
 ```bash
 az extension add --name devcenter
@@ -52,10 +52,12 @@ az sig create \
 ### Create the image definition
 
 ```bash
+IMAGE_DEF="vscodeImageDef"
+
 az sig image-definition create \
 --resource-group $RESOURCE_GROUP \
 --gallery-name $GALLERY_NAME \
---gallery-image-definition "vscodeImageDef" \
+--gallery-image-definition "$IMAGE_DEF" \
 --os-type "Windows" \
 --os-state "Generalized" \
 --publisher "returngis" \
@@ -67,24 +69,91 @@ az sig image-definition create \
 
 ### Create the custom image
 
+But first let's create a managed identity for the image builder.
+
+```bash
+IMAGE_BUILDER_IDENTITY="imagebuilderidentity"
+
+IDENTITY_CLIENT_ID=$(az identity create \
+--name $IMAGE_BUILDER_IDENTITY \
+--resource-group $RESOURCE_GROUP \
+--query clientId -o tsv)
+```
+
+Now let's create a custom role for the image builder.
+
+```bash
+SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+
+az role definition create --role-definition @- <<EOF
+{
+    "Name": "Azure Image Builder Service Image Creation Role",
+    "IsCustom": true,
+    "Description": "Image Builder access to create resources for the image build, you should delete or split out as appropriate",
+    "Actions": [
+        "Microsoft.Compute/galleries/read",
+        "Microsoft.Compute/galleries/images/read",
+        "Microsoft.Compute/galleries/images/versions/read",
+        "Microsoft.Compute/galleries/images/versions/write",
+
+        "Microsoft.Compute/images/write",
+        "Microsoft.Compute/images/read",
+        "Microsoft.Compute/images/delete"
+    ],
+    "NotActions": [
+  
+    ],
+    "AssignableScopes": [
+      "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP"
+    ]
+  }
+EOF
+```
+
+Check the custom role was created successfully
+
+```bash
+az role definition list --custom-role-only -o table
+```
+
+Assign the custom role to the managed identity
+
+```bash
+az role assignment create \
+--role "Azure Image Builder Service Image Creation Role" \
+--assignee $IDENTITY_CLIENT_ID \
+--scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP
+```
+
+Check the role was assigned successfully
+
+```bash
+az role assignment list --assignee $IDENTITY_CLIENT_ID --all -o table
+```
+
 ```bash
 mkdir -p tmp
-cp custom-images/win11-with-vscode.json /tmp/win11-with-vscode.json
+cp custom-images/win11-with-vscode.json tmp/win11-with-vscode.json
 
-sed -i -e "s%<subscriptionID>%$SUBSCRIPTION_ID%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<rgName>%$RESOURCE_GROUP%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<region1>%$LOCATION%g" tmp-image-builder/win11-with-vscode.json
+IMAGE_NAME="vscodeWinImage"
+RUN_OUTPUT_NAME="vscodeWinImageRunOutput"
+IDENTITY_ID=$(az identity show --name $IMAGE_BUILDER_IDENTITY --resource-group $RESOURCE_GROUP --query id -o tsv)
+
+
+sed -i -e "s%<subscriptionID>%$SUBSCRIPTION_ID%g" tmp/win11-with-vscode.json
+sed -i -e "s%<rgName>%$RESOURCE_GROUP%g" tmp/win11-with-vscode.json
+sed -i -e "s%<region1>%$LOCATION%g" tmp/win11-with-vscode.json
 # sed -i -e "s%<region2>%$ADITIONAL_LOCATION%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<imageName>%$IMAGE_NAME%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<runOutputName>%$RUN_OUTPUT_NAME%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<sharedImageGalName>%$GALLERY_NAME%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<imgBuilderId>%$IDENTITY_ID%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<imageDefName>%$IMAGE_NAME%g" tmp-image-builder/win11-with-vscode.json
+sed -i -e "s%<imageName>%$IMAGE_NAME%g" tmp/win11-with-vscode.json
+sed -i -e "s%<runOutputName>%$RUN_OUTPUT_NAME%g" tmp/win11-with-vscode.json
+sed -i -e "s%<sharedImageGalName>%$GALLERY_NAME%g" tmp/win11-with-vscode.json
+sed -i -e "s%<imgBuilderId>%$IDENTITY_ID%g" tmp/win11-with-vscode.json
+sed -i -e "s%<imageDefName>%$IMAGE_DEF%g" tmp/win11-with-vscode.json
 
 
 # Create parameters file
 
-cat <<EOF > /tmp/win11-with-vscode-parameters.json
+cat <<EOF > tmp/win11-with-vscode-parameters.json
 {
   "imageTemplateName": {
     "value": "vscodeWinTemplate"
@@ -96,14 +165,14 @@ cat <<EOF > /tmp/win11-with-vscode-parameters.json
     "value": "$LOCATION"
   }
 }
-
+EOF
 ```
 
 ```bash
 az group deployment create \
 --resource-group $RESOURCE_GROUP \
 --template-file /tmp/win11-with-vscode.json \
---parameters "{ \"location\": { \"value\": \"westus\" } }"
+--parameters @tmp/win11-with-vscode-parameters.json
 ```
 
 
@@ -318,100 +387,7 @@ projects            0
 
 You can create your own images and upload them to your Dev Center. You have several options: you can use Azure Image Builder, Packer, or any other tool that you like.
 
-##### Azure Image Builder
 
-Let's create an image with Azure Image Builder.
-
-But first let's create a managed identity for the image builder.
-
-```bash
-IMAGE_BUILDER_IDENTITY="image-builder-identity"
-
-IDENTITY_CLIENT_ID=$(az identity create \
---name $IMAGE_BUILDER_IDENTITY \
---resource-group $RESOURCE_GROUP \
---query clientId -o tsv)
-```
-
-Now let's create a custom role for the image builder.
-
-```bash
-SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-
-az role definition create --role-definition @- <<EOF
-{
-    "Name": "Azure Image Builder Service Image Creation Role",
-    "IsCustom": true,
-    "Description": "Image Builder access to create resources for the image build, you should delete or split out as appropriate",
-    "Actions": [
-        "Microsoft.Compute/galleries/read",
-        "Microsoft.Compute/galleries/images/read",
-        "Microsoft.Compute/galleries/images/versions/read",
-        "Microsoft.Compute/galleries/images/versions/write",
-
-        "Microsoft.Compute/images/write",
-        "Microsoft.Compute/images/read",
-        "Microsoft.Compute/images/delete"
-    ],
-    "NotActions": [
-  
-    ],
-    "AssignableScopes": [
-      "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP"
-    ]
-  }
-EOF
-```
-
-Check the custom role was created successfully
-
-```bash
-az role definition list --custom-role-only -o table
-```
-
-Assign the custom role to the managed identity
-
-```bash
-az role assignment create \
---role "Azure Image Builder Service Image Creation Role" \
---assignee $IDENTITY_CLIENT_ID \
---scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP
-```
-
-Check the role was assigned successfully
-
-```bash
-az role assignment list --assignee $IDENTITY_CLIENT_ID --all -o table
-```
-
-Now let's replace the values in the template
-
-```bash
-mkdir -p tmp-image-builder
-cp custom-images/helloImageTemplateWin.json tmp-image-builder/helloImageTemplateWin.json
-
-IMAGE_NAME="helloImageWin"
-RUN_OUTPUT_NAME="helloImageWinRunOutput"
-IDENTITY_ID=$(az identity show --name $IMAGE_BUILDER_IDENTITY --resource-group $RESOURCE_GROUP --query id -o tsv)
-
-sed -i -e "s%<subscriptionID>%$SUBSCRIPTION_ID%g" tmp-image-builder/helloImageTemplateWin.json
-sed -i -e "s%<rgName>%$RESOURCE_GROUP%g" tmp-image-builder/helloImageTemplateWin.json
-sed -i -e "s%<region>%$LOCATION%g" tmp-image-builder/helloImageTemplateWin.json
-sed -i -e "s%<imageName>%$IMAGE_NAME%g" tmp-image-builder/helloImageTemplateWin.json
-sed -i -e "s%<runOutputName>%$RUN_OUTPUT_NAME%g" tmp-image-builder/helloImageTemplateWin.json
-sed -i -e "s%<imgBuilderId>%$IDENTITY_ID%g" tmp-image-builder/helloImageTemplateWin.json
-```
-
-Now let's create the image
-
-```bash
-az resource create \
---resource-group $RESOURCE_GROUP \
---is-full-object \
---properties @tmp-image-builder/helloImageTemplateWin.json \
---resource-type Microsoft.VirtualMachineImages/imageTemplates \
---name helloImageTemplateWin01
-```
 
 #### Create a gallery
 
