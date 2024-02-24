@@ -1,4 +1,4 @@
-#### Install Azure DevBox extension
+#### Install Azure DevBox extension 🧩
 
 ```bash
 az extension add --name devcenter
@@ -15,7 +15,7 @@ LOCATION="westeurope"
 az group create --name $RESOURCE_GROUP --location $LOCATION
 ```
 
-### Create a virtual network
+### Create a virtual network ⚙
 
 In a enterprise environment, you will probably want to create a virtual network to connect your dev boxes to your corporate network.
 
@@ -32,7 +32,7 @@ az network vnet create \
 --subnet-prefix 192.168.1.0/24
 ```
 
-### Create a Gallery
+### Create a Gallery 🖼
 
 A gallery is a place where you can store your custom images. You can create a gallery in the Azure portal, but you can also create it using the Azure CLI.
 
@@ -49,7 +49,9 @@ az sig create \
     --shared-image-destinations my_shared_gallery/linux_image_def=westus,brazilsouth \
    --identity myIdentity --staging-resource-group myStagingResourceGroup -->
 
-### Create the image definition
+### Create the image definition ✏
+
+The image definition determines the OS, the state, the publisher and event the sku.
 
 ```bash
 IMAGE_DEF="vscodeImageDef"
@@ -69,7 +71,7 @@ az sig image-definition create \
 
 ### Create the custom image
 
-But first let's create a managed identity for the image builder.
+In order to create your custom image you can use Azure Image Builder and for that you need a identity.
 
 ```bash
 IMAGE_BUILDER_IDENTITY="imagebuilderidentity"
@@ -80,7 +82,8 @@ IDENTITY_CLIENT_ID=$(az identity create \
 --query clientId -o tsv)
 ```
 
-Now let's create a custom role for the image builder.
+This identity needs some permissions but there is no built-in role.
+So let's create a custom role for the image builder.
 
 ```bash
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
@@ -110,13 +113,13 @@ az role definition create --role-definition @- <<EOF
 EOF
 ```
 
-Check the custom role was created successfully
+Check the custom role was created successfully 🎉
 
 ```bash
 az role definition list --custom-role-only -o table
 ```
 
-Assign the custom role to the managed identity
+Assign the custom role to the identity
 
 ```bash
 az role assignment create \
@@ -125,43 +128,45 @@ az role assignment create \
 --scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP
 ```
 
-Check the role was assigned successfully
+Check the role was assigned successfully ✅
 
 ```bash
 az role assignment list --assignee $IDENTITY_CLIENT_ID --all -o table
 ```
 
+Lastly you need to define the ingredients for your new image: what is the image base, if some customization is needed and how much time it has the builder to build it.
+
+We are going to use this template: `custom-images/win11-with-vscode.json` which install Visual Studio Code in a Windows 11.
+
+Let's copy this template in a `tmp` directory:
+
 ```bash
 mkdir -p tmp
 cp custom-images/win11-with-vscode.json tmp/win11-with-vscode.json
+```
 
+And now save in variables the info that we need:
+
+```bash
 IMAGE_NAME="vscodeWinImage"
 RUN_OUTPUT_NAME="vscodeWinImageRunOutput"
 IDENTITY_ID=$(az identity show --name $IMAGE_BUILDER_IDENTITY --resource-group $RESOURCE_GROUP --query id -o tsv)
+```
+And replace them in the template:
 
-
+```bash
 sed -i -e "s%<subscriptionID>%$SUBSCRIPTION_ID%g" tmp/win11-with-vscode.json
 sed -i -e "s%<rgName>%$RESOURCE_GROUP%g" tmp/win11-with-vscode.json
 sed -i -e "s%<region1>%$LOCATION%g" tmp/win11-with-vscode.json
-# # sed -i -e "s%<region2>%$ADITIONAL_LOCATION%g" tmp-image-builder/win11-with-vscode.json
-# sed -i -e "s%<imageName>%$IMAGE_NAME%g" tmp/win11-with-vscode.json
 sed -i -e "s%<runOutputName>%$RUN_OUTPUT_NAME%g" tmp/win11-with-vscode.json
 sed -i -e "s%<sharedImageGalName>%$GALLERY_NAME%g" tmp/win11-with-vscode.json
 sed -i -e "s%<imgBuilderId>%$IDENTITY_ID%g" tmp/win11-with-vscode.json
 sed -i -e "s%<imageDefName>%$IMAGE_DEF%g" tmp/win11-with-vscode.json
+```
 
-(Get-Content -path $templateFilePath -Raw ) -replace '<subscriptionID>',$subscriptionID | Set-Content -Path $templateFilePath 
-(Get-Content -path $templateFilePath -Raw ) -replace '<rgName>',$imageResourceGroup | Set-Content -Path $templateFilePath 
-(Get-Content -path $templateFilePath -Raw ) -replace '<runOutputName>',$runOutputName | Set-Content -Path $templateFilePath  
-(Get-Content -path $templateFilePath -Raw ) -replace '<imageDefName>',$imageDefName | Set-Content -Path $templateFilePath  
-(Get-Content -path $templateFilePath -Raw ) -replace '<sharedImageGalName>',$galleryName| Set-Content -Path $templateFilePath  
-(Get-Content -path $templateFilePath -Raw ) -replace '<region1>',$location | Set-Content -Path $templateFilePath  
-(Get-Content -path $templateFilePath -Raw ) -replace '<region2>',$replRegion2 | Set-Content -Path $templateFilePath  
-((Get-Content -path $templateFilePath -Raw) -replace '<imgBuilderId>',$identityNameResourceId) | Set-Content -Path $templateFilePath
+This template needs some parameters so let's create a parameters file:
 
-
-# Create parameters file
-
+```bash
 IMAGE_TEMPLATE="vscodeWinTemplate"
 
 cat <<EOF > tmp/win11-with-vscode-parameters.json
@@ -179,6 +184,9 @@ cat <<EOF > tmp/win11-with-vscode-parameters.json
 EOF
 ```
 
+And now let's create the Image Template using this ARM template 😁
+
+
 ```bash
 az group deployment create \
 --resource-group $RESOURCE_GROUP \
@@ -186,7 +194,7 @@ az group deployment create \
 --parameters @tmp/win11-with-vscode-parameters.json
 ```
 
-Build the image using run command
+Ok, we have the image template but now we need to create an image inside the library. Let's run Azure Image Builder to create it:
 
 ```bash
 az image builder run \
@@ -194,10 +202,11 @@ az image builder run \
 --resource-group $RESOURCE_GROUP
 ```
 
+And now just wait... a little bit ⌚
 
 ### Create a Dev Center 🏢
 
-The first thing you need to do is to create a Dev Center. This is the place where you will manage your projects.
+Now that you have a virtual network and also a custom image let's create a Dev Center. This is the place where you will manage your projects.
 
 ```bash
 DEV_CENTER_NAME=returngis-dev-center
