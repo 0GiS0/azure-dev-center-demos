@@ -38,7 +38,7 @@ The image definition determines the OS, the state, the publisher and event the s
 source scripts/03-create-image-definition.sh
 ```
 
-### Create the custom image
+### Create the custom image 🏞️
 
 In order to create your custom image you can use Azure Image Builder and for that you need a identity. This identity needs some permissions but there is no built-in role. So let's create a custom role for the image builder too.
 
@@ -79,14 +79,14 @@ source scripts/07-create-a-project.sh
 source scripts/08-create-dev-box-definition.sh
 ```
 
-### Create a network connections
+### Create a network connections 📞
 
 ```bash
 source scripts/09-create-network-connections.sh
 ```
 
 
-### Create a dev box pool
+### Create a dev box pool 🖥️
 
 Now that you have a dev box definition, you can create a dev box pool in your project. A dev box pool is a set of dev boxes that are created from the same dev box definition. 
 
@@ -94,7 +94,7 @@ Now that you have a dev box definition, you can create a dev box pool in your pr
 source scripts/10-create-dev-box-pool.sh
 ```
 
-### Got to the developer portal and create a dev box
+### Got to the developer portal and create a dev box 👩🏼‍💻
 
 The URL for the developer portal is https://devportal.microsoft.com
 

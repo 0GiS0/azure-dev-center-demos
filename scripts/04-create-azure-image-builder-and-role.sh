@@ -9,7 +9,7 @@ echo -e "Assigning role to Azure Image Builder identity $IMAGE_BUILDER_IDENTITY"
 
 az role definition create --role-definition @- <<EOF
 {
-    "Name": "Azure Image Builder Service Image Creation Role",
+    "Name": "Azure Image Builder Service Image Creation Role 2",
     "IsCustom": true,
     "Description": "Image Builder access to create resources for the image build, you should delete or split out as appropriate",
     "Actions": [
@@ -26,7 +26,7 @@ az role definition create --role-definition @- <<EOF
   
     ],
     "AssignableScopes": [
-      "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP"
+      "/subscriptions/$SUBSCRIPTION_ID"
     ]
   }
 EOF
@@ -38,7 +38,7 @@ az role definition list --custom-role-only -o table
 echo -e "Assign the custom role to the identity $IMAGE_BUILDER_IDENTITY"
 
 az role assignment create \
---role "Azure Image Builder Service Image Creation Role" \
+--role "Azure Image Builder Service Image Creation Role 2" \
 --assignee $IDENTITY_CLIENT_ID \
 --scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP
 

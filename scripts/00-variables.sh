@@ -1,20 +1,20 @@
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-RESOURCE_GROUP="DevBoxDemos"
-LOCATION="westeurope"
+RESOURCE_GROUP="DevBoxDemos-3"
+LOCATION="eastus"
 
 # Virtual network variables
 VNET_NAME="devbox-vnet"
 SUBNET_NAME="devboxes-subnet"
 
 # Gallery image variables
-GALLERY_NAME="returngis_gallery"
+GALLERY_NAME="devbox_gallery_2"
 
 # Custom images variables
-IMAGE_DEF="vscodeImageDef"
+IMAGE_DEF="vscodeImage"
 
 # Image Builder variables
-IMAGE_BUILDER_IDENTITY="imagebuilderidentity"
+IMAGE_BUILDER_IDENTITY="image-builder-identity"
 
 # Custom image
 IMAGE_NAME="vscodeWinImage"
@@ -36,6 +36,5 @@ STORAGE_TYPE="ssd_256gb"
 
 # Dev Box Pool
 DEV_BOX_POOL_NAME="backend-team-pool"
-
 
 echo -e "Variables set"
