@@ -1,4 +1,4 @@
-#### Install Azure DevBox extension 🧩
+### Install Azure DevBox extension 🧩
 
 ```bash
 az extension add --name devcenter
@@ -218,6 +218,36 @@ DEV_CENTER_ID=$(az devcenter admin devcenter create \
 --query id -o tsv)
 ```
 
+Assign custom gallery role to the Dev Center
+
+
+First you have to give the Dev Center permissions to the gallery using the `az role assignment create` command.
+
+```bash
+DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
+--name $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--query identity.principalId -o tsv)
+```
+
+Let's assign the `Contributor` role to the Dev Center:
+
+```bash
+az role assignment create \
+--role "Contributor" \
+--assignee $DEV_CENTER_CLIENT_ID \
+--scope $(az sig show --gallery-name $GALLERY_NAME \
+--resource-group $RESOURCE_GROUP --query id -o tsv)
+```
+Then you can associate the gallery with the Dev Center:
+
+```bash
+az devcenter admin gallery create \
+--name $GALLERY_NAME \
+--gallery-resource-id "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Compute/galleries/$GALLERY_NAME" \
+--dev-center $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP
+```
 
 ### Create a Project 📝
 
@@ -236,6 +266,15 @@ az devcenter admin project create \
 ### Create a Dev Box Definition 📦
 
 #### Get image reference id
+
+You can check all the available galleries with the following command:
+
+```bash
+az devcenter admin gallery list \
+--resource-group $RESOURCE_GROUP \
+--dev-center $DEV_CENTER_NAME \
+-o table
+```
 
 ```bash
 az devcenter admin image list \
@@ -265,21 +304,13 @@ IMAGE_NAME="vscodeImageDef"
 IMAGE_REFERENCE_ID=$(az devcenter admin image show \
 --resource-group $RESOURCE_GROUP \
 --dev-center $DEV_CENTER_NAME \
---gallery-name "devboxGallery" \
+--gallery-name $GALLERY_NAME \
 --name $IMAGE_NAME \
 --query id -o tsv)
 ```
 
 As you can see I use the `--gallery-name "Default"` parameter. This is because the image is in the default gallery. If you want to use a custom gallery, you need to specify the gallery name.
 
-You can check all the available galleries with the following command:
-
-```bash
-az devcenter admin gallery list \
---resource-group $RESOURCE_GROUP \
---dev-center $DEV_CENTER_NAME \
--o table
-```
 
 #### How to get the available SKUs
 
@@ -291,7 +322,7 @@ SKU_NAME="general_i_8c32gb256ssd_v2"
 
 And now, we can create the Dev Box Definition
 
-#### Create a dev box definition with a image reference
+<!-- #### Create a dev box definition with a image reference
 
 ```bash
 DEV_BOX_DEFINITION_NAME="vs2022-box"
@@ -304,21 +335,29 @@ az devcenter admin devbox-definition create \
 --os-storage-type "ssd_256gb" \
 --sku name="$SKU_NAME" \
 --hibernate-support Enabled
-```
+``` -->
 
 #### Create a dev box definition with a custom image
 
 ```bash
 DEV_BOX_DEFINITION_NAME="vscode-box"
 
-az devcenter admin devbox-definition create \
+time az devcenter admin devbox-definition create \
 --name $DEV_BOX_DEFINITION_NAME \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
 --image-reference id=$IMAGE_REFERENCE_ID \
 --os-storage-type "ssd_256gb" \
---sku name="$SKU_NAME" \
---hibernate-support Enabled
+--sku name="$SKU_NAME"
+```
+
+Delete the dev box definition
+
+```bash
+time az devcenter admin devbox-definition delete \
+--name $DEV_BOX_DEFINITION_NAME \
+--dev-center $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP
 ```
 
 ### Create a network connections
@@ -329,8 +368,14 @@ az devcenter admin network-connection create \
 --resource-group $RESOURCE_GROUP \
 --location $LOCATION \
 --domain-join-type "AzureAdJoin" \
---networking-resource-group-name $RESOURCE_GROUP \
+--networking-resource-group-name $RESOURCE_GROUP-vnet \
 --subnet-id $(az network vnet subnet show --name $SUBNET_NAME --vnet-name $VNET_NAME --resource-group $RESOURCE_GROUP --query id -o tsv)
+```
+
+You can check the network connections with the following command:
+
+```bash
+az devcenter admin network-connection list --resource-group $RESOURCE_GROUP -o table
 ```
 
 ### Create a dev box pool
@@ -359,21 +404,31 @@ az devcenter admin pool create \
 --resource-group $RESOURCE_GROUP \
 --devbox-definition-name $DEV_BOX_DEFINITION_NAME \
 --local-administrator Disabled \
---virtual-network-type Unmanaged \
---network-connection-name "$LOCATION-connection"
+--virtual-network-type Managed \
+--managed-virtual-network-regions "westeurope"
 ```
+
+```bash
+az devcenter admin pool delete \
+--name $DEV_BOX_POOL_NAME \
+--project-name $DEV_CENTER_PROJECT \
+--resource-group $RESOURCE_GROUP
+```
+
 
 ##### Provide access to a dev project
 
 ##### Assign DevCenter Dev Box User role to a user
 
 ```bash
-USER_EMAIL="<your-email>"
+USER_EMAIL="gis@MngEnvMCAP434473.onmicrosoft.com"
 
 az role assignment create \
 --role "DevCenter Dev Box User" \
 --assignee $USER_EMAIL \
---scope $(az devcenter admin project show --name $DEV_CENTER_PROJECT --resource-group $RESOURCE_GROUP --query id -o tsv)
+--scope $(az devcenter admin project show \
+--name $DEV_CENTER_PROJECT \
+--resource-group $RESOURCE_GROUP --query id -o tsv)
 ```
 
 #### Got to the developer portal and create a dev box
@@ -410,105 +465,6 @@ general_a_v2        0
 pools               0
 projects            0
 ```
-
-#### Create your own images
-
-You can create your own images and upload them to your Dev Center. You have several options: you can use Azure Image Builder, Packer, or any other tool that you like.
-
-
-
-#### Create a gallery
-
-First of all you need to create a Gallery on Azure
-
-```bash
-GALLERY_NAME="returngis_gallery"
-az sig create \
---gallery-name $GALLERY_NAME \
---resource-group $RESOURCE_GROUP
-```
-
-Then you can associate the gallery with the Dev Center:
-
-First you have to give the Dev Center permissions to the gallery using the `az role assignment create` command.
-
-```bash
-DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
---name $DEV_CENTER_NAME \
---resource-group $RESOURCE_GROUP \
---query identity.principalId -o tsv)
-```
-
-Let's assign the `Contributor` role to the Dev Center:
-
-```bash
-az role assignment create \
---role "Contributor" \
---assignee $DEV_CENTER_CLIENT_ID \
---scope $(az sig show --gallery-name $GALLERY_NAME --resource-group $RESOURCE_GROUP --query id -o tsv)
-```
-Then you can associate the gallery with the Dev Center:
-
-```bash
-az devcenter admin gallery create \
---name $GALLERY_NAME \
---gallery-resource-id "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Compute/galleries/$GALLERY_NAME" \
---dev-center $DEV_CENTER_NAME \
---resource-group $RESOURCE_GROUP
-```
-
-Para la creada por powershell
-
-```bash
-az role assignment create \
---role "Contributor" \
---assignee $DEV_CENTER_CLIENT_ID \
---scope $(az sig show --gallery-name devboxGallery --resource-group $RESOURCE_GROUP --query id -o tsv)
-
-az devcenter admin gallery create \
---name devboxGallery \
---gallery-resource-id "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Compute/galleries/devboxGallery" \
---dev-center $DEV_CENTER_NAME \
---resource-group $RESOURCE_GROUP
-```
-
-
-
-#### Create the image for the gallery
-
-```bash
-IMAGE_NAME="vscodeImageWin"
-IMAGE_TEMPLATE_NAME="vscodeImageTemplateWin"
-ADITIONAL_LOCATION="northeurope"
-
-cp custom-images/win11-with-vscode-new.json tmp-image-builder/win11-with-vscode.json
-
-sed -i -e "s%<subscriptionID>%$SUBSCRIPTION_ID%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<rgName>%$RESOURCE_GROUP%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<region1>%$LOCATION%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<region2>%$ADITIONAL_LOCATION%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<imageName>%$IMAGE_NAME%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<runOutputName>%$RUN_OUTPUT_NAME%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<sharedImageGalName>%$GALLERY_NAME%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<imgBuilderId>%$IDENTITY_ID%g" tmp-image-builder/win11-with-vscode.json
-sed -i -e "s%<imageDefName>%$IMAGE_NAME%g" tmp-image-builder/win11-with-vscode.json
-```
-
-Now let's create the image in the gallery
-
-```bash
-az resource create \
---resource-group $RESOURCE_GROUP \
---is-full-object \
---properties @tmp-image-builder/win11-with-vscode.json \
---resource-type Microsoft.VirtualMachineImages/imageTemplates \
---name win11-with-vscode
-```
-
-#### Create images with Packer
-
-
-
 ### Clean up
 
 ```bash
