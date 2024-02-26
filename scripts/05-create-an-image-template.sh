@@ -1,3 +1,5 @@
+echo -e "The easiest way to generate the template is using this assistant: https://portal.azure.com/#create/Microsoft.ImageTemplate"
+
 mkdir -p tmp
 cp custom-images/win11-with-vscode.json tmp/win11-with-vscode.json
 

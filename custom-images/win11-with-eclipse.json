@@ -27,7 +27,7 @@
        "identity": {
          "type": "UserAssigned",
          "userAssignedIdentities": {
-          "/subscriptions/0382396b-e763-46a7-bb62-30c63914f380/resourcegroups/DevBoxDemos/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aibIdentity1708691103": {}
+          "<imgBuilderId>": {}
          }
        },
        "properties": {
@@ -49,7 +49,7 @@
              "name": "Install Choco and Vscode",
              "inline": [
                 "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
-                "choco install -y vscode"
+                "choco install -y eclipse-java-oxygen"
              ]
           }
          ],
@@ -57,15 +57,14 @@
           [
              {   
                 "type": "SharedImage",
-                "galleryImageId": "/subscriptions/0382396b-e763-46a7-bb62-30c63914f380/resourceGroups/DevBoxDemos/providers/Microsoft.Compute/galleries/devboxGallery/images/vscodeImageDef",
-                "runOutputName": "aibCustWinManImg01",
+                "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<sharedImageGalName>/images/<imageDefName>",
+                "runOutputName": "<runOutputName>",
                 "artifactTags": {
                    "source": "azureVmImageBuilder",
                    "baseosimg": "win11multi"
                 },
                 "replicationRegions": [
-                  "westeurope",
-                  "eastus"
+                  "<region1>"                
                 ]
              }
           ]
@@ -73,10 +72,3 @@
       }
     ]
    }
-
-
-
-
-
-
-

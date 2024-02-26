@@ -9,7 +9,7 @@ az extension add --name devcenter
 To make it easier to follow the tutorial, let's set some variables.
 
 ```bash
-source scripts/00-variables.sh
+source scripts/00-variables-and-registrations.sh
 ```
 
 
@@ -24,7 +24,7 @@ source scripts/01-create-rg-and-vnet.sh
 
 ### Create a Gallery 🖼
 
-A gallery is a place where you can store your custom images. You can create a gallery in the Azure portal, but you can also create it using the Azure CLI.
+Like the Azure Marketplace, a gallery is a repository for managing and sharing images and other resources, but you control who has access.
 
 ```bash
 source scripts/02-create-azure-compute-gallery.sh
@@ -32,13 +32,15 @@ source scripts/02-create-azure-compute-gallery.sh
 
 ### Create the image definition ✏
 
-The image definition determines the OS, the state, the publisher and event the sku.
+Image definitions are created within a gallery and they carry information about the image and any requirements for using it to create VMs. This includes whether the image is Windows or Linux, release notes, and minimum and maximum memory requirements. It's a definition of a type of image.
 
 ```bash
 source scripts/03-create-image-definition.sh
 ```
 
-### Create the custom image 🏞️
+### Create image version 🏞️
+
+An image version is what you use to create a VM when using a gallery. You can have multiple versions of an image as needed for your environment. Like a managed image, when you use an image version to create a VM, the image version is used to create new disks for the VM. Image versions can be used multiple times.
 
 In order to create your custom image you can use Azure Image Builder and for that you need a identity. This identity needs some permissions but there is no built-in role. So let's create a custom role for the image builder too.
 
