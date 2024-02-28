@@ -12,7 +12,7 @@ DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
 --resource-group $RESOURCE_GROUP \
 --query identity.principalId -o tsv)
 
-echo "Let's assign the `Contributor` role to the Dev Center for the gallery"
+echo "Let's assign the Contributor role to the Dev Center for the gallery"
 
 az role assignment create \
 --role "Contributor" \
@@ -24,6 +24,6 @@ echo "Then you can associate the gallery with the Dev Center"
 
 az devcenter admin gallery create \
 --name $GALLERY_NAME \
---gallery-resource-id "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Compute/galleries/$GALLERY_NAME" \
+--gallery-resource-id $(az sig show --gallery-name $GALLERY_NAME --resource-group $RESOURCE_GROUP --query id -o tsv) \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP

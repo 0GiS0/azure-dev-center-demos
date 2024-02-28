@@ -1,7 +1,7 @@
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 RESOURCE_GROUP="DevBoxDemos"
-LOCATION="eastus"
+LOCATION="westeurope"
 
 # Virtual network variables
 VNET_NAME="devbox-vnet"
@@ -11,15 +11,16 @@ SUBNET_NAME="devboxes-subnet"
 GALLERY_NAME="devbox_gallery"
 
 # Custom images variables
-IMAGE_DEF="vscodeImage"
+# IMAGE_DEF="vscodeImage"
+VSCODE_IMAGE_DEFINITION="vscodeImage"
 
 # Image Builder variables
 IMAGE_BUILDER_IDENTITY="image-builder-identity"
 
 # Custom image
-IMAGE_NAME="vscodeWinImage"
-RUN_OUTPUT_NAME="vscodeWinImageRunOutput"
-IMAGE_TEMPLATE="vscodeWinTemplate"
+VSCODE_IMAGE_NAME="vscodeWinImage"
+VSCODE_RUN_OUTPUT_NAME="vscodeWinImageRunOutput"
+VSCODE_IMAGE_TEMPLATE="vscodeTemplate"
 
 # Dev center variables
 DEV_CENTER_NAME=madrid-dev-center
