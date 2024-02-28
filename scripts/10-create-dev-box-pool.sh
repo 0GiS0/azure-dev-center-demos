@@ -5,6 +5,6 @@ az devcenter admin pool create \
 --project-name $DEV_CENTER_PROJECT \
 --resource-group $RESOURCE_GROUP \
 --devbox-definition-name $DEV_BOX_DEFINITION_NAME \
---local-administrator Disabled \
+--local-administrator Enabled \
 --virtual-network-type Managed \
 --managed-virtual-network-regions $LOCATION
