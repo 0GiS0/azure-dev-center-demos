@@ -29,7 +29,7 @@ source "azure-arm" "windows" {
     resource_group       = local.gallery_resource_group
     gallery_name         = local.gallery_name
     image_name           = local.image_name
-    image_version        = "1.0.1"
+    image_version        = "1.0.2"
     storage_account_type = "Standard_LRS"
 
     target_region {
@@ -38,10 +38,10 @@ source "azure-arm" "windows" {
   }
 
   os_type         = "Windows"
-  vm_size         = "Standard_DS2_v2"
-  image_offer     = "Windows-11"
+  vm_size         = "Standard_D8s_v3"
+  image_offer     = "windows-ent-cpc"
   image_publisher = "MicrosoftWindowsDesktop"
-  image_sku       = "win11-21h2-avd"
+  image_sku       = "win11-21h2-ent-cpc-m365"
   image_version   = "latest"
 
   communicator   = "winrm"
@@ -58,6 +58,8 @@ build {
       # Install VS Code with Chocolatey
       "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
       "choco install -y vscode",
+      # Install Visual Studio Code Extensions
+      "code --install-extension ms-dotnettools.csdevkit --install-extension ms-edgedevtools.vscode-edge-devtools --install-extension eamodio.gitlens",
       # Generalize the VM
       "& $env:SystemRoot\\system32\\sysprep\\sysprep.exe /oobe /generalize /quiet /quit",
       "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }"
