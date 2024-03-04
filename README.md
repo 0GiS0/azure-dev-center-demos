@@ -58,6 +58,61 @@ source scripts/05-create-an-image-template.sh
 
 And now just wait... a little bit ⌚
 
+### Create image template with Packerr 
+
+The first thing you need to do is to install Packer. You can download it from the Packer website. Once you have Packer installed, you can create a Packer template. A Packer template is a JSON file that configures the various components of Packer in order to create a machine image. 
+
+```bash
+SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+az ad sp create-for-rbac --name hcp-packer --role Contributor --scopes /subscriptions/$SUBSCRIPTION_ID
+```
+
+Create a variables.pkr.hcl file with the following content:
+
+```hcl
+variable "subscription_id" {
+  type    = string
+  default = "your-subscription-id"
+}
+
+variable "client_id" {
+  type    = string
+  default = "your-client-id"
+}
+
+variable "client_secret" {
+  type    = string
+  default =
+}
+
+variable "tenant_id" {
+  type    = string
+  default = "your-tenant-id"
+}
+
+variable "resource_group_name" {
+  type    = string
+  default = "your-resource-group-name"
+}
+
+variable "location" {
+  type    = string
+  default = "your-location"
+}
+```
+
+Now you can execute packer to create the image:
+
+```bash
+az group create --name hcp-packer-demos --location westeurope
+```
+
+```bash
+cd packer-for-image-generation
+packer init .
+packer build .
+```
+
 ### Create a Dev Center 🏢
 
 Now that you have a virtual network and also a custom image let's create a Dev Center. This is the place where you will manage your projects. You have to give the Dev Center permissions to the gallery
