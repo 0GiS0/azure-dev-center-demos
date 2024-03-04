@@ -1,10 +1,10 @@
-resource "azurerm_resource_group" "rg" {
+resource azurerm_resource_group rg {
   name     = "packer-rg"
   location = var.location
 }
 
 # Create a image gallery
-resource "azurerm_shared_image_gallery" "gallery" {
+resource azurerm_shared_image_gallery gallery {
   name                = "packer_gallery"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -12,15 +12,14 @@ resource "azurerm_shared_image_gallery" "gallery" {
 }
 
 # We need a shared image definition
-resource "azurerm_shared_image" "vscode" {
+resource azurerm_shared_image vscode {
 
   name                = "VSCodeWithPacker"
   gallery_name        = azurerm_shared_image_gallery.gallery.name
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
 
-  os_type = "Windows"
-  specialized = false
+  os_type = "Windows"  
 
   trusted_launch_enabled = true
   hyper_v_generation = "V2"
