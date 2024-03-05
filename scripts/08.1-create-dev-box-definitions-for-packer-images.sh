@@ -16,3 +16,8 @@ time az devcenter admin devbox-definition create \
 --image-reference id=$PACKER_IMAGE_REFERENCE_ID \
 --os-storage-type $STORAGE_TYPE \
 --sku name="$SKU_NAME"
+
+time az devcenter admin devbox-definition delete \
+--name $DEV_BOX_DEFINITION_NAME_FOR_PACKER_IMAGES \
+--dev-center $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP

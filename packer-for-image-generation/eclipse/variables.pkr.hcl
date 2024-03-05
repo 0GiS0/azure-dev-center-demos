@@ -30,7 +30,7 @@ variable "location" {
 
 variable "image_name" {
   type    = string
-  default = "vscode_with_extensions"
+  default = "eclipse"
 }
 
 variable "gallery_resource_group" {

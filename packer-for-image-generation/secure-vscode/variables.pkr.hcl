@@ -19,7 +19,7 @@ variable "tenant_id" {
   default = "5b5c1a41-694c-4c26-b8c0-0e7f895e62e8"
 }
 variable "resource_group" {
-  type    = string
+  type = string
   # default = "${env("ARM_RESOURCE_GROUP_NAME")}"
   default = "packer-rg"
 }
@@ -30,7 +30,7 @@ variable "location" {
 
 variable "image_name" {
   type    = string
-  default = "vscode_with_extensions"
+  default = "secure_vscode"
 }
 
 variable "gallery_resource_group" {

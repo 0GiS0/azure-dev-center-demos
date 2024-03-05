@@ -7,12 +7,6 @@ packer {
   }
 }
 
-locals {
-  image_name             = "VSCodeWithPacker"
-  gallery_resource_group = "packer-rg"
-  gallery_name           = "packer_gallery"
-}
-
 source "azure-arm" "windows" {
   client_id       = "${var.client_id}"
   client_secret   = "${var.client_secret}"
@@ -22,18 +16,18 @@ source "azure-arm" "windows" {
 
 
   managed_image_resource_group_name = "${var.resource_group}"
-  managed_image_name                = "VSCodeWithPacker"
+  managed_image_name                = "${var.image_name}"
 
   shared_image_gallery_destination {
     subscription         = "${var.subscription_id}"
-    resource_group       = local.gallery_resource_group
-    gallery_name         = local.gallery_name
-    image_name           = local.image_name
-    image_version        = "1.0.2"
+    resource_group       = "${var.gallery_resource_group}"
+    gallery_name         = "${var.gallery_name}"
+    image_name           = "${var.image_name}"
+    image_version        = "${var.image_version}"
     storage_account_type = "Standard_LRS"
 
     target_region {
-      name = "westeurope"
+      name = "${var.location}"
     }
   }
 
@@ -57,10 +51,8 @@ build {
     inline = [
       # Install VS Code with Chocolatey
       "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
-      "choco install -y vscode",
-      # Install Visual Studio Code Extensions
-      "code --install-extension ms-dotnettools.csdevkit --install-extension ms-edgedevtools.vscode-edge-devtools --install-extension eamodio.gitlens",
-      # Generalize the VM
+      "choco install -y eclipse-java-oxygen",      
+       # Generalize the VM
       "& $env:SystemRoot\\system32\\sysprep\\sysprep.exe /oobe /generalize /quiet /quit",
       "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }"
     ]
