@@ -175,3 +175,10 @@ source scripts/12-clean-up.sh
 source scripts/08.1-create-dev-box-definitions-for-packer-images.sh
 ```
 
+### Customizations
+
+
+### Dev Box extension for VS Code
+
+You can install the [Dev Box extension for VS Code](https://marketplace.visualstudio.com/items?itemName=DevCenter.ms-devbox) to manage your dev boxes directly from your IDE.
+
