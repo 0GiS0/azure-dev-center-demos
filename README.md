@@ -168,3 +168,10 @@ Congratulations 🎉 You did it! Now you can delete all and go to sleep 🛌💤
 ```bash
 source scripts/12-clean-up.sh
 ```
+
+### Packer
+
+```bash
+source scripts/08.1-create-dev-box-definitions-for-packer-images.sh
+```
+
