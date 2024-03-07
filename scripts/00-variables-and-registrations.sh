@@ -37,7 +37,8 @@ USER_EMAIL="gis@MngEnvMCAP434473.onmicrosoft.com"
 
 # Dev Box Definition variables
 SKU_NAME="general_i_8c32gb256ssd_v2"
-DEV_BOX_DEFINITION_NAME="vscode-box"
+# DEV_BOX_DEFINITION_NAME="vscode-box"
+DEV_BOX_DEFINITION_NAME_FOR_A_DEFAULT_IMAGE="win11_en_os_optimized"
 STORAGE_TYPE="ssd_256gb"
 
 # Dev Box Pool
