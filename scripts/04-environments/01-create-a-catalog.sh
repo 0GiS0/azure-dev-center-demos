@@ -38,6 +38,6 @@ az devcenter admin catalog get-sync-error-detail \
 --resource-group $RESOURCE_GROUP
 
 az devcenter admin catalog show \
---name $CATALOG_NAME \
+--name quickstart \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP

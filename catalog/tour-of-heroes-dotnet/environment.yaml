@@ -2,7 +2,7 @@ name: WebApp
 summary: Azure Web App Environment
 description: Deploys an Azure Web App without a data store
 runner: ARM
-templatePath: main.json
+templatePath: azuredeploy.json
 
 parameters:
   - id: name
