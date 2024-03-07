@@ -1,4 +1,4 @@
-name: WebApp
+name: tour-of-heroes-dotnet
 summary: Azure Web App Environment
 description: Deploys an Azure Web App without a data store
 runner: ARM
