@@ -1,0 +1,13 @@
+name: WebApp
+version: 1.0.0
+summary: The web application for the Tour of Heroes with .NET
+description: The web application for the Tour of Heroes with .NET
+runner: ARM
+templatePath: main.json
+
+parameters:
+  - id: name
+    name: name
+    description: The name of the web application
+    type: string
+    required: true

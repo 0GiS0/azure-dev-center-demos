@@ -1,4 +1,12 @@
-### Install Azure DevBox extension 🧩
+# Azure DevBox and Azure Deployments demos for a Platform Engineering culture
+
+## Pre-requisites
+
+In order to follow this tutorial, you need to have the following tools installed:
+
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+
+### Install Azure Dev Center extension 🧩
 
 ```bash
 az extension add --name devcenter
@@ -218,4 +226,8 @@ You can install the [Dev Box extension for VS Code](https://marketplace.visualst
 
 ### Azure Deployments
 
-Comming soon 🚧!
+CATALOG_NAME="tour-of-heroes-catalog"
+
+az devcenter admin catalog create \
+--name $CATALOG_NAME \
+--dev-center $DEV_CENTER_NAME \
