@@ -1,4 +1,4 @@
-az group delete --name $RESOURCE_GROUP --yes --no-wait
+time az group delete --name $RESOURCE_GROUP --yes
 
 echo -e "Delete custom role"
 
