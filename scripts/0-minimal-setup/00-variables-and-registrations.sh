@@ -46,6 +46,8 @@ DEV_BOX_POOL_NAME="backend-team-pool"
 
 echo -e "Variables set"
 
+GITHUB_PAT="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"
+
 # Registrations for your suscription
 
 az feature register --name VMHibernationPreview --namespace Microsoft.Compute
