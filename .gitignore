@@ -35,3 +35,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 packer-for-image-generation/terraform/.terraform.lock.hcl
+.env

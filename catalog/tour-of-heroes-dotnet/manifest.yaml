@@ -1,14 +1,14 @@
 # yaml-language-server: $schema=https://github.com/Azure/deployment-environments/releases/download/2022-11-11-preview/manifest.schema.json
 name: WebApp
 version: 1.0.0
-summary: The web application for the Tour of Heroes with .NET
-description: The web application for the Tour of Heroes with .NET
+summary: Azure Web App Environment
+description: Deploys an Azure Web App without a data store
 runner: ARM
 templatePath: main.json
 
 parameters:
   - id: name
-    name: name
-    description: The name of the web application
+    name: Name
+    description: 'Name of the Web App.'
     type: string
     required: true

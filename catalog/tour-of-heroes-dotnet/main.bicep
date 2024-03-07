@@ -1,51 +1,35 @@
-// Variables
-@description('Name of the web application')
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+@description('Name of the Function App')
 param name string = ''
 
-@description('Location to deploy the resources')
+@description('Location to deploy the environment resources')
 param location string = resourceGroup().location
 
 var resourceName = !empty(name) ? replace(name, ' ', '-') : 'a${uniqueString(resourceGroup().id)}'
 
-@description('Tag to apply to environment resources')
+@description('Tags to apply to environment resources')
 param tags object = {}
 
-@description('The Runtime stack of current web app')
-param linuxFxVersion string = 'DOTNETCORE|7.0'
+var hostingPlanName = '${resourceName}-hp'
+var webAppName = '${resourceName}-web'
 
-var hostingPlanName = '${resourceName}-plan'
-var webAppName = '${resourceName}-webapp'
-
-@description('The SKU of the App Service Plan')
-param sku string = 'F1'
-
-// Resources
-resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
+resource hostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: hostingPlanName
   location: location
-  tags: tags
   sku: {
-    name: sku
-
+    tier: 'Standard'
+    name: 'S1'
   }
-
-  kind: 'linux'
-
-  properties: {
-    reserved: true
-  }
+  tags: tags
 }
 
-resource webApp 'Microsoft.Web/sites@2023-01-01' = {
+resource webApp 'Microsoft.Web/sites@2022-03-01' = {
   name: webAppName
   location: location
   properties: {
-    httpsOnly: true
-    serverFarmId: appServicePlan.id
-    siteConfig: {
-      linuxFxVersion: linuxFxVersion
-      minTlsVersion: '1.2'
-      ftpsState: 'FtpsOnly'
-    }
+    serverFarmId: hostingPlan.id
   }
+  tags: tags
 }

@@ -44,9 +44,13 @@ STORAGE_TYPE="ssd_256gb"
 # Dev Box Pool
 DEV_BOX_POOL_NAME="backend-team-pool"
 
-echo -e "Variables set"
+# Load from .env file in the root of the project
+set -o allexport
+source .env
+set +o allexport
 
-GITHUB_PAT="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"
+
+echo -e "Variables set"
 
 # Registrations for your suscription
 
