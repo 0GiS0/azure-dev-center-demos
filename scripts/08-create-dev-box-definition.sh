@@ -15,8 +15,8 @@ az devcenter admin image list \
 IMAGE_REFERENCE_ID=$(az devcenter admin image show \
 --resource-group $RESOURCE_GROUP \
 --dev-center $DEV_CENTER_NAME \
---gallery-name $GALLERY_NAME \
---name $VSCODE_IMAGE_DEFINITION \
+--gallery-name Default \
+--name  \
 --query id -o tsv)
 
 echo -e "You can get all skus to see how many CPU, memmory and XX you want"

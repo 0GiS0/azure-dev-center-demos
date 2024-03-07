@@ -158,18 +158,29 @@ Projects in Dev Box should represent a team or a group of people that will use t
 source scripts/07-create-a-project.sh
 ```
 
-### Create a Dev Box Definition 📦
-
-```bash
-source scripts/08-create-dev-box-definition.sh
-```
-
 ### Create a network connections 📞
+
+If you need to connect to a virtual network, you can create a network connection. A network connection is a connection between a dev box and a virtual network. You can create a network connection for each virtual network that you want to connect to a dev box. After you create a network connection, you have to attach it to a dev center.
 
 ```bash
 source scripts/09-create-network-connections.sh
 ```
 
+### Create a Dev Box Definition 📦
+
+Dev Box definitions are created within a project and they carry information about the dev box and any requirements for using it to create VMs. This includes the image version, the size of the VM, and the network connections. It's a definition of a type of dev box.
+
+We have a couple of options here: you can create a dev box definition with some of the images from the default gallery, and in this demo connected to a virtual network:
+
+```bash
+source scripts/08-create-dev-box-definition.sh
+```
+
+Or we can create dev box definitions for the images created with Packer:
+
+```bash
+source scripts/08.1-create-dev-box-definitions-for-packer-images.sh
+```
 
 ### Create a dev box pool 🖥️
 
@@ -197,16 +208,14 @@ Congratulations 🎉 You did it! Now you can delete all and go to sleep 🛌💤
 source scripts/12-clean-up.sh
 ```
 
-### Packer
-
-```bash
-source scripts/08.1-create-dev-box-definitions-for-packer-images.sh
-```
-
 ### Customizations
 
+Comming soon 🚧!
 
-### Dev Box extension for VS Code
+#### Dev Box extension for VS Code
 
 You can install the [Dev Box extension for VS Code](https://marketplace.visualstudio.com/items?itemName=DevCenter.ms-devbox) to manage your dev boxes directly from your IDE.
 
+### Azure Deployments
+
+Comming soon 🚧!

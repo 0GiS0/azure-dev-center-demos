@@ -1,5 +1,3 @@
-# DEV_BOX_POOL_NAME_WITH_PACKER_IMAGE="dev-box-pool-with-packer-image"
-
 project_names=("tour-of-heroes-dotnet" "tour-of-heroes-java" "tour-of-heroes-python")
 image_names=("vscode_with_extensions" "eclipse" "jetbrains")
 
@@ -22,12 +20,3 @@ do
 
     index=$((index+1))
 done
-
-# az devcenter admin pool create \
-# --name $DEV_BOX_POOL_NAME_WITH_PACKER_IMAGE \
-# --project-name $DEV_CENTER_PROJECT \
-# --resource-group $RESOURCE_GROUP \
-# --devbox-definition-name $DEV_BOX_DEFINITION_NAME_FOR_PACKER_IMAGES \
-# --local-administrator Enabled \
-# --virtual-network-type Managed \
-# --managed-virtual-network-regions $LOCATION 
