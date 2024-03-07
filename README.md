@@ -6,7 +6,7 @@ az extension add --name devcenter
 
 ### Set variables
 
-To make it easier to follow the tutorial, let's set some variables.
+To make it easier to follow this tutorial, let's set some variables.
 
 ```bash
 source scripts/00-variables-and-registrations.sh
@@ -58,60 +58,88 @@ source scripts/05-create-an-image-template.sh
 
 And now just wait... a little bit ⌚
 
-### Create image template with Packerr 
+### Create image template with Packer
 
-The first thing you need to do is to install Packer. You can download it from the Packer website. Once you have Packer installed, you can create a Packer template. A Packer template is a JSON file that configures the various components of Packer in order to create a machine image. 
+The other option to create a custom image is to use Packer. Packer is a tool for creating identical machine images for multiple platforms from a single source configuration. 
+
+The first thing you need to do is to [install Packer](https://developer.hashicorp.com/packer/install?product_intent=packer). Once you have Packer installed, you can create a Packer template. In this repo we have several examples of Packer templates. You can use the `packer-for-image-generation` folder to create a custom image with Packer.
+
+But first we need to create a new gallery for these packages. You can create this resources using the terrafom script in the `terraform` folder.
+
+After that you need to create a service principal to use with Packer. You can create a service principal with the following command:
 
 ```bash
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 az ad sp create-for-rbac --name hcp-packer --role Contributor --scopes /subscriptions/$SUBSCRIPTION_ID
 ```
 
-Create a variables.pkr.hcl file with the following content:
+And create a variables.pkr.hcl file with the following content:
 
 ```hcl
-variable "subscription_id" {
-  type    = string
-  default = "your-subscription-id"
-}
-
 variable "client_id" {
-  type    = string
-  default = "your-client-id"
+  type = string
+  #   default = "${env("ARM_CLIENT_ID")}"
+  default = "5cb59efc-01fa-4d67-8c4d-4a14111f163b"
 }
-
 variable "client_secret" {
-  type    = string
-  default =
+  type = string
+  #   default = "${env("ARM_CLIENT_SECRET")}"
+  default = "IaP8Q~RrGH~~5AkDOhVIMnpsbii0a5stje-SNbxY"
 }
-
+variable "subscription_id" {
+  type = string
+  # default = "${env("ARM_SUBSCRIPTION_ID")}"
+  default = "0382396b-e763-46a7-bb62-30c63914f380"
+}
 variable "tenant_id" {
-  type    = string
-  default = "your-tenant-id"
+  type = string
+  # default = "${env("ARM_TENANT_ID")}"
+  default = "5b5c1a41-694c-4c26-b8c0-0e7f895e62e8"
 }
-
-variable "resource_group_name" {
+variable "resource_group" {
   type    = string
-  default = "your-resource-group-name"
+  # default = "${env("ARM_RESOURCE_GROUP_NAME")}"
+  default = "packer-rg"
 }
-
 variable "location" {
   type    = string
-  default = "your-location"
+  default = "westeurope"
 }
+
+variable "gallery_resource_group" {
+  type    = string
+  default = "packer-rg"
+}
+
+variable "gallery_name" {
+  type    = string
+  default = "packer_gallery"
+}
+
 ```
 
-Now you can execute packer to create the image:
+You need at least these variables and for each Packer template you have to specify the name of the image and the versio:
 
-```bash
-az group create --name hcp-packer-demos --location westeurope
+```hcl
+variable "image_name" {
+  type    = string
+  default = "jetbrains"
+}
+
+variable "image_version" {
+  type    = string
+  default = "1.0.0"
+}
 ```
 
 ```bash
 cd packer-for-image-generation
+cd jetbrains
 packer init .
 packer build .
 ```
+
+You can repeat this process for each Packer template you have.
 
 ### Create a Dev Center 🏢
 

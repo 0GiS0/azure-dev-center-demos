@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 RESOURCE_GROUP="DevBoxDemos"
@@ -8,7 +10,11 @@ VNET_NAME="devbox-vnet"
 SUBNET_NAME="devboxes-subnet"
 
 # Gallery image variables
+# For Image Builder
 GALLERY_NAME="devbox_gallery"
+# For Packer
+PACKER_GALLERY_NAME="packer_gallery"
+PACKER_GALLERY_RESOURCE_GROUP="packer-rg"
 
 # Custom images variables
 # IMAGE_DEF="vscodeImage"

@@ -1,6 +1,3 @@
-PACKER_GALLERY_NAME="packer_gallery"
-PACKER_GALLERY_RESOURCE_GROUP="packer-rg"
-
 echo "Let's assign the Contributor role to the Dev Center for the gallery"
 
 az role assignment create \

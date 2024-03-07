@@ -28,11 +28,6 @@ variable "location" {
   default = "westeurope"
 }
 
-variable "image_name" {
-  type    = string
-  default = "jetbrains"
-}
-
 variable "gallery_resource_group" {
   type    = string
   default = "packer-rg"
@@ -41,6 +36,11 @@ variable "gallery_resource_group" {
 variable "gallery_name" {
   type    = string
   default = "packer_gallery"
+}
+
+variable "image_name" {
+  type    = string
+  default = "jetbrains"
 }
 
 variable "image_version" {
