@@ -17,7 +17,7 @@ az extension add --name devcenter
 To make it easier to follow this tutorial, let's set some variables.
 
 ```bash
-source scripts/00-variables-and-registrations.sh
+source scripts/0-minimal-setup/00-variables-and-registrations.sh
 ```
 
 
@@ -27,7 +27,7 @@ As every Azure resource, the first thing you need to do is to create a resource 
 Also, in a enterprise environment, you will probably want to create a virtual network to connect your dev boxes to your corporate network.
 
 ```bash
-source scripts/01-create-rg-and-vnet.sh
+scripts/0-minimal-setup/01-create-rg-and-vnet.sh
 ```
 
 ### Create a Gallery 🖼
@@ -226,8 +226,3 @@ You can install the [Dev Box extension for VS Code](https://marketplace.visualst
 
 ### Azure Deployments
 
-CATALOG_NAME="tour-of-heroes-catalog"
-
-az devcenter admin catalog create \
---name $CATALOG_NAME \
---dev-center $DEV_CENTER_NAME \
