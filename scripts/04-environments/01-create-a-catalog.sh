@@ -10,15 +10,17 @@ az role assignment create \
 --assignee $DEV_CENTER_CLIENT_ID \
 --scope $(az keyvault show --name "${DEV_CENTER_NAME}kv" --resource-group $RESOURCE_GROUP --query id -o tsv)
 
+GITHUB_PAT="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"
+
 echo "Create a secret for GitHub PAT"
 az keyvault secret set \
 --vault-name "${DEV_CENTER_NAME}kv" \
---name "github-pat" \
+--name "gh-pat" \
 --value $GITHUB_PAT
 
 echo -e "Get the secret identifier"
 SECRET_ID=$(az keyvault secret show \
---name "github-pat" \
+--name "gh-pat" \
 --vault-name "${DEV_CENTER_NAME}kv" \
 --query id -o tsv)
 
@@ -28,7 +30,7 @@ az devcenter admin catalog create \
 --name $CATALOG_NAME \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
---git-hub path="catalog" branch="main" uri="https://github.com/0GiS0/azure-dev-box-demo.git"
+--git-hub path="catalog" branch="main" uri="https://github.com/0GiS0/azure-dev-box-demo.git" secret-identifier="$SECRET_ID"
 
 az devcenter admin catalog get-sync-error-detail \
 --name $CATALOG_NAME \
@@ -41,7 +43,7 @@ az devcenter admin catalog show \
 --resource-group $RESOURCE_GROUP
 
 # Get secret using URI
-# az keyvault secret show --id $SECRET_ID --query value -o tsv
+az keyvault secret show --id $SECRET_ID --query value -o tsv
 
 # Create a project for the catalog
 az devcenter admin project create \
