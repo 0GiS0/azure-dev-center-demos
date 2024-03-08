@@ -4,24 +4,21 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.15.31.15270",
-      "templateHash": "6640258515963112941"
+      "version": "0.4.451.19169",
+      "templateHash": "2847637193069812520"
     }
   },
   "parameters": {
-    "name": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "Name of the Function App"
-      }
-    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
       "metadata": {
         "description": "Location to deploy the environment resources"
       }
+    },
+    "resourcePrefix": {
+      "type": "string",
+      "defaultValue": "[format('a{0}', uniqueString(resourceGroup().id))]"
     },
     "tags": {
       "type": "object",
@@ -31,17 +28,17 @@
       }
     }
   },
+  "functions": [],
   "variables": {
-    "resourceName": "[if(not(empty(parameters('name'))), replace(parameters('name'), ' ', '-'), format('a{0}', uniqueString(resourceGroup().id)))]",
-    "hostingPlanName": "[format('{0}-hp', variables('resourceName'))]",
-    "webAppName": "[format('{0}-web', variables('resourceName'))]"
+    "hostingPlanName": "[format('{0}-hp', parameters('resourcePrefix'))]",
+    "webAppName": "[format('{0}-hp', parameters('resourcePrefix'))]"
   },
   "resources": [
     {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2022-03-01",
+      "apiVersion": "2017-08-01",
       "name": "[variables('hostingPlanName')]",
-      "location": "[parameters('location')]",
+      "location": "westus",
       "sku": {
         "tier": "Standard",
         "name": "S1"
@@ -50,9 +47,9 @@
     },
     {
       "type": "Microsoft.Web/sites",
-      "apiVersion": "2022-03-01",
+      "apiVersion": "2020-06-01",
       "name": "[variables('webAppName')]",
-      "location": "[parameters('location')]",
+      "location": "westus",
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
       },

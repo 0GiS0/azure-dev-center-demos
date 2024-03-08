@@ -36,3 +36,4 @@ override.tf.json
 terraform.rc
 packer-for-image-generation/terraform/.terraform.lock.hcl
 .env
+.DS_Store
