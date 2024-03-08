@@ -63,7 +63,7 @@ az devcenter admin project-environment-type create \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
 --project-name $PROJECT_FOR_ENVIRONMENTS \
---roles "Contributor" \
+--roles "{\"4cbf0b6c-e750-441c-98a7-10da8387e4d6\":{}}" \
 --identity-type "SystemAssigned" \
 --deployment-target-id $SUBSCRIPTION_ID \
 --status "Enabled"
