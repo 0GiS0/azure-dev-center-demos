@@ -213,13 +213,7 @@ The URL for the developer portal is https://devportal.microsoft.com
 source scripts/11-check-usage.sh
 ```
 
-### Clean up
 
-Congratulations 🎉 You did it! Now you can delete all and go to sleep 🛌💤
-
-```bash
-source scripts/12-clean-up.sh
-```
 
 ### Customizations
 
@@ -240,4 +234,12 @@ You can see some examples in the `catalog` folder.
 
 ```bash
 source scripts/04-environments/01-create-a-catalog.sh
+```
+
+### Clean up
+
+Congratulations 🎉 You did it! Now you can delete all and go to sleep 🛌💤
+
+```bash
+source scripts/12-clean-up.sh
 ```
