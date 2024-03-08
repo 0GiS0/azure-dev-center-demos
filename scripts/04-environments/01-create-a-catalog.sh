@@ -60,10 +60,9 @@ az devcenter admin environment-type create \
 # Assign the environment type to the project
 az devcenter admin project-environment-type create \
 --name $DEV_ENVIRONMENT_TYPE \
---dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
 --project-name $PROJECT_FOR_ENVIRONMENTS \
 --roles "{\"4cbf0b6c-e750-441c-98a7-10da8387e4d6\":{}}" \
 --identity-type "SystemAssigned" \
---deployment-target-id $SUBSCRIPTION_ID \
+--deployment-target-id "/subscriptions/$SUBSCRIPTION_ID" \
 --status "Enabled"

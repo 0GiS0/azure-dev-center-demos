@@ -4,7 +4,7 @@ description: Deploys an Azure Web App without a data store
 runner: ARM
 templatePath: azuredeploy.json
 
-parametersparameters:
+parameters:
   - id: name
     name: name
     description: 'Name of the Web App'
