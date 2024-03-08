@@ -27,8 +27,25 @@ As every Azure resource, the first thing you need to do is to create a resource 
 Also, in a enterprise environment, you will probably want to create a virtual network to connect your dev boxes to your corporate network.
 
 ```bash
-scripts/0-minimal-setup/01-create-rg-and-vnet.sh
+source scripts/00-minimal-setup/01-create-rg-and-vnet.sh
 ```
+
+### Create a Dev Center 🏢
+
+Now that you have a virtual network and also a custom image let's create a Dev Center. This is the place where you will manage your projects. You have to give the Dev Center permissions to the gallery
+
+```bash
+source scripts/00-minimal-setup/02-create-dev-center.sh
+```
+
+### Create a Project 📝
+
+Projects in Dev Box should represent a team or a group of people that will use the same dev boxes. For example, you can create a project for your backend team, another for your frontend team, and so on.
+
+```bash
+source scripts/00-minimal-setup/07-create-a-project.sh
+```
+
 
 ### Create a Gallery 🖼
 
@@ -149,22 +166,10 @@ packer build .
 
 You can repeat this process for each Packer template you have.
 
-### Create a Dev Center 🏢
-
-Now that you have a virtual network and also a custom image let's create a Dev Center. This is the place where you will manage your projects. You have to give the Dev Center permissions to the gallery
-
-```bash
-source scripts/06-create-dev-center.sh
-```
 
 
-### Create a Project 📝
 
-Projects in Dev Box should represent a team or a group of people that will use the same dev boxes. For example, you can create a project for your backend team, another for your frontend team, and so on.
 
-```bash
-source scripts/07-create-a-project.sh
-```
 
 ### Create a network connections 📞
 

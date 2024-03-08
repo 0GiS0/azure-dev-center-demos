@@ -1,5 +1,17 @@
 #!/bin/bash
 
+#Check if .env file exists
+if [ ! -f .env ]; then
+    echo -e "File .env does not exist"
+    exit 1
+fi
+
+set -o allexport
+source .env
+set +o allexport
+
+
+
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 RESOURCE_GROUP="DevBoxDemos"
@@ -8,6 +20,10 @@ LOCATION="westeurope"
 # Virtual network variables
 VNET_NAME="devbox-vnet"
 SUBNET_NAME="devboxes-subnet"
+
+# Key vault variables
+KEY_VAULT_NAME="madriddevcenterkv"
+SECRET_NAME="gh-pat"
 
 # Gallery image variables
 # For Image Builder
@@ -44,11 +60,9 @@ STORAGE_TYPE="ssd_256gb"
 # Dev Box Pool
 DEV_BOX_POOL_NAME="backend-team-pool"
 
-# Load from .env file in the root of the project
-set -o allexport
-source .env
-set +o allexport
-
+# Azure Deployment Environments
+CATALOG_NAME="my-catalog"
+PROJECT_FOR_ENVIRONMENTS="tour-of-heroes-environments"
 
 echo -e "Variables set"
 
