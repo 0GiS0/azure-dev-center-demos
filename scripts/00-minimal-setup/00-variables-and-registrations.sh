@@ -63,6 +63,7 @@ DEV_BOX_POOL_NAME="backend-team-pool"
 # Azure Deployment Environments
 CATALOG_NAME="my-catalog"
 PROJECT_FOR_ENVIRONMENTS="tour-of-heroes-environments"
+DEV_ENVIRONMENT_TYPE="dev"
 
 echo -e "Variables set"
 

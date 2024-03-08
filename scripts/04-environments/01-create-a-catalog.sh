@@ -28,18 +28,15 @@ az devcenter admin catalog create \
 --resource-group $RESOURCE_GROUP \
 --git-hub path="catalog" branch="main" uri="https://github.com/0GiS0/azure-dev-box-demo.git" secret-identifier="https://$KEY_VAULT_NAME.vault.azure.net/secrets/$SECRET_NAME"
 
-az devcenter admin catalog get-sync-error-detail \
---name $CATALOG_NAME \
---dev-center $DEV_CENTER_NAME \
---resource-group $RESOURCE_GROUP
+# az devcenter admin catalog get-sync-error-detail \
+# --name $CATALOG_NAME \
+# --dev-center $DEV_CENTER_NAME \
+# --resource-group $RESOURCE_GROUP
 
-az devcenter admin catalog show \
---name $CATALOG_NAME \
---dev-center $DEV_CENTER_NAME \
---resource-group $RESOURCE_GROUP
-
-# Get secret using URI
-az keyvault secret show --id $SECRET_ID --query value -o tsv
+# az devcenter admin catalog show \
+# --name $CATALOG_NAME \
+# --dev-center $DEV_CENTER_NAME \
+# --resource-group $RESOURCE_GROUP
 
 # Create a project for the catalog
 az devcenter admin project create \
@@ -56,13 +53,13 @@ az role assignment create \
 
 # Create environment type
 az devcenter admin environment-type create \
---name "dev" \
+--name $DEV_ENVIRONMENT_TYPE \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP
 
 # Assign the environment type to the project
 az devcenter admin project-environment-type create \
---name "dev" \
+--name $DEV_ENVIRONMENT_TYPE \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
 --project-name $PROJECT_FOR_ENVIRONMENTS \

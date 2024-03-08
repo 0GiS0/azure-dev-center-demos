@@ -43,7 +43,7 @@ source scripts/00-minimal-setup/02-create-dev-center.sh
 Projects in Dev Box should represent a team or a group of people that will use the same dev boxes. For example, you can create a project for your backend team, another for your frontend team, and so on.
 
 ```bash
-source scripts/00-minimal-setup/07-create-a-project.sh
+source scripts/00-minimal-setup/03-create-a-project.sh
 ```
 
 
@@ -237,3 +237,7 @@ An environment definition is composed of least two files:
 - A configuration file that provides metadata about the template. This file should be named environment.yaml.
 
 You can see some examples in the `catalog` folder.
+
+```bash
+source scripts/04-environments/01-create-a-catalog.sh
+```
