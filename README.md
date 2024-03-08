@@ -1,6 +1,6 @@
 # Azure DevBox and Azure Deployments demos for a Platform Engineering culture
 
-## Pre-requisites
+### Pre-requisites
 
 In order to follow this tutorial, you need to have the following tools installed:
 
@@ -226,3 +226,9 @@ You can install the [Dev Box extension for VS Code](https://marketplace.visualst
 
 ### Azure Deployments
 
+An environment definition is composed of least two files:
+
+- An Azure Resource Manager template (ARM template) in JSON file format. For example, azuredeploy.json.
+- A configuration file that provides metadata about the template. This file should be named environment.yaml.
+
+You can see some examples in the `catalog` folder.

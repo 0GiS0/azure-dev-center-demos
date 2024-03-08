@@ -6,7 +6,7 @@ templatePath: azuredeploy.json
 
 parameters:
   - id: name
-    name: Name
+    name: name
     description: 'Name of the Web App.'
     type: string
     required: true
