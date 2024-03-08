@@ -25,15 +25,13 @@ SECRET_ID=$(az keyvault secret show \
 CATALOG_NAME="tour-of-heroes-catalog"
 
 az devcenter admin catalog create \
---name $CATALOG_NAME \
+--name $CATALOG_NAME-2 \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
---git-hub path="/catalog" branch="main" uri="https://github.com/0GiS0/azure-dev-box-demo.git"  \
-secret-identifier="$SECRET_ID" \
---sync-type "Manual"
+--git-hub path="catalog" branch="main" uri="https://github.com/0GiS0/azure-dev-box-demo.git"
 
 az devcenter admin catalog get-sync-error-detail \
---name $CATALOG_NAME \
+--name $CATALOG_NAME-2 \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP
 

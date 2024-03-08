@@ -17,7 +17,7 @@ az extension add --name devcenter
 To make it easier to follow this tutorial, let's set some variables.
 
 ```bash
-source scripts/0-minimal-setup/00-variables-and-registrations.sh
+source scripts/00-minimal-setup/00-variables-and-registrations.sh
 ```
 
 
