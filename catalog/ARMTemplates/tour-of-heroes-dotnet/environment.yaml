@@ -1,12 +1,6 @@
-name: tour-of-heroes-dotnet
+name: WebApp
+version: 1.0.0
 summary: Azure Web App Environment
-description: Deploys an Azure Web App without a data store
+description: Deploys a web app in Azure without a datastore
 runner: ARM
 templatePath: azuredeploy.json
-
-parameters:
-  - id: name
-    name: name
-    description: 'Name of the Web App.'
-    type: string
-    required: true
