@@ -241,5 +241,5 @@ source scripts/04-environments/01-create-a-catalog.sh
 Congratulations 🎉 You did it! Now you can delete all and go to sleep 🛌💤
 
 ```bash
-source scripts/12-clean-up.sh
+source scripts/clean-up.sh
 ```
