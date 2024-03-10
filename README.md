@@ -246,7 +246,9 @@ az bicep build --file {bicep_file} --outfile {out_file}
 
 Or, in private preview, you can use Terraform.
 
-```bash
+
+
+Schedule an environment for deletion as a project admin: https://learn.microsoft.com/en-us/azure/deployment-environments/how-to-schedule-environment-deletion#schedule-an-environment-for-deletion-as-a-project-admin
 
 ### Clean up
 
