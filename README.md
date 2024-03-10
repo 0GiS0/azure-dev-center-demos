@@ -236,6 +236,18 @@ You can see some examples in the `catalog` folder.
 source scripts/04-environments/01-create-a-catalog.sh
 ```
 
+### How to define environments
+
+You can use BICEP and then convert it to ARM template.
+
+```bash
+az bicep build --file {bicep_file} --outfile {out_file}
+```
+
+Or, in private preview, you can use Terraform.
+
+```bash
+
 ### Clean up
 
 Congratulations 🎉 You did it! Now you can delete all and go to sleep 🛌💤

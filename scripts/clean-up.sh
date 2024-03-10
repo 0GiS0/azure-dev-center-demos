@@ -1,5 +1,8 @@
 time az group delete --name $RESOURCE_GROUP --yes
 
+# Purge Azure Key Vault soft delete
+az keyvault purge --name $KEY_VAULT_NAME --location $LOCATION
+
 echo -e "Delete custom role"
 
 az role definition delete \

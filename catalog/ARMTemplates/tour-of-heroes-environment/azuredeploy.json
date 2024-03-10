@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.25.53.49325",
-      "templateHash": "13878161974033062355"
+      "templateHash": "15809023764245771271"
     }
   },
   "parameters": {
@@ -13,7 +13,7 @@
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "Name of the Function App"
+        "description": "Name of the app"
       }
     },
     "location": {
@@ -34,27 +34,52 @@
   "variables": {
     "resourceName": "[if(not(empty(parameters('name'))), replace(parameters('name'), ' ', '-'), format('a{0}', uniqueString(resourceGroup().id)))]",
     "hostingPlanName": "[format('{0}-hp', variables('resourceName'))]",
-    "webAppName": "[format('{0}-web', variables('resourceName'))]"
+    "webAppName": "[format('{0}-web', variables('resourceName'))]",
+    "sqlServerName": "[format('{0}-sql', variables('resourceName'))]",
+    "sqlAdminLogin": "admin",
+    "sqlPassword": "P@ssw0rd123"
   },
   "resources": [
     {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2023-05-01-preview",
+      "name": "[variables('sqlServerName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "administratorLogin": "[variables('sqlAdminLogin')]",
+        "administratorLoginPassword": "[variables('sqlPassword')]",
+        "version": "12.0"
+      },
+      "tags": "[parameters('tags')]"
+    },
+    {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2022-03-01",
+      "apiVersion": "2022-09-01",
       "name": "[variables('hostingPlanName')]",
       "location": "[parameters('location')]",
       "sku": {
-        "tier": "Standard",
-        "name": "S1"
+        "tier": "Free",
+        "name": "F1"
       },
       "tags": "[parameters('tags')]"
     },
     {
       "type": "Microsoft.Web/sites",
-      "apiVersion": "2022-03-01",
+      "apiVersion": "2022-09-01",
       "name": "[variables('webAppName')]",
       "location": "[parameters('location')]",
       "properties": {
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "siteConfig": {
+          "connectionStrings": [
+            {
+              "name": "DefaultConnection",
+              "type": "SQLAzure",
+              "connectionString": "[format('Server=tcp:{0}.database.windows.net,1433;Database=heroes;User ID={1};Password={2};Encrypt=true;Connection Timeout=30;', variables('sqlServerName'), variables('sqlAdminLogin'), variables('sqlPassword'))]"
+            }
+          ],
+          "appSettings": []
+        }
       },
       "tags": "[parameters('tags')]",
       "dependsOn": [
