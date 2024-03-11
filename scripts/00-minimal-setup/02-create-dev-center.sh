@@ -1,4 +1,3 @@
-
 echo -e "Creating Dev Center $DEV_CENTER_NAME"
 
 DEV_CENTER_ID=$(az devcenter admin devcenter create \

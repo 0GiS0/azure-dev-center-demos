@@ -51,8 +51,9 @@ STORAGE_TYPE="ssd_256gb"
 SKU_NAME="general_i_8c32gb256ssd_v2"
 
 # Variables for the basic dev box
-DEV_BOX_DEFINITION_FOR_BASIC_DEMO="win11_en_os_optimized"
-DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="backend-team-pool"
+DEV_BOX_DEFINITION_FOR_BASIC_DEMO="vsbox"
+DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="devpool"
+IMAGE_NAME_FROM_THE_DEFAULT_GALLERY="microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2"
 
 # Azure Deployment Environments
 CATALOG_NAME="ade-catalog"

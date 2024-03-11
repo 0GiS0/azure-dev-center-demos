@@ -69,6 +69,8 @@ Congrats 🎉, you have created a dev box pool. Now you can access the Developer
 
 The URL for the developer portal is https://devportal.microsoft.com
 
+You can access with any user in the Devs group 👩🏼‍💻👨🏻‍💻
+
 
 ## Create a custom image
 

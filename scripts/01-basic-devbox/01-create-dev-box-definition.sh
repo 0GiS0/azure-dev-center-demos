@@ -1,30 +1,30 @@
-echo -e "Checking all galleries available for $DEV_CENTER_NAME"
+# echo -e "Checking all galleries available for $DEV_CENTER_NAME"
 
-az devcenter admin gallery list \
---resource-group $RESOURCE_GROUP \
---dev-center $DEV_CENTER_NAME \
--o table
+# az devcenter admin gallery list \
+# --resource-group $RESOURCE_GROUP \
+# --dev-center $DEV_CENTER_NAME \
+# -o table
 
-echo -e "And also all the images"
+# echo -e "And also all the images"
 
-az devcenter admin image list \
---resource-group $RESOURCE_GROUP \
---dev-center $DEV_CENTER_NAME \
--o table
+# az devcenter admin image list \
+# --resource-group $RESOURCE_GROUP \
+# --dev-center $DEV_CENTER_NAME \
+# -o table
 
 IMAGE_REFERENCE_ID=$(az devcenter admin image show \
 --resource-group $RESOURCE_GROUP \
 --dev-center $DEV_CENTER_NAME \
 --gallery-name Default \
---name  "microsoftwindowsdesktop_windows-ent-cpc_win11-22h2-ent-cpc-m365" \
+--name  $IMAGE_NAME_FROM_THE_DEFAULT_GALLERY \
 --query id -o tsv)
 
-echo -e "You can get all skus to see how many CPU, memmory and XX you want"
+# echo -e "You can get all skus to see how many CPU, memmory and XX you want"
 
-az devcenter admin sku list -o table
+# az devcenter admin sku list -o table
 
 time az devcenter admin devbox-definition create \
---name $DEV_BOX_DEFINITION_NAME_FOR_A_DEFAULT_IMAGE \
+--name $DEV_BOX_DEFINITION_FOR_BASIC_DEMO \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
 --image-reference id=$IMAGE_REFERENCE_ID \
