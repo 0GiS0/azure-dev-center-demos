@@ -10,8 +10,6 @@ set -o allexport
 source .env
 set +o allexport
 
-
-
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 RESOURCE_GROUP="DevBoxDemos"
@@ -34,10 +32,6 @@ VSCODE_IMAGE_DEFINITION="vscodeImage"
 PACKER_GALLERY_NAME="packer_gallery"
 PACKER_GALLERY_RESOURCE_GROUP="packer-rg"
 
-# Custom images variables
-# IMAGE_DEF="vscodeImage"
-
-
 # Image Builder variables
 IMAGE_BUILDER_IDENTITY="image-builder-identity"
 
@@ -52,17 +46,16 @@ DEV_CENTER_NAME=madrid-dev-center
 # Project
 ENTRA_ID_GROUP_NAME="Devs"
 
-# Dev Box Definition variables
-SKU_NAME="general_i_8c32gb256ssd_v2"
-# DEV_BOX_DEFINITION_NAME="vscode-box"
-DEV_BOX_DEFINITION_NAME_FOR_A_DEFAULT_IMAGE="win11_en_os_optimized"
+# Size of the dev box
 STORAGE_TYPE="ssd_256gb"
+SKU_NAME="general_i_8c32gb256ssd_v2"
 
-# Dev Box Pool
-DEV_BOX_POOL_NAME="backend-team-pool"
+# Variables for the basic dev box
+DEV_BOX_DEFINITION_FOR_BASIC_DEMO="win11_en_os_optimized"
+DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="backend-team-pool"
 
 # Azure Deployment Environments
-CATALOG_NAME="my-catalog"
+CATALOG_NAME="ade-catalog"
 PROJECT_FOR_ENVIRONMENTS="tour-of-heroes-environments"
 DEV_ENVIRONMENT_TYPE="dev"
 
