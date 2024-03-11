@@ -140,22 +140,20 @@ The other option to create a custom image is to use Packer. Packer is a tool for
 
 The first thing you need to do is to [install Packer](https://developer.hashicorp.com/packer/install?product_intent=packer). Once you have Packer installed, you can create a Packer template. In this repo we have several examples of Packer templates. You can use the `packer-for-image-generation` folder to create a custom image with Packer.
 
-But first we need to create a new gallery for these packages. You can create this resources using the terrafom script in the `terraform` folder.
+But first we need to create a new gallery for these packages. In order to execute packer you need a service principal:
+
+```bash
+SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+az ad sp create-for-rbac --name hcp-packer --role Contributor --scopes /subscriptions/$SUBSCRIPTION_ID
+```
+
+>IMPORTANT: Please replace the `variables.pkr.hcl` file with your own values.
+
+With that in place, you can create this resources using the terrafom script in the `terraform` folder.
 
 ```bash
 source scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh
 ```
-
-And you can use the different Packer templates in the `packer-for-image-generation` folder to create a custom image. For example, you can use the `jetbrains` template to create a custom image with JetBrains Toolbox installed.
-
-```bash
-cd packer-for-image-generation
-cd jetbrains
-packer init .
-packer build .
-```
-
-You can repeat this process for each Packer template you have.
 
 Once you have the custom images created, you need to attach the gallery to the Dev Center:
 
