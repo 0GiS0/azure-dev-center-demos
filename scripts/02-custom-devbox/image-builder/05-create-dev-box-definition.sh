@@ -5,8 +5,6 @@ IMAGE_REFERENCE_ID=$(az devcenter admin image show \
 --name  $VSCODE_IMAGE_DEFINITION \
 --query id -o tsv)
 
-DEV_BOX_FOR_CUSTOM_IMAGE_WITH_IMAGE_BUILDER="devbox-for-custom-image-with-image-builder"
-
 time az devcenter admin devbox-definition create \
 --name $DEV_BOX_FOR_CUSTOM_IMAGE_WITH_IMAGE_BUILDER \
 --dev-center $DEV_CENTER_NAME \

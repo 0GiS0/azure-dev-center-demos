@@ -34,6 +34,7 @@ PACKER_GALLERY_RESOURCE_GROUP="packer-rg"
 
 # Image Builder variables
 IMAGE_BUILDER_IDENTITY="image-builder-identity"
+DEV_BOX_FOR_CUSTOM_IMAGE_WITH_IMAGE_BUILDER="devbox-for-custom-image-with-image-builder"
 
 # Custom image
 VSCODE_IMAGE_NAME="vscodeWinImage"
