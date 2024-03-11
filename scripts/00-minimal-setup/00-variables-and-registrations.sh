@@ -50,7 +50,6 @@ VSCODE_IMAGE_TEMPLATE="vscodeTemplate"
 DEV_CENTER_NAME=madrid-dev-center
 
 # Project
-# USER_EMAIL="gis@MngEnvMCAP434473.onmicrosoft.com"
 ENTRA_ID_GROUP_NAME="Devs"
 
 # Dev Box Definition variables
