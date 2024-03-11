@@ -24,3 +24,5 @@ do
     cd ..
 
 done
+
+cd ..
