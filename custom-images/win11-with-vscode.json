@@ -39,8 +39,8 @@
      "source": {
         "type": "PlatformImage",
         "publisher": "MicrosoftWindowsDesktop",
-        "offer": "Windows-11",
-        "sku": "win11-21h2-avd",
+        "offer": "windows-ent-cpc",
+        "sku": "win11-21h2-ent-cpc-m365",
         "version": "latest"
      },
        "customize": [

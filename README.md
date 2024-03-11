@@ -130,6 +130,10 @@ The first thing you need to do is to [install Packer](https://developer.hashicor
 
 But first we need to create a new gallery for these packages. You can create this resources using the terrafom script in the `terraform` folder.
 
+```bash
+source scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh
+```
+
 After that you need to create a service principal to use with Packer. You can create a service principal with the following command:
 
 ```bash
@@ -137,64 +141,7 @@ SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 az ad sp create-for-rbac --name hcp-packer --role Contributor --scopes /subscriptions/$SUBSCRIPTION_ID
 ```
 
-And create a variables.pkr.hcl file with the following content:
-
-```hcl
-variable "client_id" {
-  type = string
-  #   default = "${env("ARM_CLIENT_ID")}"
-  default = "5cb59efc-01fa-4d67-8c4d-4a14111f163b"
-}
-variable "client_secret" {
-  type = string
-  #   default = "${env("ARM_CLIENT_SECRET")}"
-  default = "IaP8Q~RrGH~~5AkDOhVIMnpsbii0a5stje-SNbxY"
-}
-variable "subscription_id" {
-  type = string
-  # default = "${env("ARM_SUBSCRIPTION_ID")}"
-  default = "0382396b-e763-46a7-bb62-30c63914f380"
-}
-variable "tenant_id" {
-  type = string
-  # default = "${env("ARM_TENANT_ID")}"
-  default = "5b5c1a41-694c-4c26-b8c0-0e7f895e62e8"
-}
-variable "resource_group" {
-  type    = string
-  # default = "${env("ARM_RESOURCE_GROUP_NAME")}"
-  default = "packer-rg"
-}
-variable "location" {
-  type    = string
-  default = "westeurope"
-}
-
-variable "gallery_resource_group" {
-  type    = string
-  default = "packer-rg"
-}
-
-variable "gallery_name" {
-  type    = string
-  default = "packer_gallery"
-}
-
-```
-
-You need at least these variables and for each Packer template you have to specify the name of the image and the versio:
-
-```hcl
-variable "image_name" {
-  type    = string
-  default = "jetbrains"
-}
-
-variable "image_version" {
-  type    = string
-  default = "1.0.0"
-}
-```
+And you can use the different Packer templates in the `packer-for-image-generation` folder to create a custom image. For example, you can use the `jetbrains` template to create a custom image with JetBrains Toolbox installed.
 
 ```bash
 cd packer-for-image-generation
@@ -205,20 +152,58 @@ packer build .
 
 You can repeat this process for each Packer template you have.
 
+Once you have the custom images created, you need to attach the gallery to the Dev Center:
 
+```bash
+source scripts/02-custom-devbox/packer/02-assign-packer-gallery.sh
+```
 
+Create the Dev Box definitions:
 
+```bash
+source scripts/02-custom-devbox/packer/03-create-dev-box-definitions-for-packer-images.sh
+```
 
+And create the Dev Box Pools:
+
+```bash
+source scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-image.sh
+```
+
+Check the portal and create a new dev box with the new images.
+
+https://devportal.microsoft.com
+
+Taga125268
+
+## Integrate Dev Box with a virtual network
 
 ### Create a network connections 📞
 
 If you need to connect to a virtual network, you can create a network connection. A network connection is a connection between a dev box and a virtual network. You can create a network connection for each virtual network that you want to connect to a dev box. After you create a network connection, you have to attach it to a dev center.
 
 ```bash
-source scripts/09-create-network-connections.sh
+source scripts/03-network-integration/01-create-vnet-and-network-connections.sh
 ```
 
-### Create a Dev Box Definition 📦
+### Create a SQL Server virtual machine  in the vnet
+
+```bash
+source scripts/03-network-integration/02-create-vm-with-sql-server-in-that-vnet.sh
+```
+
+### Create a devbox definition with an image with Azure Data Studio in order to connect to the SQL Server
+
+```bash
+source scripts/03-network-integration/03-create-devbox-with-vnet-integration.sh
+```
+
+### And create a dev box pool
+
+```bash
+source scripts/03-network-integration/04-create-dev-box-pool.sh
+```
+
 
 Dev Box definitions are created within a project and they carry information about the dev box and any requirements for using it to create VMs. This includes the image version, the size of the VM, and the network connections. It's a definition of a type of dev box.
 

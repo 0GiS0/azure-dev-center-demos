@@ -8,6 +8,17 @@ az network vnet create \
 --subnet-name $SUBNET_NAME \
 --subnet-prefix 192.168.1.0/24
 
+# Create a subnet for the database
+DB_SUBNET_NAME="db-subnet"
+
+echo -e "Creating subnet $DB_SUBNET_NAME for the database"
+
+az network vnet subnet create \
+--name $DB_SUBNET_NAME \
+--resource-group $RESOURCE_GROUP \
+--vnet-name $VNET_NAME \
+--address-prefixes 192.168.2.0/24
+
 echo -e "Create network connection"
 
 NETWORK_CONNECTION_ID=$(az devcenter admin network-connection create \
