@@ -6,8 +6,7 @@ terraform apply -auto-approve
 
 echo -e "Build images using Packer"
 
-cd ../..
-cd packer-for-image-generation
+cd ..
 
 image_names=("vscode" "eclipse" "jetbrains")
 
@@ -20,5 +19,8 @@ do
     packer init .
 
     packer build -force . 
+
+    echo "Going back to the root directory"
+    cd ..
 
 done
