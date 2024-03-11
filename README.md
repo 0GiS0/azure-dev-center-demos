@@ -146,13 +146,6 @@ But first we need to create a new gallery for these packages. You can create thi
 source scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh
 ```
 
-After that you need to create a service principal to use with Packer. You can create a service principal with the following command:
-
-```bash
-SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-az ad sp create-for-rbac --name hcp-packer --role Contributor --scopes /subscriptions/$SUBSCRIPTION_ID
-```
-
 And you can use the different Packer templates in the `packer-for-image-generation` folder to create a custom image. For example, you can use the `jetbrains` template to create a custom image with JetBrains Toolbox installed.
 
 ```bash
