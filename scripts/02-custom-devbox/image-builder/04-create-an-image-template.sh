@@ -7,7 +7,7 @@ sed -i -e "s%<subscriptionID>%$SUBSCRIPTION_ID%g" tmp/win11-with-vscode.json
 sed -i -e "s%<rgName>%$RESOURCE_GROUP%g" tmp/win11-with-vscode.json
 sed -i -e "s%<region1>%$LOCATION%g" tmp/win11-with-vscode.json
 sed -i -e "s%<runOutputName>%$VSCODE_RUN_OUTPUT_NAME%g" tmp/win11-with-vscode.json
-sed -i -e "s%<sharedImageGalName>%$GALLERY_NAME%g" tmp/win11-with-vscode.json
+sed -i -e "s%<sharedImageGalName>%$IMAGE_BUILDER_GALLERY_NAME%g" tmp/win11-with-vscode.json
 sed -i -e "s%<imgBuilderId>%$IDENTITY_ID%g" tmp/win11-with-vscode.json
 sed -i -e "s%<imageDefName>%$VSCODE_IMAGE_DEFINITION%g" tmp/win11-with-vscode.json
 

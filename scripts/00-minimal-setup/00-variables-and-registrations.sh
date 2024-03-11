@@ -27,14 +27,16 @@ SECRET_NAME="gh-pat"
 
 # Gallery image variables
 # For Image Builder
-GALLERY_NAME="devbox_gallery"
+IMAGE_BUILDER_GALLERY_NAME="image_builder_gallery"
+VSCODE_IMAGE_DEFINITION="vscodeImage"
+
 # For Packer
 PACKER_GALLERY_NAME="packer_gallery"
 PACKER_GALLERY_RESOURCE_GROUP="packer-rg"
 
 # Custom images variables
 # IMAGE_DEF="vscodeImage"
-VSCODE_IMAGE_DEFINITION="vscodeImage"
+
 
 # Image Builder variables
 IMAGE_BUILDER_IDENTITY="image-builder-identity"

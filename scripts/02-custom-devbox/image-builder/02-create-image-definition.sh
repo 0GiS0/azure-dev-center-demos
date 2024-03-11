@@ -1,8 +1,8 @@
-echo -e "Creating image definition $VSCODE_IMAGE_DEFINITION in Azure Compute Gallery $GALLERY_NAME"
+echo -e "Creating image definition $VSCODE_IMAGE_DEFINITION in Azure Compute Gallery $IMAGE_BUILDER_GALLERY_NAME"
 
 az sig image-definition create \
 --resource-group $RESOURCE_GROUP \
---gallery-name $GALLERY_NAME \
+--gallery-name $IMAGE_BUILDER_GALLERY_NAME \
 --gallery-image-definition "$VSCODE_IMAGE_DEFINITION" \
 --os-type "Windows" \
 --os-state "Generalized" \

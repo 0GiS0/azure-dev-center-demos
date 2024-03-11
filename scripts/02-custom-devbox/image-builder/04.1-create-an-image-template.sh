@@ -6,7 +6,7 @@ az image builder create \
 --resource-group $RESOURCE_GROUP \
 --vm-size Standard_D2s_v3 \
 --image-source $IMAGE_SOURCE \
---managed-image-destinations "image_1=westus2 image_2=westus" \
---shared-image-destinations my_shared_gallery/linux_image_def=westus,brazilsouth \
---identity myIdentity \
+--managed-image-destinations "image_1=$LOCATION" \
+--shared-image-destinations $IMAGE_BUILDER_GALLERY_NAME/linux_image_def=westus,brazilsouth \
+--identity $IMAGE_BUILDER_IDENTITY \
 --scripts 

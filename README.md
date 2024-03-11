@@ -70,22 +70,28 @@ Congrats 🎉, you have created a dev box pool. Now you can access the Developer
 The URL for the developer portal is https://devportal.microsoft.com
 
 
+## Create a custom image
+
+We have two options to create a custom image: using Azure Image Builder or using Packer.
+
+### Using Azure Image Builder
+
+Azure Image Builder is a service that allows you to create custom images in Azure. You can use it to create a custom image from a managed image, a shared image gallery image, or a generalized VM. You can also use it to create a custom image from a Packer template.
+
 ### Create a Gallery 🖼
 
-Like the Azure Marketplace, a gallery is a repository for managing and sharing images and other resources, but you control who has access.
+The first thing we need is a gallery. 
 
 ```bash
-source scripts/02-create-azure-compute-gallery.sh
+source scripts/02-custom-devbox/image-builder/01-create-azure-compute-gallery.sh
 ```
-
-
 
 ### Create the image definition ✏
 
 Image definitions are created within a gallery and they carry information about the image and any requirements for using it to create VMs. This includes whether the image is Windows or Linux, release notes, and minimum and maximum memory requirements. It's a definition of a type of image.
 
 ```bash
-source scripts/03-create-image-definition.sh
+source scripts/02-custom-devbox/image-builder/02-create-image-definition.sh
 ```
 
 ### Create image version 🏞️
@@ -95,7 +101,7 @@ An image version is what you use to create a VM when using a gallery. You can ha
 In order to create your custom image you can use Azure Image Builder and for that you need a identity. This identity needs some permissions but there is no built-in role. So let's create a custom role for the image builder too.
 
 ```bash
-source scripts/04-create-azure-image-builder-and-role.sh
+source scripts/02-custom-devbox/image-builder/03-create-azure-image-builder-identity-and-role.sh
 ```
 
 Lastly you need to define the ingredients for your new image: what is the image base, if some customization is needed and how much time it has the builder to build it.
@@ -103,10 +109,18 @@ Lastly you need to define the ingredients for your new image: what is the image 
 We are going to use this template: `custom-images/win11-with-vscode.json` which install Visual Studio Code in a Windows 11.
 
 ```bash
-source scripts/05-create-an-image-template.sh
+source scripts/02-custom-devbox/image-builder/04-create-an-image-template.sh
 ```
 
 And now just wait... a little bit ⌚
+
+Congrats 🎉, you have created a custom image. Now you can use it to create a new dev box.
+
+```bash
+source scripts/02-custom-devbox/image-builder/05-create-dev-box-definition
+```
+
+After that you can create a dev box pool and access the Developer Portal to create a new dev box. You should see a Windows 11 with VS Code installed.
 
 ### Create image template with Packer
 
@@ -278,6 +292,8 @@ Schedule an environment for deletion as a project admin: https://learn.microsoft
 ### Clean up
 
 Congratulations 🎉 You did it! Now you can delete all and go to sleep 🛌💤
+
+Please keep in mind that before you delete the resources, you need to delete the environments created by the users.
 
 ```bash
 source scripts/clean-up.sh

@@ -19,7 +19,7 @@ NETWORK_CONNECTION_ID=$(az devcenter admin network-connection create \
 --subnet-id $(az network vnet subnet show --name $SUBNET_NAME --vnet-name $VNET_NAME --resource-group $RESOURCE_GROUP --query id -o tsv) \
 --query id -o tsv)
 
-# az devcenter admin network-connection list --resource-group $RESOURCE_GROUP -o table
+az devcenter admin network-connection list --resource-group $RESOURCE_GROUP -o table
 
 az devcenter admin attached-network create \
 --name "$VNET_NAME-attached-network" \
