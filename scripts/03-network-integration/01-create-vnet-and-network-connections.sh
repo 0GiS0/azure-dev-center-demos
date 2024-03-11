@@ -1,3 +1,13 @@
+echo -e "Creating virtual network $VNET_NAME with subnet $SUBNET_NAME"
+
+az network vnet create \
+--name $VNET_NAME \
+--resource-group $RESOURCE_GROUP \
+--location $LOCATION \
+--address-prefixes 192.168.0.0/16 \
+--subnet-name $SUBNET_NAME \
+--subnet-prefix 192.168.1.0/24
+
 echo -e "Create network connection"
 
 NETWORK_CONNECTION_ID=$(az devcenter admin network-connection create \

@@ -48,8 +48,8 @@ VSCODE_IMAGE_TEMPLATE="vscodeTemplate"
 DEV_CENTER_NAME=madrid-dev-center
 
 # Project
-DEV_CENTER_PROJECT="tour-of-heroes-project"
-USER_EMAIL="gis@MngEnvMCAP434473.onmicrosoft.com"
+# USER_EMAIL="gis@MngEnvMCAP434473.onmicrosoft.com"
+ENTRA_ID_GROUP_NAME="Devs"
 
 # Dev Box Definition variables
 SKU_NAME="general_i_8c32gb256ssd_v2"

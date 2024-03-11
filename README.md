@@ -20,14 +20,15 @@ To make it easier to follow this tutorial, let's set some variables.
 source scripts/00-minimal-setup/00-variables-and-registrations.sh
 ```
 
+## Basic setup: Create a Dev Box with a image from the Azure Marketplace
 
-### Create a Resource Group 📦 and virtual network 🕸️
+### Create a resource Group 📦 
 
 As every Azure resource, the first thing you need to do is to create a resource group.
 Also, in a enterprise environment, you will probably want to create a virtual network to connect your dev boxes to your corporate network.
 
 ```bash
-source scripts/00-minimal-setup/01-create-rg-and-vnet.sh
+source scripts/00-minimal-setup/01-create-rg.sh
 ```
 
 ### Create a Dev Center 🏢
@@ -38,13 +39,35 @@ Now that you have a virtual network and also a custom image let's create a Dev C
 source scripts/00-minimal-setup/02-create-dev-center.sh
 ```
 
-### Create a Project 📝
+### Create some projects 📝
 
 Projects in Dev Box should represent a team or a group of people that will use the same dev boxes. For example, you can create a project for your backend team, another for your frontend team, and so on.
 
 ```bash
 source scripts/00-minimal-setup/03-create-a-project.sh
 ```
+
+### Create a Dev Box Definition 📦
+
+Dev Box definitions are created within a project and they carry information about the dev box and any requirements for using it to create VMs. This includes the image version, the size of the VM, and the virtual network to connect to.
+
+```bash
+source scripts/01-basic-devbox/01-create-dev-box-definition.sh
+```
+
+### Create a Dev Box Pool 
+
+A dev box pool is a collection of dev boxes that are created from the same dev box definition. You can create a dev box pool for each team or group of people that will use the same dev boxes.
+
+```bash
+source scripts/01-basic-devbox/02-create-dev-box-pool.sh
+```
+
+### Access to the Developer Portal
+
+Congrats 🎉, you have created a dev box pool. Now you can access the Developer Portal and create a new dev box.
+
+The URL for the developer portal is https://devportal.microsoft.com
 
 
 ### Create a Gallery 🖼
@@ -54,6 +77,8 @@ Like the Azure Marketplace, a gallery is a repository for managing and sharing i
 ```bash
 source scripts/02-create-azure-compute-gallery.sh
 ```
+
+
 
 ### Create the image definition ✏
 
