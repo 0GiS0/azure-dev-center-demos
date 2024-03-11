@@ -119,10 +119,20 @@ And now just wait... a little bit ⌚
 Congrats 🎉, you have created a custom image. Now you can use it to create a new dev box.
 
 ```bash
-source scripts/02-custom-devbox/image-builder/05-create-dev-box-definition
+source scripts/02-custom-devbox/image-builder/05-create-dev-box-definition.sh
 ```
 
-After that you can create a dev box pool and access the Developer Portal to create a new dev box. You should see a Windows 11 with VS Code installed.
+After that you can create a dev box pool 
+
+```bash
+source scripts/02-custom-devbox/image-builder/06-create-dev-box-pool.sh
+```
+
+and access the Developer Portal to create a new dev box. 
+
+Developer Portal URL: https://devportal.microsoft.com
+
+You should see a Windows 11 with VS Code installed.
 
 ### Create image template with Packer
 

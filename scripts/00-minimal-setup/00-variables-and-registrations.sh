@@ -15,6 +15,9 @@ SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 RESOURCE_GROUP="DevBoxDemos"
 LOCATION="westeurope"
 
+# Dev center variables
+DEV_CENTER_NAME=madrid-dev-center
+
 # Virtual network variables
 VNET_NAME="devbox-vnet"
 SUBNET_NAME="devboxes-subnet"
@@ -28,10 +31,6 @@ SECRET_NAME="gh-pat"
 IMAGE_BUILDER_GALLERY_NAME="image_builder_gallery"
 VSCODE_IMAGE_DEFINITION="vscodeImage"
 
-# For Packer
-PACKER_GALLERY_NAME="packer_gallery"
-PACKER_GALLERY_RESOURCE_GROUP="packer-rg"
-
 # Image Builder variables
 IMAGE_BUILDER_IDENTITY="image-builder-identity"
 DEV_BOX_FOR_CUSTOM_IMAGE_WITH_IMAGE_BUILDER="devbox-for-custom-image-with-image-builder"
@@ -41,8 +40,9 @@ VSCODE_IMAGE_NAME="vscodeWinImage"
 VSCODE_RUN_OUTPUT_NAME="vscodeWinImageRunOutput"
 VSCODE_IMAGE_TEMPLATE="vscodeTemplate"
 
-# Dev center variables
-DEV_CENTER_NAME=madrid-dev-center
+# For Packer
+PACKER_GALLERY_NAME="packer_gallery"
+PACKER_GALLERY_RESOURCE_GROUP="packer-rg"
 
 # Project
 ENTRA_ID_GROUP_NAME="Devs"
