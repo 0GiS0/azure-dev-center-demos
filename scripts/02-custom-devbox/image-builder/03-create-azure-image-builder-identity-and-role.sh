@@ -5,6 +5,9 @@ IDENTITY_CLIENT_ID=$(az identity create \
 --resource-group $RESOURCE_GROUP \
 --query clientId -o tsv)
 
+echo -e "Wait 30 seconds for the identity to be created 🕒"
+sleep 30
+
 echo -e "Assigning role to Azure Image Builder identity $IMAGE_BUILDER_IDENTITY"
 
 az role definition create --role-definition @- <<EOF

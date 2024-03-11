@@ -59,7 +59,10 @@ echo -e "Delete custom role"
 
 az role definition delete \
 --name "Azure Image Builder Service Image Creation Role" \
---scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/DevBoxDemos"
+--scope "/subscriptions/$SUBSCRIPTION_ID"
+
+# Check custom role
+az role definition list --custom-role-only true
 
 # az devcenter dev environment list \
 # --project-name "qaenv" \
