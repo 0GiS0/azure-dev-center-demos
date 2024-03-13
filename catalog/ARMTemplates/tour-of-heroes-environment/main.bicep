@@ -13,7 +13,7 @@ var hostingPlanName = '${resourceName}-hp'
 var webAppName = '${resourceName}-web'
 var sqlServerName = '${resourceName}-sql'
 
-var sqlAdminLogin = 'admin'
+var sqlAdminLogin = 'dbadmin'
 var sqlPassword = 'P@ssw0rd123'
 
 // SQL Server

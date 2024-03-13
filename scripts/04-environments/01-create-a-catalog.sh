@@ -4,6 +4,11 @@ az keyvault create \
 --resource-group $RESOURCE_GROUP \
 --location $LOCATION
 
+DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
+--name $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--query identity.principalId -o tsv)
+
 az keyvault set-policy \
 --name $KEY_VAULT_NAME \
 --resource-group $RESOURCE_GROUP \
@@ -33,10 +38,10 @@ az devcenter admin catalog list \
 -g $RESOURCE_GROUP \
 -o table
 
-# az devcenter admin catalog get-sync-error-detail \
-# --name $CATALOG_NAME \
-# --dev-center $DEV_CENTER_NAME \
-# --resource-group $RESOURCE_GROUP
+az devcenter admin catalog get-sync-error-detail \
+--name $CATALOG_NAME \
+--dev-center $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP
 
 # az devcenter admin catalog show \
 # --name $CATALOG_NAME \
@@ -67,9 +72,12 @@ az devcenter admin project create \
 
 echo -e "Give access to your developers to this project" 
 
+# Get the object id of the group
+ENTRA_ID_GROUP_ID=$(az ad group show --group $ENTRA_ID_GROUP_NAME --query id -o tsv)
+
 az role assignment create \
 --role "Deployment Environments User" \
---assignee $USER_EMAIL \
+--assignee $ENTRA_ID_GROUP_ID \
 --scope $(az devcenter admin project show --name $PROJECT_FOR_ENVIRONMENTS \
 --resource-group $RESOURCE_GROUP --query id -o tsv)
 
