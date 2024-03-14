@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.25.53.49325",
-      "templateHash": "15809023764245771271"
+      "templateHash": "2863701208897786157"
     }
   },
   "parameters": {
@@ -36,7 +36,7 @@
     "hostingPlanName": "[format('{0}-hp', variables('resourceName'))]",
     "webAppName": "[format('{0}-web', variables('resourceName'))]",
     "sqlServerName": "[format('{0}-sql', variables('resourceName'))]",
-    "sqlAdminLogin": "admin",
+    "sqlAdminLogin": "dbadmin",
     "sqlPassword": "P@ssw0rd123"
   },
   "resources": [

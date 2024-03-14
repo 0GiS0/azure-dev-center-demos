@@ -271,6 +271,12 @@ You can use BICEP and then convert it to ARM template.
 az bicep build --file {bicep_file} --outfile {out_file}
 ```
 
+for example:
+
+```bash
+az bicep build --file catalog/ARMTemplates/tour-of-heroes-environment/main.bicep --outfile catalog/ARMTemplates/tour-of-heroes-environment/azuredeploy.json
+```
+
 Or, in private preview, you can use Terraform.
 
 
