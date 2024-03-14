@@ -1,5 +1,5 @@
-name: WebApp using TF
-summary: Creates a web app
+name: WebApp
+summary: Creates a web app using Terraform
 description: Deploys an environment using Terraform containing a Web App
 runner: Terraform
 templatePath: main.tf
