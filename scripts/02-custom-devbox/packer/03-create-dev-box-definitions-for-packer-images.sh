@@ -1,4 +1,4 @@
-image_names=("vscode_with_extensions" "eclipse" "jetbrains")
+image_names=("vscode_with_extensions" "eclipse" "jetbrains" "docker")
 
 for image_name in "${image_names[@]}"
 do

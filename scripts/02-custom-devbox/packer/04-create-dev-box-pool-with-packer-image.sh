@@ -1,5 +1,5 @@
-project_names=("tour-of-heroes-dotnet" "tour-of-heroes-java" "tour-of-heroes-python")
-image_names=("vscode_with_extensions" "eclipse" "jetbrains")
+project_names=("tour-of-heroes-dotnet" "tour-of-heroes-java" "tour-of-heroes-python" "tour-of-heroes-python")
+image_names=("vscode_with_extensions" "eclipse" "jetbrains" "docker")
 
 index=1
 

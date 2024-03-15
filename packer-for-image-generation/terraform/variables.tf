@@ -19,5 +19,6 @@ variable "image_names" {
     secure_vscode          = "secure_vscode"
     eclipse                = "eclipse"
     jetbrains              = "jetbrains"
+    docker                 = "docker"
   }
 }
