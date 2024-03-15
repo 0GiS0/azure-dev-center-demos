@@ -65,10 +65,10 @@ az role definition delete \
 az role definition list --custom-role-only true
 
 # az devcenter dev environment list \
-# --project-name "qaenv" \
+# --project-name "tour-of-heroes-environments" \
 # --dev-center-name $DEV_CENTER_NAME
 
 # az devcenter dev environment delete \
-# --name "otromas" \
-# --project-name "qaenv" \
+# --name "web-app-using-tf" \
+# --project-name "tour-of-heroes-environments" \
 # --dev-center-name $DEV_CENTER_NAME
