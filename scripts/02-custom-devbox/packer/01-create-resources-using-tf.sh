@@ -8,7 +8,8 @@ echo -e "Build images using Packer"
 
 cd ..
 
-image_names=("vscode" "eclipse" "jetbrains" "docker")
+# image_names=("vscode" "eclipse" "jetbrains" "secure_vscode" "docker")
+image_names=("docker")
 
 for image_name in "${image_names[@]}"
 do

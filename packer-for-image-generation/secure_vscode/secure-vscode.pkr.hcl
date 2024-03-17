@@ -20,9 +20,9 @@ source "azure-arm" "windows" {
 
   shared_image_gallery_destination {
     subscription         = "${var.subscription_id}"
-    resource_group       = local.gallery_resource_group
-    gallery_name         = local.gallery_name
-    image_name           = var.image_name
+    resource_group       = "${var.gallery_resource_group}"
+    gallery_name         = "${var.gallery_name}"
+    image_name           = "${var.image_name}"
     image_version        = "${var.image_version}"
     storage_account_type = "Standard_LRS"
 
@@ -52,9 +52,11 @@ build {
       # Install VS Code with Chocolatey
       "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
       "choco install -y vscode",      
+      # Update PATH for this session with Visual Studio Code bin path
+      "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';C:\\Program Files\\Microsoft VS Code\\bin'",      
       # Install Visual Studio Code Extensions
-      "C:\\Program Files\\Microsoft VS Code\\bin\\code --install-extension ms-dotnettools.csdevkit --install-extension ms-edgedevtools.vscode-edge-devtools --install-extension eamodio.gitlens",
-      # Generalize the VM
+      "code --install-extension snyk-security.snyk-vulnerability-scanner --install-extension refactor-security.security-notes --install-extension redhat.fabric8-analytics",
+       # Generalize the VM
       "& $env:SystemRoot\\system32\\sysprep\\sysprep.exe /oobe /generalize /quiet /quit",
       "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }"
     ]

@@ -52,6 +52,10 @@
 
 time az group delete --name $RESOURCE_GROUP --yes
 
+cd packer-for-image-generation/terraform
+terraform init
+terraform destroy -auto-approve
+
 # Purge Azure Key Vault soft delete
 az keyvault purge --name $KEY_VAULT_NAME --location $LOCATION
 

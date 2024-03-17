@@ -34,6 +34,7 @@ VSCODE_IMAGE_DEFINITION="vscodeImage"
 # Image Builder variables
 IMAGE_BUILDER_IDENTITY="image-builder-identity"
 DEV_BOX_FOR_CUSTOM_IMAGE_WITH_IMAGE_BUILDER="devbox-for-custom-image-with-image-builder"
+CUSTOM_IMAGE_DEV_BOX_POOL_NAME="custom-image-dev-box-pool"
 
 # Custom image
 VSCODE_IMAGE_NAME="vscodeWinImage"

@@ -44,7 +44,7 @@ source scripts/00-minimal-setup/02-create-dev-center.sh
 Projects in Dev Box should represent a team or a group of people that will use the same dev boxes. For example, you can create a project for your backend team, another for your frontend team, and so on.
 
 ```bash
-source scripts/00-minimal-setup/03-create-a-project.sh
+source scripts/00-minimal-setup/03-create-projects.sh
 ```
 
 ### Create a Dev Box Definition 📦
