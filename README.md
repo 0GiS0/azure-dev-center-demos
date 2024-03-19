@@ -207,21 +207,6 @@ source scripts/03-network-integration/03-create-devbox-with-vnet-integration.sh
 source scripts/03-network-integration/04-create-dev-box-pool.sh
 ```
 
-
-Dev Box definitions are created within a project and they carry information about the dev box and any requirements for using it to create VMs. This includes the image version, the size of the VM, and the network connections. It's a definition of a type of dev box.
-
-We have a couple of options here: you can create a dev box definition with some of the images from the default gallery, and in this demo connected to a virtual network:
-
-```bash
-source scripts/08-create-dev-box-definition.sh
-```
-
-Or we can create dev box definitions for the images created with Packer:
-
-```bash
-source scripts/08.1-create-dev-box-definitions-for-packer-images.sh
-```
-
 ### Create a dev box pool 🖥️
 
 Now that you have a dev box definition, you can create a dev box pool in your project. A dev box pool is a set of dev boxes that are created from the same dev box definition. 
