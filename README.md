@@ -20,7 +20,7 @@ To make it easier to follow this tutorial, let's set some variables.
 source scripts/00-minimal-setup/00-variables-and-registrations.sh
 ```
 
-## Basic setup: Create a Dev Box with a image from the Azure Marketplace
+## Minimal setup: resource group 📦, Dev Center 🏢 and projects 👷🏼‍♀️👷🏻‍♂️
 
 ### Create a resource Group 📦 
 
@@ -39,13 +39,14 @@ Now that you have a virtual network and also a custom image let's create a Dev C
 source scripts/00-minimal-setup/02-create-dev-center.sh
 ```
 
-### Create some projects 📝
+### Create some projects 👷🏼‍♀️👷🏻‍♂️
 
 Projects in Dev Box should represent a team or a group of people that will use the same dev boxes. For example, you can create a project for your backend team, another for your frontend team, and so on.
 
 ```bash
 source scripts/00-minimal-setup/03-create-projects.sh
 ```
+## Basic setup: Create a Dev Box with a image from the Azure Marketplace
 
 ### Create a Dev Box Definition 📦
 
