@@ -11,25 +11,6 @@ resource "azurerm_shared_image_gallery" "gallery" {
   description         = "Packer Image Gallery"
 }
 
-# # We need a shared image definition
-# resource azurerm_shared_image vscode {
-
-#   name                = "VSCodeWithPacker"
-#   gallery_name        = azurerm_shared_image_gallery.gallery.name
-#   resource_group_name = azurerm_resource_group.rg.name
-#   location            = var.location
-
-#   os_type = "Windows"  
-
-#   trusted_launch_enabled = true
-#   hyper_v_generation = "V2"
-
-#   identifier {
-#     publisher = "returngis"
-#     offer     = "vscodebox"
-#     sku       = "1-0-0"
-#   }
-# }
 
 # Create shared image definitions for each image
 resource "azurerm_shared_image" "vscode_with_extensions" {

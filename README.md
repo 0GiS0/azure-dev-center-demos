@@ -178,7 +178,17 @@ Check the portal and create a new dev box with the new images.
 
 https://devportal.microsoft.com
 
-Taga125268
+## Configuration-as-code customization (preview)
+
+You can use configuration-as-code to customize the dev box. Configuration-as-code allows you to define the configuration of a dev box in a YAML file. You can use configuration-as-code to customize the dev box by installing software, configuring settings, and running scripts.
+
+But first platform admin teams must choose which tasks are available to their developers by defining a Catalog of tasks. A Catalog is a collection of tasks that developers can use to customize their dev boxes. Each task in the catalog is a YAML file that defines a task that can be run on a dev box plus a script that is executed when the task is run.
+
+For this environment we are going to allow the tasks in the `allowed-tasks` folder. So we need to attach this folder to the Dev Center.
+
+```bash
+source scripts/02-custom-devbox/customizations/00-attach-catalog-with-allowed-tasks.sh
+```
 
 ## Integrate Dev Box with a virtual network
 
@@ -226,12 +236,6 @@ The URL for the developer portal is https://devportal.microsoft.com
 source scripts/11-check-usage.sh
 ```
 
-
-
-### Customizations
-
-Comming soon 🚧!
-
 #### Dev Box extension for VS Code
 
 You can install the [Dev Box extension for VS Code](https://marketplace.visualstudio.com/items?itemName=DevCenter.ms-devbox) to manage your dev boxes directly from your IDE.
@@ -264,8 +268,6 @@ az bicep build --file catalog/ARMTemplates/tour-of-heroes-environment/main.bicep
 ```
 
 Or, in private preview, you can use Terraform.
-
-
 
 Schedule an environment for deletion as a project admin: https://learn.microsoft.com/en-us/azure/deployment-environments/how-to-schedule-environment-deletion#schedule-an-environment-for-deletion-as-a-project-admin
 

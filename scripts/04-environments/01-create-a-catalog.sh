@@ -1,31 +1,31 @@
-echo -e "Create an Azure Key Vault for the catalog"
-az keyvault create \
---name $KEY_VAULT_NAME \
---resource-group $RESOURCE_GROUP \
---location $LOCATION
+# echo -e "Create an Azure Key Vault for the catalog"
+# az keyvault create \
+# --name $KEY_VAULT_NAME \
+# --resource-group $RESOURCE_GROUP \
+# --location $LOCATION
 
-DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
---name $DEV_CENTER_NAME \
---resource-group $RESOURCE_GROUP \
---query identity.principalId -o tsv)
+# DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
+# --name $DEV_CENTER_NAME \
+# --resource-group $RESOURCE_GROUP \
+# --query identity.principalId -o tsv)
 
-az keyvault set-policy \
---name $KEY_VAULT_NAME \
---resource-group $RESOURCE_GROUP \
---secret-permissions get \
---object-id $DEV_CENTER_CLIENT_ID
+# az keyvault set-policy \
+# --name $KEY_VAULT_NAME \
+# --resource-group $RESOURCE_GROUP \
+# --secret-permissions get \
+# --object-id $DEV_CENTER_CLIENT_ID
 
-echo "Create a secret for GitHub PAT"
-az keyvault secret set \
---vault-name $KEY_VAULT_NAME \
---name $SECRET_NAME \
---value $GITHUB_PAT
+# echo "Create a secret for GitHub PAT"
+# az keyvault secret set \
+# --vault-name $KEY_VAULT_NAME \
+# --name $SECRET_NAME \
+# --value $GITHUB_PAT
 
-echo -e "Get the secret identifier"
-SECRET_ID=$(az keyvault secret show \
---name $SECRET_NAME \
---vault-name $KEY_VAULT_NAME \
---query id -o tsv)
+# echo -e "Get the secret identifier"
+# SECRET_ID=$(az keyvault secret show \
+# --name $SECRET_NAME \
+# --vault-name $KEY_VAULT_NAME \
+# --query id -o tsv)
 
 az devcenter admin catalog create \
 --name $CATALOG_NAME \
