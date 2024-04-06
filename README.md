@@ -171,7 +171,7 @@ source scripts/02-custom-devbox/packer/03-create-dev-box-definitions-for-packer-
 And create the Dev Box Pools:
 
 ```bash
-source scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-image.sh
+source scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-images.sh
 ```
 
 Check the portal and create a new dev box with the new images.
@@ -189,6 +189,11 @@ For this environment we are going to allow the tasks in the `allowed-tasks` fold
 ```bash
 source scripts/02-custom-devbox/customizations/00-attach-catalog-with-allowed-tasks.sh
 ```
+
+So now you can create a new dev box with some customizations. Just go to the Developer Portal and upload the `devbox-customizations/workload.yaml` file.
+After creation you should see all this installed:
+
+- Visual Studio Code
 
 ## Integrate Dev Box with a virtual network
 

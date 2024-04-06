@@ -23,7 +23,7 @@ VNET_NAME="devbox-vnet"
 SUBNET_NAME="devboxes-subnet"
 
 # Key vault variables
-KEY_VAULT_NAME="madriddevcenterkv"
+KEY_VAULT_NAME="devcenterkv${RANDOM}"
 SECRET_NAME="gh-pat"
 
 # Gallery image variables
@@ -57,8 +57,11 @@ DEV_BOX_DEFINITION_FOR_BASIC_DEMO="vsbox"
 DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="default-gallery-pool"
 IMAGE_NAME_FROM_THE_DEFAULT_GALLERY="microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2"
 
+# Dev box customizations
+TASK_CATALOG_NAME="tasks-catalog"
+
 # Azure Deployment Environments
-CATALOG_NAME="ade-catalog"
+CATALOG_NAME="infra-catalog"
 PROJECT_FOR_ENVIRONMENTS="tour-of-heroes-environments"
 DEV_ENVIRONMENT_TYPE="dev"
 

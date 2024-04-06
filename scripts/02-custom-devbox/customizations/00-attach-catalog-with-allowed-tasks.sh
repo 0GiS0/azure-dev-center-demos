@@ -28,7 +28,7 @@ SECRET_ID=$(az keyvault secret show \
 --query id -o tsv)
 
 az devcenter admin catalog create \
---name $CATALOG_NAME \
+--name $TASK_CATALOG_NAME \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
 --git-hub path="allowed-tasks" branch="main" uri="https://github.com/0GiS0/azure-dev-box-demo.git" secret-identifier="https://$KEY_VAULT_NAME.vault.azure.net/secrets/$SECRET_NAME"
@@ -37,3 +37,8 @@ az devcenter admin catalog list \
 -d $DEV_CENTER_NAME \
 -g $RESOURCE_GROUP \
 -o table
+
+az devcenter admin catalog get-sync-error-detail \
+--name $TASK_CATALOG_NAME \
+--dev-center $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP
