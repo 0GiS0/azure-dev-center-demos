@@ -1,6 +1,10 @@
 $schema: "1.0"
 name: "devbox-customization"
 tasks:
+  - name: choco
+    parameters:
+      package: python3
+      version: 3.11.0
   - name: powershell
     parameters:
       command: |
@@ -11,6 +15,7 @@ tasks:
         code --install-extension ms-python.python;
         code --install-extension ms-vscode-remote.remote-wsl;
         code --install-extension d-biehl.robotcode
+      runAsUser: true
   - name: git-clone
     description: Clone this repository into C:\Workspaces
     parameters:
