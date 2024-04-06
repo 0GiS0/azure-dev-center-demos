@@ -1,4 +1,5 @@
 # This is a simple powershell command execution task for Dev Box.
+
 $schema: 1.0
 name: powershell
 description: Execute a powershell command.
@@ -7,19 +8,19 @@ command: ".\\Run-Command.ps1 -Command {{command}} -WorkingDirectory {{workingDir
 parameters:
   command:
     type: string
-    defaultValue: ""
+    default: ""
     required: true
     description: The command to execute.
   workingDirectory:
     type: string
-    defaultValue: ""
+    default: ""
     required: false
     description: The working directory to execute the command in.
   runAsUser:
     type: boolean
-    defaultValue: false
+    default: false
     required: false
-    description: execute the command when the user login the devbox at the first time.
+    description: Whether to run the command as the user.
 documentation:
   notes: This task is used to execute a powershell command.
   examples:
