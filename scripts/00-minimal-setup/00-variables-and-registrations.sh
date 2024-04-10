@@ -23,7 +23,8 @@ VNET_NAME="devbox-vnet"
 SUBNET_NAME="devboxes-subnet"
 
 # Key vault variables
-KEY_VAULT_NAME="devcenterkv${RANDOM}"
+# KEY_VAULT_NAME="devcenterkv${RANDOM}"
+KEY_VAULT_NAME="devcenterkv10013"
 SECRET_NAME="gh-pat"
 
 # Gallery image variables
@@ -70,3 +71,8 @@ echo -e "Variables set"
 # Registrations for your suscription
 
 az feature register --name VMHibernationPreview --namespace Microsoft.Compute
+
+# name of the images
+image_names=("vscode_with_extensions" "eclipse" "jetbrains" "secure_vscode" "docker")
+
+projects_names=("tour-of-heroes-dotnet" "tour-of-heroes-java" "tour-of-heroes-python" "tour-of-heroes-containers" "tour-of-heroes-python")

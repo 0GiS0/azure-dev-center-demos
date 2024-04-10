@@ -1,5 +1,3 @@
-image_names=("vscode_with_extensions" "eclipse" "jetbrains" "docker" "secure_vscode")
-
 for image_name in "${image_names[@]}"
 do
     echo "Creating dev box definition for $image_name"

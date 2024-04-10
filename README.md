@@ -20,9 +20,12 @@ To make it easier to follow this tutorial, let's set some variables.
 source scripts/00-minimal-setup/00-variables-and-registrations.sh
 ```
 
-## Minimal setup: resource group 📦, Dev Center 🏢 and projects 👷🏼‍♀️👷🏻‍♂️
+<details>
+<summary>
+<h4>Minimal setup: resource group 📦, Dev Center 🏢 and projects 👷🏼‍♀️👷🏻‍♂️</h4>
+</summary>
 
-### Create a resource Group 📦 
+##### Create a resource Group 📦 
 
 As every Azure resource, the first thing you need to do is to create a resource group.
 Also, in a enterprise environment, you will probably want to create a virtual network to connect your dev boxes to your corporate network.
@@ -31,7 +34,7 @@ Also, in a enterprise environment, you will probably want to create a virtual ne
 source scripts/00-minimal-setup/01-create-rg.sh
 ```
 
-### Create a Dev Center 🏢
+##### Create a Dev Center 🏢
 
 Now that you have a virtual network and also a custom image let's create a Dev Center. This is the place where you will manage your projects. You have to give the Dev Center permissions to the gallery
 
@@ -39,14 +42,18 @@ Now that you have a virtual network and also a custom image let's create a Dev C
 source scripts/00-minimal-setup/02-create-dev-center.sh
 ```
 
-### Create some projects 👷🏼‍♀️👷🏻‍♂️
+##### Create some projects 👷🏼‍♀️👷🏻‍♂️
 
 Projects in Dev Box should represent a team or a group of people that will use the same dev boxes. For example, you can create a project for your backend team, another for your frontend team, and so on.
 
 ```bash
 source scripts/00-minimal-setup/03-create-projects.sh
 ```
-## Basic setup: Create a Dev Box with a image from the Azure Marketplace
+
+</details>
+
+<details>
+<summary><h4>Basic setup: Create a Dev Box with a image from the Azure Marketplace</h4></summary>
 
 ### Create a Dev Box Definition 📦
 
@@ -72,8 +79,10 @@ The URL for the developer portal is https://devportal.microsoft.com
 
 You can access with any user in the Devs group 👩🏼‍💻👨🏻‍💻
 
+</details>
 
-## Create a custom image
+<details>
+<summary><h4>Create a custom image</h4></summary>
 
 We have two options to create a custom image: using Azure Image Builder or using Packer.
 
@@ -178,7 +187,10 @@ Check the portal and create a new dev box with the new images.
 
 https://devportal.microsoft.com
 
-## Configuration-as-code customization (preview)
+</details>
+
+<details>
+<summary><h4>Configuration-as-code customization (preview)</h4></summary>
 
 You can use configuration-as-code to customize the dev box. Configuration-as-code allows you to define the configuration of a dev box in a YAML file. You can use configuration-as-code to customize the dev box by installing software, configuring settings, and running scripts.
 
@@ -195,7 +207,10 @@ After creation you should see all this installed:
 
 - Visual Studio Code
 
-## Integrate Dev Box with a virtual network
+</details>
+
+<details>
+<summary><h4>Integrate Dev Box with a virtual network</h4></summary
 
 ### Create a network connections 📞
 
@@ -205,45 +220,30 @@ If you need to connect to a virtual network, you can create a network connection
 source scripts/03-network-integration/01-create-vnet-and-network-connections.sh
 ```
 
-### Create a SQL Server virtual machine  in the vnet
+##### Create a SQL Server virtual machine  in the vnet
 
 ```bash
 source scripts/03-network-integration/02-create-vm-with-sql-server-in-that-vnet.sh
 ```
 
-### Create a devbox definition with an image with Azure Data Studio in order to connect to the SQL Server
+##### Create a devbox definition with an image with Azure Data Studio in order to connect to the SQL Server
 
 ```bash
 source scripts/03-network-integration/03-create-devbox-with-vnet-integration.sh
 ```
 
-### And create a dev box pool
+##### Create a dev box pool 🖥️
+
+Now that you have a dev box definition, you can create a dev box pool in your project. A dev box pool is a set of dev boxes that are created from the same dev box definition.
 
 ```bash
 source scripts/03-network-integration/04-create-dev-box-pool.sh
-```
-
-### Create a dev box pool 🖥️
-
-Now that you have a dev box definition, you can create a dev box pool in your project. A dev box pool is a set of dev boxes that are created from the same dev box definition. 
-
-```bash
-source scripts/10-create-dev-box-pool.sh
 ```
 
 ### Got to the developer portal and create a dev box 👩🏼‍💻
 
 The URL for the developer portal is https://devportal.microsoft.com
 
-### Check the usage
-
-```bash
-source scripts/11-check-usage.sh
-```
-
-#### Dev Box extension for VS Code
-
-You can install the [Dev Box extension for VS Code](https://marketplace.visualstudio.com/items?itemName=DevCenter.ms-devbox) to manage your dev boxes directly from your IDE.
 
 ### Azure Deployments
 
@@ -275,6 +275,18 @@ az bicep build --file catalog/ARMTemplates/tour-of-heroes-environment/main.bicep
 Or, in private preview, you can use Terraform.
 
 Schedule an environment for deletion as a project admin: https://learn.microsoft.com/en-us/azure/deployment-environments/how-to-schedule-environment-deletion#schedule-an-environment-for-deletion-as-a-project-admin
+
+
+</details>
+
+<details>
+<summary><h4>Check the usage</h4>
+
+```bash
+source scripts/11-check-usage.sh
+```
+</details>
+
 
 ### Clean up
 
