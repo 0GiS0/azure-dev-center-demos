@@ -6,7 +6,7 @@ variable "client_id" {
 variable "client_secret" {
   type = string
   #   default = "${env("ARM_CLIENT_SECRET")}"
-  default = "IaP8Q~RrGH~~5AkDOhVIMnpsbii0a5stje-SNbxY"
+  default = "-Lv8Q~UXSUcFzV8vKArkGQoXcae5TG1GbtuUWdfO"
 }
 variable "subscription_id" {
   type = string
@@ -45,5 +45,5 @@ variable "gallery_name" {
 
 variable "image_version" {
   type    = string
-  default = "1.0.0"
+  default = "1.0.1"
 }

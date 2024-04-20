@@ -52,6 +52,7 @@ build {
       # Install VS Code with Chocolatey
       "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
       "choco install -y vscode",
+      "choco install -y docker-desktop",
       # Update PATH for this session with Visual Studio Code bin path
       "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';C:\\Program Files\\Microsoft VS Code\\bin'",      
       # Install Visual Studio Code Extensions

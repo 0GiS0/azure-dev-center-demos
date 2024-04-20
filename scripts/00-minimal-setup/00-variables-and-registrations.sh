@@ -73,6 +73,8 @@ echo -e "Variables set"
 az feature register --name VMHibernationPreview --namespace Microsoft.Compute
 
 # name of the images
-image_names=("vscode_with_extensions" "eclipse" "jetbrains" "secure_vscode" "docker")
+# image_names=("vscode" "eclipse" "jetbrains" "docker")
+
+image_names=("docker")
 
 projects_names=("tour-of-heroes-dotnet" "tour-of-heroes-java" "tour-of-heroes-python" "tour-of-heroes-containers" "tour-of-heroes-python")
