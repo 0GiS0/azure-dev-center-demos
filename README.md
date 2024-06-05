@@ -244,6 +244,10 @@ source scripts/03-network-integration/04-create-dev-box-pool.sh
 
 The URL for the developer portal is https://devportal.microsoft.com
 
+</details>
+
+<details>
+<summary><h4>Azure Deployment Environments</h4></summary
 
 ### Azure Deployments
 
