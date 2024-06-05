@@ -247,7 +247,7 @@ The URL for the developer portal is https://devportal.microsoft.com
 </details>
 
 <details>
-<summary><h4>Azure Deployment Environments</h4></summary
+<summary><h4>Azure Deployment Environments</h4></summary>
 
 ### Using ARM
 
