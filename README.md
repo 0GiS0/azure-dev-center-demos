@@ -249,7 +249,7 @@ The URL for the developer portal is https://devportal.microsoft.com
 <details>
 <summary><h4>Azure Deployment Environments</h4></summary
 
-### Azure Deployments
+### Using ARM
 
 An environment definition is composed of least two files:
 
