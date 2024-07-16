@@ -12,7 +12,8 @@
 		"vscode": {
 			"extensions": [
 				"bierner.markdown-preview-github-styles",
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"DavidAnson.vscode-markdownlint"
 			]
 		}
 	}

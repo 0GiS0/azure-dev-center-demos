@@ -12,7 +12,7 @@ set +o allexport
 
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-RESOURCE_GROUP="DevBoxDemos"
+RESOURCE_GROUP="dev-center-demos"
 LOCATION="westeurope"
 
 # Dev center variables
