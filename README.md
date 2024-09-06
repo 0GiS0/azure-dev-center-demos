@@ -41,7 +41,7 @@ As every Azure resource, the first thing you need to do is to create a resource 
 Also, in a enterprise environment, you will probably want to create a virtual network to connect your dev boxes to your corporate network.
 
 ```bash
-source scripts/00-minimal-setup/01-create-rg.sh
+source scripts/00-minimal-setup/01-create-rg.sh 
 ```
 
 #### Create a Dev Center 🏢
@@ -55,6 +55,12 @@ source scripts/00-minimal-setup/02-create-dev-center.sh
 ##### Create some projects 👷🏼‍♀️👷🏻‍♂️
 
 Projects in Dev Center should represent a team or a group of people that will use the same dev resources. For example, you can create a project for your backend team, another for your frontend team, and so on.
+
+For this demo we need a Microsoft Entra ID Group for our developers. You can create a group with the following command:
+
+```bash
+source scripts/00-minimal-setup/03-create-entra-id-groups.sh
+```
 
 ```bash
 source scripts/00-minimal-setup/03-create-projects.sh

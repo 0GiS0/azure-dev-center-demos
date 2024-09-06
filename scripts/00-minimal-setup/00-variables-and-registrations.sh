@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #Check if .env file exists
-if [ ! -f .env ]; then
-    echo -e "File .env does not exist"
-    exit 1
-fi
+# if [ ! -f .env ]; then
+#     echo -e "File .env does not exist"
+#     exit 1
+# fi
 
-set -o allexport
-source .env
-set +o allexport
+# set -o allexport
+# source .env
+# set +o allexport
 
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
@@ -56,7 +56,7 @@ SKU_NAME="general_i_8c32gb256ssd_v2"
 # Variables for the basic dev box
 DEV_BOX_DEFINITION_FOR_BASIC_DEMO="vsbox"
 DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="default-gallery-pool"
-IMAGE_NAME_FROM_THE_DEFAULT_GALLERY="microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2"
+IMAGE_NAME_FROM_THE_DEFAULT_GALLERY=" microsoftvisualstudio_windowsplustools_base-win11-gen2"
 
 # Dev box customizations
 TASK_CATALOG_NAME="tasks-catalog"
