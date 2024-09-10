@@ -55,7 +55,7 @@ SKU_NAME="general_i_8c32gb256ssd_v2"
 
 # Variables for the basic dev box
 DEV_BOX_DEFINITION_FOR_BASIC_DEMO="vsbox"
-DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="default-gallery-pool"
+DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="default-devbox-pool"
 IMAGE_NAME_FROM_THE_DEFAULT_GALLERY=" microsoftvisualstudio_windowsplustools_base-win11-gen2"
 
 # Dev box customizations
