@@ -60,6 +60,10 @@ terraform destroy -auto-approve
 # Purge Azure Key Vault soft delete
 az keyvault purge --name $KEY_VAULT_NAME --location $LOCATION
 
+# Check role assignments to the custom role
+az role assignment list --role "Azure Image Builder Service Image Creation Role"
+
+
 echo -e "Delete custom role"
 
 az role definition delete \

@@ -7,6 +7,11 @@ az sig create \
 
 echo "Let's assign the Contributor role to the Dev Center for the gallery"
 
+DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
+--name $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--query identity.principalId -o tsv)
+
 az role assignment create \
 --role "Contributor" \
 --assignee $DEV_CENTER_CLIENT_ID \
