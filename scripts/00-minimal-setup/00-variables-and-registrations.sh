@@ -12,11 +12,11 @@
 
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-RESOURCE_GROUP="dev-center-demos"
-LOCATION="westeurope"
+RESOURCE_GROUP="devcenter-demos"
+LOCATION="northeurope"
 
 # Dev center variables
-DEV_CENTER_NAME=madrid-dev-center
+DEV_CENTER_NAME=heroes-center
 
 # Virtual network variables
 VNET_NAME="devbox-vnet"
@@ -71,6 +71,7 @@ echo -e "Variables set"
 # Registrations for your suscription
 
 az feature register --name VMHibernationPreview --namespace Microsoft.Compute
+az provider register --namespace Microsoft.KeyVault --wait
 
 # name of the images
 # image_names=("vscode" "eclipse" "jetbrains" "docker")

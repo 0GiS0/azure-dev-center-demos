@@ -10,7 +10,6 @@ sleep 30
 
 echo -e "Assigning role to Azure Image Builder identity $IMAGE_BUILDER_IDENTITY"
 
-# az role definition update --role-definition @- <<EOF
 az role definition create --role-definition @- <<EOF
 {
     "Name": "Azure Image Builder Service Image Creation Role",
@@ -25,9 +24,12 @@ az role definition create --role-definition @- <<EOF
         "Microsoft.Compute/images/write",
         "Microsoft.Compute/images/read",
         "Microsoft.Compute/images/delete",
+        
+        "Microsoft.Network/*",
 
-        "Microsoft.Network/register/action",
-        "Microsoft.Network/networkSecurityGroups/write",
+        "Microsoft.Storage/*",
+
+        "Microsoft.ContainerInstance/*"
     ],
     "NotActions": [
   
@@ -47,7 +49,7 @@ echo -e "Assign the custom role to the identity $IMAGE_BUILDER_IDENTITY"
 az role assignment create \
 --role "Azure Image Builder Service Image Creation Role" \
 --assignee $IDENTITY_CLIENT_ID \
---scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP
+--scope /subscriptions/$SUBSCRIPTION_ID
 
 echo -e "Check the role was assigned successfully ✅"
 
