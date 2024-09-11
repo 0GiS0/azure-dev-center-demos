@@ -172,10 +172,18 @@ But first we need to create a new gallery for these packages. In order to execut
 
 ```bash
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-az ad sp create-for-rbac --name hcp-packer --role Contributor --scopes /subscriptions/$SUBSCRIPTION_ID
+RESULT=$(az ad sp create-for-rbac --name hcp-packer --role Contributor --scopes /subscriptions/$SUBSCRIPTION_ID)
 ```
 
 >IMPORTANT: Please replace the `variables.pkr.hcl` file with your own values.
+
+```bash
+export ARM_CLIENT_SECRET=$(echo $RESULT | jq -r .password)
+export ARM_CLIENT_ID=$(echo $RESULT | jq -r .appId)
+export ARM_TENANT_ID=$(az account show --query tenantId -o tsv)
+export ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+export ARM_RESOURCE_GROUP_NAME=$PACKER_GALLERY_RESOURCE_GROUP
+```
 
 With that in place, you can create this resources using the terrafom script in the `terraform` folder.
 
