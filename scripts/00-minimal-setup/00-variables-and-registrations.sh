@@ -12,11 +12,11 @@
 
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-RESOURCE_GROUP="devcenter-demos"
+RESOURCE_GROUP="devbox-demos"
 LOCATION="northeurope"
 
 # Dev center variables
-DEV_CENTER_NAME=heroes-center
+DEV_CENTER_NAME=heroes-devcenter
 
 # Virtual network variables
 VNET_NAME="devbox-vnet"
@@ -24,7 +24,7 @@ SUBNET_NAME="devboxes-subnet"
 
 # Key vault variables
 # KEY_VAULT_NAME="devcenterkv${RANDOM}"
-KEY_VAULT_NAME="devcenterkv10013"
+KEY_VAULT_NAME="heroes-center-kv"
 SECRET_NAME="gh-pat"
 
 # Gallery image variables
@@ -55,7 +55,7 @@ SKU_NAME="general_i_8c32gb256ssd_v2"
 
 # Variables for the basic dev box
 DEV_BOX_DEFINITION_FOR_BASIC_DEMO="vsbox"
-DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="default-devbox-pool"
+DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="vscode-pool"
 IMAGE_NAME_FROM_THE_DEFAULT_GALLERY=" microsoftvisualstudio_windowsplustools_base-win11-gen2"
 
 # Dev box customizations
@@ -74,8 +74,7 @@ az feature register --name VMHibernationPreview --namespace Microsoft.Compute
 az provider register --namespace Microsoft.KeyVault --wait
 
 # name of the images
-# image_names=("vscode" "eclipse" "jetbrains" "docker")
+image_names=("vscode" "eclipse" "jetbrains")
 
-image_names=("docker")
 
-projects_names=("tour-of-heroes-dotnet" "tour-of-heroes-java" "tour-of-heroes-python" "tour-of-heroes-containers" "tour-of-heroes-python")
+projects_names=("marvel" "dc" "dark-horse-comics")

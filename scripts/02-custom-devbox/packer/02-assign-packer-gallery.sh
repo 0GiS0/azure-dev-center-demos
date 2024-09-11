@@ -1,3 +1,8 @@
+DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
+--name $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP \
+--query identity.principalId -o tsv)
+
 echo "Let's assign the Contributor role to the Dev Center for the gallery"
 
 az role assignment create \

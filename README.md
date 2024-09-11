@@ -1,6 +1,6 @@
 # Azure DevBox and Azure Deployments demos for a Platform Engineering culture
 
-## Pre-requisites
+### Pre-requisites
 
 In order to follow this tutorial, you need to have the following tools installed:
 

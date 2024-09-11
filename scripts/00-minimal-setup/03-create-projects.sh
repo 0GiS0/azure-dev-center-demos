@@ -1,4 +1,3 @@
-projects_names=("tour-of-heroes-dotnet" "tour-of-heroes-java" "tour-of-heroes-python" "tour-of-heroes-containers")
 
 DEV_CENTER_ID=$(az devcenter admin devcenter show \
 --name $DEV_CENTER_NAME \

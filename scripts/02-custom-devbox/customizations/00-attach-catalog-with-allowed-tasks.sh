@@ -2,7 +2,8 @@ echo -e "Create an Azure Key Vault for the catalog"
 az keyvault create \
 --name $KEY_VAULT_NAME \
 --resource-group $RESOURCE_GROUP \
---location $LOCATION
+--location $LOCATION \
+--enable-rbac-authorization false
 
 DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
 --name $DEV_CENTER_NAME \
@@ -31,7 +32,7 @@ az devcenter admin catalog create \
 --name $TASK_CATALOG_NAME \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
---git-hub path="allowed-tasks" branch="main" uri="https://github.com/0GiS0/azure-dev-box-demo.git" secret-identifier="https://$KEY_VAULT_NAME.vault.azure.net/secrets/$SECRET_NAME"
+--git-hub path="allowed-tasks" branch="main" uri="https://github.com/0GiS0/azure-dev-center-demos.git" secret-identifier="https://$KEY_VAULT_NAME.vault.azure.net/secrets/$SECRET_NAME"
 
 az devcenter admin catalog list \
 -d $DEV_CENTER_NAME \

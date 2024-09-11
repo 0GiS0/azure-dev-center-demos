@@ -1,11 +1,9 @@
-# IMAGE_REFERENCE_ID=$(az devcenter admin image show \
-# --resource-group $RESOURCE_GROUP \
-# --dev-center $DEV_CENTER_NAME \
-# --gallery-name Default \
-# --name "microsoftwindowsdesktop_windows-ent-cpc_win11-23h2-ent-cpc" \
-# --query id -o tsv)
-
-IMAGE_REFERENCE_ID="/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.DevCenter/devcenters/$DEV_CENTER_NAME/galleries/default/images/microsoftvisualstudio_windowsplustools_base-win11-gen2"
+IMAGE_REFERENCE_ID=$(az devcenter admin image show \
+--resource-group $RESOURCE_GROUP \
+--dev-center $DEV_CENTER_NAME \
+--gallery-name Default \
+--name "microsoftwindowsdesktop_windows-ent-cpc_win11-23h2-ent-cpc" \
+--query id -o tsv)
 
 
 time az devcenter admin devbox-definition create \
