@@ -13,7 +13,7 @@ resource "azurerm_shared_image_gallery" "gallery" {
 
 
 # Create shared image definitions for each image
-resource "azurerm_shared_image" "vscode_with_extensions" {
+resource "azurerm_shared_image" "image_definitions" {
   for_each            = var.image_names
   name                = each.value
   gallery_name        = azurerm_shared_image_gallery.gallery.name
