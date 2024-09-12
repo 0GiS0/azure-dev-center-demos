@@ -1,0 +1,12 @@
+$schema: "1.0"
+name: "Install DB Tools"
+tasks:
+  - name: choco
+    parameters:
+      package: azure-data-studio     
+  - name: choco
+    parameters:
+      package: sql-server-management-studio
+  - name: powershell
+    parameters:
+      command: "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';C:\\Program Files\\Microsoft VS Code\\bin'; code --install-extension ms-mssql.mssql --install-extension ms-vscode.vscode-node-azure-pack"
