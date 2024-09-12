@@ -1,0 +1,15 @@
+$schema: 1.0
+name: set-wallpaper
+description: Set your wallpaper
+author: Gisela Torres
+command: "./SetWallpaper.ps1 -PicUrl {{picUrl}}"
+parameters:
+  picUrl:
+    default: ""
+    type: string
+    required: true
+    description: |
+      The URL of the image to set as wallpaper.
+      For example, "https://example.com/image.jpg".
+      Visit https://example.com to learn
+      more about the image.
