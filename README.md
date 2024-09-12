@@ -252,18 +252,12 @@ source scripts/03-network-integration/01-create-vnet-and-network-connections.sh
 source scripts/03-network-integration/02-create-vm-with-sql-server-in-that-vnet.sh
 ```
 
-##### Create a devbox definition with an image with Azure Data Studio in order to connect to the SQL Server
-
-```bash
-source scripts/03-network-integration/03-create-devbox-with-vnet-integration.sh
-```
-
 ##### Create a dev box pool 🖥️
 
-Now that you have a dev box definition, you can create a dev box pool in your project. A dev box pool is a set of dev boxes that are created from the same dev box definition.
+No we can create a new dev box pool with the network connection using the dev box definition what we have with vscode.
 
 ```bash
-source scripts/03-network-integration/04-create-dev-box-pool.sh
+source scripts/03-network-integration/03-create-dev-box-pool.sh
 ```
 
 ### Got to the developer portal and create a dev box 👩🏼‍💻
