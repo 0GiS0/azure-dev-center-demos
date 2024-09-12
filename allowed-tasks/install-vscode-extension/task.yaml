@@ -1,0 +1,22 @@
+# This is a Visual Studio extension installation task for Dev Box.
+
+$schema: 1.0
+name: install-vscode-extension
+description: Installs a Visual Studio Code extension
+author: Gisela Torres
+command: ".\\Install-VSCodeExtension.ps1 -MarketplaceItemName {{marketplaceItemName}}"
+parameters:
+  marketplaceItemName:
+    type: string
+    required: true
+    description: |
+      The name of the Visual Studio extension to install.
+      Visit https://marketplace.visualstudio.com to learn
+      more about Visual Studio extensions.
+documentation:
+  notes: This task is used to install a Visual Studio extension.
+  examples:
+    - name: install-vscode-extension
+      description: Install GitHub Copilot
+      parameters:
+        marketplaceItemName: GitHub.copilot
