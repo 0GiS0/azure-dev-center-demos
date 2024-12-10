@@ -12,8 +12,7 @@ source "azure-arm" "windows" {
   client_secret   = "${var.client_secret}"
   subscription_id = "${var.subscription_id}"
   tenant_id       = "${var.tenant_id}"
-  location        = "${var.location}"
-
+  build_resource_group_name        = "${var.build_resource_group_name}"
 
   managed_image_resource_group_name = "${var.resource_group}"
   managed_image_name                = "${var.image_name}"
