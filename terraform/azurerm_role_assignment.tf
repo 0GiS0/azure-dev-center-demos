@@ -17,9 +17,17 @@ resource "azurerm_role_assignment" "dev-center-sig" {
 }
 
 resource "azurerm_role_assignment" "packer_rg_contributor" {
-  description = "Allow Packer to manage resources in the Dev Center Resource Group"
+  description = "Allow Packer to manage/deploy resources in the a specialized Packer build only Resource Group"
   role_definition_name = "Contributor"
   principal_type = "ServicePrincipal"
   principal_id = azuread_service_principal.packer.object_id
-  scope = azurerm_resource_group.default.id
+  scope = azurerm_resource_group.packer.id
+}
+
+resource "azurerm_role_assignment" "packer_sig_contributor" {
+  description = "Allow Packer to manage Images in Shared Images Gallery"
+  role_definition_name = "Contributor"
+  principal_type = "ServicePrincipal"
+  principal_id = azuread_service_principal.packer.object_id
+  scope = azurerm_shared_image_gallery.default.id
 }
