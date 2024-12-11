@@ -1,4 +1,9 @@
 resource "terraform_data" "packer" {
+  depends_on = [ 
+    azurerm_role_assignment.packer_rg_contributor,
+    azurerm_role_assignment.packer_dev_center_rg_contributor,
+    azurerm_role_assignment.packer_shared_image_gallery_contributor
+  ]
   for_each = var.custom_images
   input = var.custom_images
 

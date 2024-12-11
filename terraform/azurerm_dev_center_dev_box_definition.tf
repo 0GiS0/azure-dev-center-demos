@@ -1,4 +1,5 @@
 resource "azurerm_dev_center_dev_box_definition" "default" {
+  depends_on = [ terraform_data.packer ]
   for_each = var.custom_images
   location           = azurerm_resource_group.default.location
   name               = "${each.key}"
