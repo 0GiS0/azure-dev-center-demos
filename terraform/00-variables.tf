@@ -28,5 +28,11 @@ variable "custom_images" {
       sku = "demo"
       semver = "1.0.0"
     }
+    eclipse = {
+      publisher_name = "devgbb"
+      offer_name = "eclipsebox"
+      sku = "demo"
+      semver = "1.0.0"
+    }
   }
 }
