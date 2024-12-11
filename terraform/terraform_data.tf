@@ -1,6 +1,6 @@
 resource "terraform_data" "packer" {
   for_each = var.custom_images
-  input = each.value
+  input = var.custom_images
 
   provisioner "local-exec" {
     working_dir = "${path.module}/../packer-for-image-generation/${each.key}"
