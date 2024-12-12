@@ -1,5 +1,5 @@
 resource "azurerm_dev_center_catalog" "default" {
-  name                = "example"
+  name                = "default"
   resource_group_name = azurerm_resource_group.default.name
   dev_center_id       = azurerm_dev_center.default.id
   catalog_github {
@@ -11,7 +11,7 @@ resource "azurerm_dev_center_catalog" "default" {
 }
 
 resource "azurerm_dev_center_environment_type" "default" {
-  name          = "demo"
+  name          = "default"
   dev_center_id = azurerm_dev_center.default.id
 
   tags = {
