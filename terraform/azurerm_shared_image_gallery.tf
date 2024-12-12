@@ -1,5 +1,5 @@
 resource "azurerm_shared_image_gallery" "default" {
-  name                = "dev_center_shared_image_gallery"
+  name                = "${azurerm_resource_group.default.name}sig"
   location            = azurerm_resource_group.default.location
   resource_group_name = azurerm_resource_group.default.name
 }

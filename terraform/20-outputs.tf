@@ -15,7 +15,7 @@ output location {
   value=   var.location
 }
 output build_resource_group_name {
-  value=   azurerm_resource_group.default.name
+  value=   azurerm_resource_group.packer.name
 }
 output resource_group {
   value=   azurerm_resource_group.default.name
