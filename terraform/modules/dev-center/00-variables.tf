@@ -19,11 +19,6 @@ variable "identity" {
   })
 }
 
-variable "key_vault_id" {
-  description = "The ID of the Key Vault to associate with this Dev Center"
-  type        = string
-}
-
 variable "subnet-id" {
   description = "The Virtual Network to attach to the Dev Center"
   type        = string
