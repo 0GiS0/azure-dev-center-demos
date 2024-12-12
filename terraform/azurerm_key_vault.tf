@@ -11,3 +11,9 @@ resource "azurerm_key_vault" "default" {
   soft_delete_retention_days = 7
   purge_protection_enabled = false
 }
+
+resource "azurerm_key_vault_secret" "gh-pat" {
+  name         = "gh-pat"
+  value        = var.gh_pat_token
+  key_vault_id = azurerm_key_vault.default.id
+}

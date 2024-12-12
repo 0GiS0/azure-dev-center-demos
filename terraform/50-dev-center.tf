@@ -9,6 +9,7 @@ resource "azurerm_dev_center" "default" {
     ]
   }
 }
+
 resource "azurerm_dev_center_network_connection" "default" {
   name                = "default-dev-center-network-connection"
   resource_group_name = azurerm_resource_group.default.name
@@ -22,6 +23,7 @@ resource "azurerm_dev_center_attached_network" "default" {
   dev_center_id         = azurerm_dev_center.default.id
   network_connection_id = azurerm_dev_center_network_connection.default.id
 }
+
 resource "azurerm_dev_center_gallery" "default" {
   name              = "devcentergallery"
   dev_center_id     = azurerm_dev_center.default.id
@@ -42,7 +44,7 @@ resource "azurerm_dev_center_project" "default" {
   resource_group_name = azurerm_resource_group.default.name
   location            = azurerm_resource_group.default.location
   dev_center_id       = azurerm_dev_center.default.id
-  name                = "${azurerm_dev_center.default.name}-project-1"
+  name                = "project1"
 }
 
 resource "azurerm_dev_center_project_pool" "default" {
