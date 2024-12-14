@@ -43,7 +43,7 @@ variable "custom_images" {
   }
 }
 
-variable "gh_pat_token" {
-  description = "value of the GH Pat Token used for acessing a Catalog hosted in a GH Repo"
-  type = string
-}
+# variable "gh_pat_token" {
+#   description = "value of the GH Pat Token used for acessing a Catalog hosted in a GH Repo"
+#   type = string
+# }

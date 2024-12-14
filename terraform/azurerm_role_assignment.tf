@@ -1,8 +1,17 @@
-resource "azurerm_role_assignment" "current-user-kv-officer" {
-  scope              = azurerm_key_vault.default.id
-  role_definition_name = "Key Vault Secrets Officer"
-  principal_id       = data.azurerm_client_config.current.object_id
-}
+# Azure Key Vault used when deploying catalogs with GH PAT Token
+
+# resource "azurerm_role_assignment" "current-user-kv-officer" {
+#   scope              = azurerm_key_vault.default.id
+#   role_definition_name = "Key Vault Secrets Officer"
+#   principal_id       = data.azurerm_client_config.current.object_id
+# }
+
+# resource "azurerm_role_assignment" "dev-center-kv" {
+#   scope              = azurerm_key_vault.default.id
+#   role_definition_name = "Key Vault Secrets User"
+#   principal_id       = azurerm_user_assigned_identity.dev-center-project.principal_id
+# }
+
 
 # ---------------------- Dev Center ----------------
 resource "azurerm_role_assignment" "dev-center-sig-contributor" {
@@ -52,12 +61,6 @@ resource "azurerm_role_assignment" "packer_sig_contributor" {
 resource "azurerm_role_assignment" "dev-center-project-rg-contributor" {
   scope              = azurerm_resource_group.default.id
   role_definition_name = "Contributor"
-  principal_id       = azurerm_user_assigned_identity.dev-center-project.principal_id
-}
-
-resource "azurerm_role_assignment" "dev-center-kv" {
-  scope              = azurerm_key_vault.default.id
-  role_definition_name = "Key Vault Secrets User"
   principal_id       = azurerm_user_assigned_identity.dev-center-project.principal_id
 }
 
