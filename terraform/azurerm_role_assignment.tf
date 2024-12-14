@@ -1,4 +1,4 @@
-resource "azurerm_role_assignment" "current-user" {
+resource "azurerm_role_assignment" "current-user-kv-officer" {
   scope              = azurerm_key_vault.default.id
   role_definition_name = "Key Vault Secrets Officer"
   principal_id       = data.azurerm_client_config.current.object_id
@@ -59,4 +59,28 @@ resource "azurerm_role_assignment" "dev-center-kv" {
   scope              = azurerm_key_vault.default.id
   role_definition_name = "Key Vault Secrets User"
   principal_id       = azurerm_user_assigned_identity.dev-center-project.principal_id
+}
+
+resource "azurerm_role_assignment" "dev-center-project-accounting-dev-box-user" {
+  scope                = azurerm_dev_center_project.accounting.id
+  role_definition_name = "DevCenter Dev Box User"
+  principal_id         = data.azurerm_client_config.current.object_id 
+}
+
+resource "azurerm_role_assignment" "dev-center-project-accounting-deployment-environments-user" {
+  scope                = azurerm_dev_center_project.accounting.id
+  role_definition_name = "Deployment Environments User"
+  principal_id         = data.azurerm_client_config.current.object_id 
+}
+
+resource "azurerm_role_assignment" "dev-center-project-capital-markets-dev-box-user" {
+  scope                = azurerm_dev_center_project.capital-markets.id
+  role_definition_name = "DevCenter Dev Box User"
+  principal_id         = data.azurerm_client_config.current.object_id 
+}
+
+resource "azurerm_role_assignment" "dev-center-project-capital-markets-deployment-environments-user" {
+  scope                = azurerm_dev_center_project.capital-markets.id
+  role_definition_name = "Deployment Environments User"
+  principal_id         = data.azurerm_client_config.current.object_id 
 }

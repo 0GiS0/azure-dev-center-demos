@@ -12,7 +12,14 @@ resource "azurerm_key_vault" "default" {
   purge_protection_enabled = false
 }
 
+resource "time_sleep" "wait_for_kv_role_permissions" {
+  depends_on = [ azurerm_role_assignment.current-user-kv-officer ]
+  create_duration = "60s"  
+}
+
 resource "azurerm_key_vault_secret" "gh-pat" {
+  depends_on = [ time_sleep.wait_for_kv_role_permissions ]
+
   name         = "gh-pat"
   value        = var.gh_pat_token
   key_vault_id = azurerm_key_vault.default.id

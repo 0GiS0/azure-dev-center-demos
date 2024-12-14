@@ -34,6 +34,12 @@ variable "custom_images" {
       sku = "demo"
       semver = "1.0.0"
     }
+    vscode = {
+      publisher_name = "devgbb"
+      offer_name = "vscodebox"
+      sku = "demo"
+      semver = "1.0.0"
+    }
   }
 }
 

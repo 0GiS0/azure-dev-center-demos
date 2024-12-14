@@ -1,3 +1,5 @@
+# This should only be run once during demo - for a real deployment, this should be in a separate repo and separate CI/CD for image creation.
+
 resource "terraform_data" "packer" {
   depends_on = [ 
     azurerm_role_assignment.packer_rg_contributor,
@@ -5,7 +7,7 @@ resource "terraform_data" "packer" {
     azurerm_role_assignment.packer_sig_contributor
   ]
   for_each = var.custom_images
-  input = var.custom_images
+  input = var.custom_images[each.key].semver
 
   provisioner "local-exec" {
     working_dir = "${path.module}/../packer-for-image-generation/${each.key}"
