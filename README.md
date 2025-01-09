@@ -307,7 +307,7 @@ Schedule an environment for deletion as a project admin: <https://learn.microsof
 <summary><h4>Check the usage</h4>
 
 ```bash
-source scripts/11-check-usage.sh
+source scripts/05-usage/11-check-usage.sh
 ```
 
 </details>
