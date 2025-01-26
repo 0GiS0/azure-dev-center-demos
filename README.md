@@ -1,13 +1,16 @@
-# Azure DevBox and Azure Deployments demos for a Platform Engineering culture
+# Microsoft DevBox and Azure Deployments demos for a Platform Engineering culture
 
-### Pre-requisites
+¡Hi developer 👋🏻! This repo contains several script to help you understand how Microsoft DevBox and Azure Deployment Environments works.
+
+## Pre-requisites
 
 In order to follow this tutorial, you need to have the following tools installed:
 
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-- [Dev Containers in your VS Code](https://code.visualstudio.com/docs/devcontainers/containers) You can open this repo in a dev container and you'll get all toolings you need
 
-Also, you need a .env file with a personal access token to read GitHub repo contents. You can check .env-sample to see the expected format.
+Or you can use Dev Containers with Visual Studio Code. Just open this repo in a container and you will have all the tools you need.
+
+Also, you need a `.env` file with a personal access token to read GitHub repo contents. You can check .env-sample to see the expected format.
 
 ### Install Azure Dev Center extension 🧩
 
@@ -41,7 +44,7 @@ As every Azure resource, the first thing you need to do is to create a resource 
 Also, in a enterprise environment, you will probably want to create a virtual network to connect your dev boxes to your corporate network.
 
 ```bash
-source scripts/00-minimal-setup/01-create-rg.sh 
+source scripts/00-minimal-setup/01-create-rg.sh
 ```
 
 #### Create a Dev Center 🏢

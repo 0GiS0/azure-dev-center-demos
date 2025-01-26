@@ -1,4 +1,4 @@
-project_name=${projects_names[1]}
+project_name=${projects_names[0]}
 
 echo -e "Project name: $project_name"
 
