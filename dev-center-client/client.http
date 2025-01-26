@@ -1,0 +1,21 @@
+@baseUrl = http://localhost:3000
+
+GET {{ baseUrl }}/projects
+
+###
+
+GET {{ baseUrl }}/devboxes
+
+###
+## Daenerys devboxes
+
+GET {{ baseUrl }}/devboxes/38b4426d-f0d7-409a-bff2-1ae873e2b551
+
+###
+## Five devboxes
+GET {{ baseUrl }}/devboxes/167df599-5463-44b3-b88f-96f70cf8ca99
+
+###
+## Create a new devbox for Five using /devboxes/:projectName/:userId'
+# @prompt projectName
+POST {{ baseUrl }}/devboxes/{{projectName}}/167df599-5463-44b3-b88f-96f70cf8ca99

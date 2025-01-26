@@ -10,7 +10,8 @@
 	"features": {
 		"ghcr.io/devcontainers/features/azure-cli:1": {},
 		"ghcr.io/devcontainers/features/powershell:1": {},
-		"ghcr.io/devcontainers/features/terraform:1": {}
+		"ghcr.io/devcontainers/features/terraform:1": {},
+		"ghcr.io/devcontainers/features/node:1": {}
 	},
 	"customizations": {
 		"vscode": {
@@ -20,7 +21,9 @@
 				"DavidAnson.vscode-markdownlint",
 				"hashicorp.terraform",
 				"ms-azuretools.vscode-azureterraform",
-				"4ops.packer"
+				"4ops.packer",
+				"humao.rest-client",
+				"ms-azuretools.vscode-azure-github-copilot"
 			]
 		}
 	}
