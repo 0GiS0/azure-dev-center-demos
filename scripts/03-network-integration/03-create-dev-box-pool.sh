@@ -1,4 +1,4 @@
-project_name=${projects_names[2]}
+project_name=${projects_names[0]}
 
 DEV_BOX_POOL_WITH_VNET_INTEGRATIOn="pool-with-vnet-connection"
 
