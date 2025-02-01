@@ -48,6 +48,7 @@ PACKER_GALLERY_RESOURCE_GROUP="packer-rg"
 
 # # Project
 ENTRA_ID_GROUP_NAME="Devs"
+group_names=("Devs")
 
 # Size of the dev box
 STORAGE_TYPE="ssd_256gb"

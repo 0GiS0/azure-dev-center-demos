@@ -24,3 +24,25 @@ do
     --scope $(az devcenter admin project show --name $project_name --resource-group $RESOURCE_GROUP --query id -o tsv)
 
 done
+
+if $group_names != ""
+then
+
+    index=0
+
+    for group_name in "${group_names[@]}"
+    do
+        echo -e "Give access to $group_name to all ${projects_names[$index]}" 
+
+        ENTRA_ID_GROUP_ID=$(az ad group show --group "$group_name" --query id -o tsv)    
+        
+         az role assignment create \
+        --role "DevCenter Dev Box User" \
+        --assignee $ENTRA_ID_GROUP_ID \
+        --scope $(az devcenter admin project show --name "${projects_names[$index]}" --resource-group $RESOURCE_GROUP --query id -o tsv)
+
+        index=$((index+1))
+
+    done
+fi
+
