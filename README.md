@@ -239,7 +239,9 @@ After creation you should see all this installed:
 </details>
 
 <details>
-<summary><h4>Integrate Dev Box with a virtual network</h4></summary
+<summary>
+### Integrate Dev Box with a virtual network
+</summary
 
 ### Create a network connections 📞
 
@@ -249,7 +251,7 @@ If you need to connect to a virtual network, you can create a network connection
 source scripts/03-network-integration/01-create-vnet-and-network-connections.sh
 ```
 
-##### Create a SQL Server virtual machine  in the vnet
+#### Create a SQL Server virtual machine  in the vnet
 
 ```bash
 source scripts/03-network-integration/02-create-vm-with-sql-server-in-that-vnet.sh

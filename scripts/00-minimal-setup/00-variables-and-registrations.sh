@@ -57,7 +57,7 @@ SKU_NAME="general_i_8c32gb256ssd_v2"
 # Variables for the basic dev box
 DEV_BOX_DEFINITION_FOR_BASIC_DEMO="visualstudio2022"
 DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX="justice-league-pool"
-IMAGE_NAME_FROM_THE_DEFAULT_GALLERY=" microsoftvisualstudio_windowsplustools_base-win11-gen2"
+IMAGE_NAME_FROM_THE_DEFAULT_GALLERY="microsoftvisualstudio_windowsplustools_base-win11-gen2"
 
 # Dev box customizations
 TASK_CATALOG_NAME="tasks-catalog"

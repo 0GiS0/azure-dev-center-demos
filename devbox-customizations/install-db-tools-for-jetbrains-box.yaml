@@ -1,0 +1,10 @@
+$schema: "1.0"
+name: "Install DB Tools"
+tasks:
+  - name: tasks-catalog/choco
+    parameters:
+      package: azure-data-studio     
+  - name: tasks-catalog/choco
+    parameters:
+      package: sql-server-management-studio
+ 
