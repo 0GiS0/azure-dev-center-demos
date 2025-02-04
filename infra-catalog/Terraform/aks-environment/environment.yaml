@@ -1,7 +1,8 @@
 name: aks-environment
 summary: Creates an AKS using Terraform
 description: Deploys an environment using Terraform containing an AKS cluster
-runner: Terraform
+# runner: Terraform
+runner: "dragonstoneacr.azurecr.io/ade:latest"
 templatePath: main.tf
 parameters:
   - id: "resource_name"

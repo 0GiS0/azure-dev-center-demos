@@ -31,7 +31,7 @@ az devcenter admin catalog create \
 --name $CATALOG_NAME \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \
---git-hub path="catalog" branch="main" uri="https://github.com/0GiS0/azure-dev-box-demo.git" secret-identifier="https://$KEY_VAULT_NAME.vault.azure.net/secrets/$SECRET_NAME"
+--git-hub path="infra-catalog" branch="main" uri="https://github.com/0GiS0/azure-dev-center-demos.git" secret-identifier="https://$KEY_VAULT_NAME.vault.azure.net/secrets/$SECRET_NAME"
 
 az devcenter admin catalog list \
 -d $DEV_CENTER_NAME \
@@ -75,10 +75,31 @@ az devcenter admin project create \
 --dev-center $DEV_CENTER_ID \
 --resource-group $RESOURCE_GROUP
 
+
+if $group_names != ""
+then
+
+    index=0
+
+    for group_name in "${group_names[@]}"
+    do
+        ENTRA_ID_GROUP_ID=$(az ad group show --group "$group_name" --query id -o tsv)    
+        
+         az role assignment create \
+        --role "DevCenter Dev Box User" \
+        --assignee $ENTRA_ID_GROUP_ID \
+        --scope $(az devcenter admin project show --name "$PROJECT_FOR_ENVIRONMENTS" --resource-group $RESOURCE_GROUP --query id -o tsv)
+
+        index=$((index+1))
+
+    done
+fi
+
+
 echo -e "Give access to your developers to this project" 
 
 # Get the object id of the group
-ENTRA_ID_GROUP_ID=$(az ad group show --group $ENTRA_ID_GROUP_NAME --query id -o tsv)
+ENTRA_ID_GROUP_ID=$(az ad group show --group ${group_names[0]} --query id -o tsv)
 
 az role assignment create \
 --role "Deployment Environments User" \
