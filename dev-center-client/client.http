@@ -1,4 +1,6 @@
 @baseUrl = http://localhost:3000
+@daenerysUserId = 38b4426d-f0d7-409a-bff2-1ae873e2b551
+@projectName = the-stark-project
 
 GET {{ baseUrl }}/projects
 
@@ -9,13 +11,24 @@ GET {{ baseUrl }}/devboxes
 ###
 ## Daenerys devboxes
 
-GET {{ baseUrl }}/devboxes/38b4426d-f0d7-409a-bff2-1ae873e2b551
+###
+## Get the user id using Microsoft Graph API
+
+GET https://graph.microsoft.com/v1.0/me
+Authorization: Bearer {{$aadV2Token}}
 
 ###
-## Five devboxes
-GET {{ baseUrl }}/devboxes/167df599-5463-44b3-b88f-96f70cf8ca99
+
+GET {{ baseUrl }}/devboxes/{{daenerysUserId}}
+
 
 ###
-## Create a new devbox for Five using /devboxes/:projectName/:userId'
-# @prompt projectName
-POST {{ baseUrl }}/devboxes/{{projectName}}/167df599-5463-44b3-b88f-96f70cf8ca99
+# Get pools for a project
+GET {{ baseUrl }}/projects/{{projectName}}/pools
+
+
+###
+
+## Create a new devbox for Daenerys using /devboxes/:projectName/:userId'
+# # @prompt projectName
+POST {{ baseUrl }}/devboxes/{{projectName}}/{{daenerysUserId}}

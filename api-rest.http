@@ -1,0 +1,6 @@
+@endpoint = https://4d1ab161-96c4-4ee9-8c6e-ec1718f0c3c9-gameofthrones-devcenter.northeurope.devcenter.azure.com
+
+###
+
+GET {{endpoint}}/devboxes?api-version=2025-02-01
+Authorization: Bearer {{$aadV2Token new tenantId:4d1ab161-96c4-4ee9-8c6e-ec1718f0c3c9}}
