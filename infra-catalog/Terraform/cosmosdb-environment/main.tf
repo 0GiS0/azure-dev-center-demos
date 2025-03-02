@@ -17,13 +17,12 @@ provider "azurerm" {
 
   }
 
-
-  subscription_id = var.subscription_id
+  subscription_id = var.ade_subscription
 
   skip_provider_registration = true
 }
 
-variable "subscription_id" {}
+variable "ade_subscription" {}
 
 variable "resource_name" {}
 
