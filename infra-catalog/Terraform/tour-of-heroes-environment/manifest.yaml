@@ -1,4 +1,4 @@
-name: App Service Web App using Terraform
+name: App-Service-Web-App-using-Terraform
 summary: Creates a web app using Terraform
 description: Deploys an environment using Terraform containing a Web App
 # runner: Terraform
