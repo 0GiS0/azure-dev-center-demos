@@ -13,7 +13,11 @@ provider "azurerm" {
   features {}
 
   skip_provider_registration = true
+
+  subscription_id = var.ade_subscription
 }
+
+variable "ade_subscription" {}
 
 variable "resource_group_name" {}
 
