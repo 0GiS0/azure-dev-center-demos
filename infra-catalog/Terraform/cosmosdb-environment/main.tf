@@ -25,8 +25,6 @@ provider "azurerm" {
 
 variable "subscription_id" {}
 
-variable "resource_group_name" {}
-
 variable "resource_name" {}
 
 variable "location" {}
@@ -63,7 +61,7 @@ variable "cosmosdb_geo_locations" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = var.resource_group_name
+  name     = "${var.resource_name}-rg"
   location = var.location
 }
 
