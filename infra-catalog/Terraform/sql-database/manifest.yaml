@@ -1,0 +1,15 @@
+name: SQL-Database-using-Terraform
+summary: Creates a SQL Database using Terraform
+description: Deploys an environment using Terraform containing a SQL Database
+# runner: Terraform
+runner: "dragonstoneacr.azurecr.io/ade:cg2"
+templatePath: main.tf
+parameters:
+  - id: "resource_name"
+    name: "Resource Name"
+    required: true
+    type: "string"
+  - id: "location"
+    name: "Location"
+    required: true
+    type: "string"

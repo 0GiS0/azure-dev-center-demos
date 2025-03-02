@@ -323,7 +323,7 @@ az devcenter dev environment show --environment-name $DEV_ENVIRONMENT_TYPE --pro
 ```
 
 ```bash
-YOUR_ENVIRONMENT_NAME="eaglesweb"
+YOUR_ENVIRONMENT_NAME="snakeswebapp"
 
 # Get list of operations on the environment, choose the latest operation
 OPERATION_ID=$(az devcenter dev environment list-operation \
