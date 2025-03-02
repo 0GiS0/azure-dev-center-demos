@@ -10,7 +10,12 @@ terraform {
 }
 
 provider "azurerm" {
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+
+  }
 
 
   subscription_id = var.subscription_id
@@ -52,8 +57,8 @@ variable "cosmosdb_geo_locations" {
     failover_priority = number
   }))
   default = [
-    { location = "eastus", failover_priority = 1 },
-    { location = "westus", failover_priority = 0 }
+    { location = "northeurope", failover_priority = 1 },
+    { location = "spaincentral", failover_priority = 0 }
   ]
 }
 
