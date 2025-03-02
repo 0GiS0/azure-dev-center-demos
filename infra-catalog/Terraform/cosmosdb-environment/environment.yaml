@@ -1,0 +1,38 @@
+name: cosmosdb-environment
+summary: Creates a CosmosDB using Terraform
+description: Deploys an environment using Terraform containing a CosmosDB
+runner: "dragonstoneacr.azurecr.io/ade:latest"
+templatePath: main.tf
+parameters:
+  - id: "resource_name"
+    name: "Resource Name"
+    required: true
+    type: "string"
+  - id: "location"
+    name: "Location"
+    required: true
+    type: "string"
+  - id: "cosmosdb_offer_type"
+    name: "CosmosDB Offer Type"
+    required: false
+    type: "string"
+  - id: "cosmosdb_kind"
+    name: "CosmosDB Kind"
+    required: false
+    type: "string"
+  - id: "cosmosdb_consistency_level"
+    name: "CosmosDB Consistency Level"
+    required: false
+    type: "string"
+  - id: "cosmosdb_max_interval_in_seconds"
+    name: "CosmosDB Max Interval in Seconds"
+    required: false
+    type: "number"
+  - id: "cosmosdb_max_staleness_prefix"
+    name: "CosmosDB Max Staleness Prefix"
+    required: false
+    type: "number"
+  - id: "cosmosdb_geo_locations"
+    name: "CosmosDB Geo Locations"
+    required: false
+    type: "list"
