@@ -1,23 +1,34 @@
 variable "location" {
+  default = "eastus"
   
 }
 
 variable "resource_group_name" {
+
+  default = "rg-sql"
   
 }
 
 variable "server_name" {
+
+  default = "sqlserver"  
   
 }
 
 variable "administrator_login" {
+
+  default = "sqladmin"
   
 }
 
 variable "administrator_password" {
+
+  default = "P@ssw0rd1234"
   
 }
 variable "database_name" {
+
+  default = "direwolvesdb"
   
 }
 
