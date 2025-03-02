@@ -322,9 +322,8 @@ And you can check for environment name:
 az devcenter dev environment show --environment-name $DEV_ENVIRONMENT_TYPE --project $PROJECT_FOR_ENVIRONMENTS --dev-center $DEV_CENTER_NAME
 ```
 
-
 ```bash
-YOUR_ENVIRONMENT_NAME="direwolvescosmosdb"
+YOUR_ENVIRONMENT_NAME="eaglesweb"
 
 # Get list of operations on the environment, choose the latest operation
 OPERATION_ID=$(az devcenter dev environment list-operation \
@@ -341,11 +340,11 @@ watch az devcenter dev environment show-logs-by-operation \
 --dev-center $DEV_CENTER_NAME
 ```
 
-
 </details>
-
+<!-- markdownlint-disable -->
 <details>
 <summary><h4>Check the usage</h4>
+<!-- markdownlint-restore -->
 
 ```bash
 source scripts/05-usage/11-check-usage.sh
