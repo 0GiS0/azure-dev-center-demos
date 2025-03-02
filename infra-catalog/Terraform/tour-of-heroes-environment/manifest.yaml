@@ -2,7 +2,7 @@ name: App-Service-Web-App-using-Terraform
 summary: Creates a web app using Terraform
 description: Deploys an environment using Terraform containing a Web App
 # runner: Terraform
-runner: "dragonstoneacr.azurecr.io/ade:cb2"
+runner: "dragonstoneacr.azurecr.io/ade:cg2"
 templatePath: main.tf
 parameters:
   - id: "resource_name"

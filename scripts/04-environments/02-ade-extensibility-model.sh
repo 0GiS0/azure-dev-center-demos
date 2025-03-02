@@ -9,6 +9,7 @@ az acr create \
 --admin-enabled true
 
 az acr update -n $ACR_NAME --anonymous-pull-enabled true
+az acr update -n $ACR_NAME --public-network-enabled true
 
 echo -e "Build the image in the ACR"
 
