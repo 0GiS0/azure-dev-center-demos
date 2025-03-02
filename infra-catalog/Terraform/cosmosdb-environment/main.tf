@@ -17,9 +17,8 @@ provider "azurerm" {
 
   }
 
-  subscription_id = var.ade_subscription
-
-  skip_provider_registration = true
+  subscription_id = var.ade_subscription  
+  
 }
 
 variable "ade_subscription" {}

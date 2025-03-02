@@ -310,6 +310,38 @@ For this scenario you need a create a Docker image that contains the tools that 
 source scripts/04-environments/02-ade-extensibility-model.sh
 ```
 
+If you want to check if the deployment went well you can check the logs:
+
+```bash
+az devcenter dev environment list --project $PROJECT_FOR_ENVIRONMENTS --dev-center $DEV_CENTER_NAME
+```
+
+And you can check for environment name:
+
+```bash
+az devcenter dev environment show --environment-name $DEV_ENVIRONMENT_TYPE --project $PROJECT_FOR_ENVIRONMENTS --dev-center $DEV_CENTER_NAME
+```
+
+
+```bash
+YOUR_ENVIRONMENT_NAME="direwolvescosmosdb"
+
+# Get list of operations on the environment, choose the latest operation
+OPERATION_ID=$(az devcenter dev environment list-operation \
+--environment-name $YOUR_ENVIRONMENT_NAME \
+--project $PROJECT_FOR_ENVIRONMENTS \
+--dev-center $DEV_CENTER_NAME \
+--query "[-1].operationId" -o tsv)
+
+# Using the latest operation ID, view the operation logs
+watch az devcenter dev environment show-logs-by-operation \
+--environment-name $YOUR_ENVIRONMENT_NAME \
+--project $PROJECT_FOR_ENVIRONMENTS \
+--operation-id $OPERATION_ID \
+--dev-center $DEV_CENTER_NAME
+```
+
+
 </details>
 
 <details>
