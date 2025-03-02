@@ -1,7 +1,7 @@
 name: cosmosdb-environment
 summary: Creates a CosmosDB using Terraform
 description: Deploys an environment using Terraform containing a CosmosDB
-runner: "dragonstoneacr.azurecr.io/ade:latest"
+runner: "dragonstoneacr.azurecr.io/ade:cg2"
 templatePath: main.tf
 parameters:
   - id: "resource_name"

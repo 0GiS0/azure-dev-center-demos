@@ -302,9 +302,13 @@ for example:
 az bicep build --file catalog/ARMTemplates/tour-of-heroes-environment/main.bicep --outfile catalog/ARMTemplates/tour-of-heroes-environment/azuredeploy.json
 ```
 
-Or, in private preview, you can use Terraform.
+Or now you can use Azure Deployment Environments (ADE) extensibility model which allows you to provide a curated set of IaC templates that your developers can use to deploy environments. You can use any IaC tool that you want. For example, Bicep, Terraform, or Pulumi templates.
 
-Schedule an environment for deletion as a project admin: <https://learn.microsoft.com/en-us/azure/deployment-environments/how-to-schedule-environment-deletion#schedule-an-environment-for-deletion-as-a-project-admin>
+For this scenario you need a create a Docker image that contains the tools that you want to use.
+
+```bash
+source scripts/04-environments/02-ade-extensibility-model.sh
+```
 
 </details>
 

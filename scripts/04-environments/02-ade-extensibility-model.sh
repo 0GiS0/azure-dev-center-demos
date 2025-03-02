@@ -12,7 +12,7 @@ echo -e "Build the image in the ACR"
 
 az acr build \
 --registry $ACR_NAME \
---image "ade:" \
+--image "ade:{{.Run.ID}}" \
 --file "scripts/04-environments/ade-extensibility-model-terraform/Dockerfile" \
 "scripts/04-environments/ade-extensibility-model-terraform"
 
