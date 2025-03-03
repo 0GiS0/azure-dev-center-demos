@@ -43,3 +43,7 @@ variable "image_version" {
   type    = string
   default = "1.0.0"
 }
+
+variable "build_resource_group_name" {
+  type    = string
+}
