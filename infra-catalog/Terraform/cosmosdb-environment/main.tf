@@ -12,8 +12,8 @@ terraform {
 provider "azurerm" {
   features {}
 
-  subscription_id = var.ade_subscription  
-  
+  subscription_id = var.ade_subscription
+
 }
 
 variable "ade_subscription" {}
@@ -42,6 +42,12 @@ variable "cosmosdb_max_staleness_prefix" {
   default = 100000
 }
 
+variable "resource_group_name" {}
+
+data "azurerm_resource_group" "rg" {
+  name = var.resource_group_name
+}
+
 variable "cosmosdb_geo_locations" {
   type = list(object({
     location          = string
@@ -53,10 +59,6 @@ variable "cosmosdb_geo_locations" {
   ]
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = "${var.resource_name}-rg"
-  location = var.location
-}
 
 resource "random_integer" "ri" {
   min = 10000
@@ -65,8 +67,8 @@ resource "random_integer" "ri" {
 
 resource "azurerm_cosmosdb_account" "db" {
   name                = "cosmos-db-${random_integer.ri.result}"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = data.azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
   offer_type          = var.cosmosdb_offer_type
   kind                = var.cosmosdb_kind
 

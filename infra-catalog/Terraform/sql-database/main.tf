@@ -1,64 +1,52 @@
+provider "azurerm" {
+  features {}
+
+  subscription_id = var.ade_subscription
+}
+
 variable "location" {
   default = "eastus"
-  
+
 }
 
-variable "resource_group_name" {
-
-  default = "rg-sql"
-  
-}
+variable "resource_group_name" {}
 
 variable "server_name" {
-
-  default = "sqlserver"  
-  
+  default = "${var.resource_name}-sqlserver"
 }
 
 variable "administrator_login" {
 
   default = "sqladmin"
-  
+
 }
 
 variable "administrator_password" {
 
   default = "P@ssw0rd1234"
-  
+
 }
 variable "database_name" {
-
-  default = "direwolvesdb"
-  
+  default = "${var.resource_name}-db"
 }
 
 variable "ade_subscription" {
-  
-}
 
-
-provider "azurerm" {
-  features {}
-  
-  subscription_id = var.ade_subscription
 }
 
 resource "random_pet" "server" {
 
 }
 
-resource "azurerm_resource_group" "rg" {
-
-  name     = var.resource_group_name
-  location = var.location
-
+data "azurerm_resource_group" "rg" {
+  name = var.resource_group_name
 }
 
 resource "azurerm_mssql_server" "sqlserver" {
 
   name                         = "${var.server_name}-${random_pet.server.id}"
-  resource_group_name          = azurerm_resource_group.rg.name
-  location                     = azurerm_resource_group.rg.location
+  resource_group_name          = data.azurerm_resource_group.rg.name
+  location                     = data.azurerm_resource_group.rg.location
   version                      = "12.0"
   administrator_login          = var.administrator_login
   administrator_login_password = var.administrator_password
