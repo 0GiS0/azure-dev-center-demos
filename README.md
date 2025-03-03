@@ -302,6 +302,8 @@ for example:
 az bicep build --file catalog/ARMTemplates/tour-of-heroes-environment/main.bicep --outfile catalog/ARMTemplates/tour-of-heroes-environment/azuredeploy.json
 ```
 
+### Azure Deployment Environments extensibility model
+
 Or now you can use Azure Deployment Environments (ADE) extensibility model which allows you to provide a curated set of IaC templates that your developers can use to deploy environments. You can use any IaC tool that you want. For example, Bicep, Terraform, or Pulumi templates.
 
 For this scenario you need a create a Docker image that contains the tools that you want to use.
@@ -309,6 +311,18 @@ For this scenario you need a create a Docker image that contains the tools that 
 ```bash
 source scripts/04-environments/02-ade-extensibility-model.sh
 ```
+
+>![IMPORTANT] Don't try to create the resource group in your terraform files. Instead do this:
+
+```terraform
+variable "resource_group_name" {}
+
+data "azurerm_resource_group" "rg" {
+  name = var.resource_group_name
+}
+```
+
+Because the resource group is created by the Dev Center.
 
 If you want to check if the deployment went well you can check the logs:
 

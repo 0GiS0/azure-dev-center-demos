@@ -19,11 +19,11 @@ provider "azurerm" {
 
 variable "ade_subscription" {}
 
-variable "resource_group_name" {}
-
 variable "resource_name" {}
 
 variable "location" {}
+
+variable "resource_group_name" {}
 
 data "azurerm_resource_group" "rg" {
   name = var.resource_group_name
