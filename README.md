@@ -323,7 +323,7 @@ az devcenter dev environment show --environment-name $DEV_ENVIRONMENT_TYPE --pro
 ```
 
 ```bash
-YOUR_ENVIRONMENT_NAME="direwolvesdb"
+YOUR_ENVIRONMENT_NAME="direwolvescosmos"
 
 # Get list of operations on the environment, choose the latest operation
 OPERATION_ID=$(az devcenter dev environment list-operation \
@@ -337,6 +337,15 @@ watch az devcenter dev environment show-logs-by-operation \
 --environment-name $YOUR_ENVIRONMENT_NAME \
 --project $PROJECT_FOR_ENVIRONMENTS \
 --operation-id $OPERATION_ID \
+--dev-center $DEV_CENTER_NAME
+```
+
+Delete an environment:
+
+```bash
+az devcenter dev environment delete \
+--environment-name direwolvesweb \
+--project $PROJECT_FOR_ENVIRONMENTS \
 --dev-center $DEV_CENTER_NAME
 ```
 

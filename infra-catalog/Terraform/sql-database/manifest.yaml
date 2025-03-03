@@ -1,4 +1,4 @@
-name: SQL-Database-using-Terraform
+name: sql-database-terraform
 summary: Creates a SQL Database using Terraform
 description: Deploys an environment using Terraform containing a SQL Database
 # runner: Terraform
