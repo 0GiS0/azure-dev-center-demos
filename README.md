@@ -1,47 +1,47 @@
-# Microsoft DevBox and Azure Deployments demos for a Platform Engineering culture
+# 🚀 Microsoft Dev Box & Azure Deployments Demos for Platform Engineering
 
-¡Hi developer 👋🏻! This repo contains several script to help you understand how Microsoft DevBox and Azure Deployment Environments works.
+👋🏻 Welcome, developer! This repository contains scripts and resources to help you understand how Microsoft Dev Box and Azure Deployment Environments work.
 
-## Pre-requisites
+---
 
-In order to follow this tutorial, you need to have the following tools installed:
+## 🛠️ Prerequisites
+
+To follow this tutorial, ensure you have the following:
 
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
-Or you can use Dev Containers with Visual Studio Code. Just open this repo in a container and you will have all the tools you need.
+Alternatively, you can use Dev Containers with Visual Studio Code. Just open this repo in a container to get all required tools pre-installed.
 
-Also, you need a `.env` file with a personal access token to read GitHub repo contents. You can check .env-sample to see the expected format.
+You will also need a `.env` file with a personal access token to read GitHub repo contents. See `.env-sample` for the expected format.
 
-### Install Azure Dev Center extension 🧩
+---
+
+## 🚦 Getting Started
+
+### 1. Install Azure Dev Center Extension 🧩
 
 ```bash
 az extension add --name devcenter
 ```
 
-### Log in your Azure subscription
+### 2. Log in to Your Azure Subscription
 
 ```bash
 az login --use-device-code
 ```
 
-### Set variables
-
-To make it easier to follow this tutorial, let's set some variables.
+### 3. Set Environment Variables
 
 ```bash
 source scripts/00-minimal-setup/00-variables-and-registrations.sh
 ```
-<!-- markdownlint-disable -->
+
+---
+
 <details>
-<summary>
-<h4>Minimal setup: resource group 📦, Dev Center 🏢 and projects 👷🏼‍♀️👷🏻‍♂️</h4>
-</summary>
-<!-- markdownlint-restore -->
+<summary><strong>Minimal Setup: Resource Group 📦, Dev Center 🏢, and Projects 👷🏼‍♀️👷🏻‍♂️</strong></summary>
 
-#### Create a resource Group 📦
-
-As every Azure resource, the first thing you need to do is to create a resource group.
-Also, in a enterprise environment, you will probably want to create a virtual network to connect your dev boxes to your corporate network.
+#### Create a Resource Group 📦
 
 ```bash
 source scripts/00-minimal-setup/01-create-rg.sh
@@ -49,136 +49,104 @@ source scripts/00-minimal-setup/01-create-rg.sh
 
 #### Create a Dev Center 🏢
 
-Dev Center is the place where you will manage your projects.
-
 ```bash
 source scripts/00-minimal-setup/02-create-dev-center.sh
 ```
 
-##### Create some projects 👷🏼‍♀️👷🏻‍♂️
+#### Create Projects and Entra ID Groups
 
-Projects in Dev Center should represent a team or a group of people that will use the same dev resources. For example, you can create a project for your backend team, another for your frontend team, and so on.
-
-For this demo we need a Microsoft Entra ID Group for our developers. You can create a group with the following command:
+Create a Microsoft Entra ID Group for your developers:
 
 ```bash
 source scripts/00-minimal-setup/03-create-entra-id-groups.sh
 ```
 
+Create projects:
+
 ```bash
 source scripts/00-minimal-setup/03-create-projects.sh
 ```
-<!-- markdownlint-disable -->
+
 </details>
 
+---
+
 <details>
-<summary><h4>Basic setup: Create a Dev Box with a image from the Azure Marketplace</h4></summary>
+<summary><strong>Basic Setup: Create a Dev Box from Azure Marketplace Image 🖥️</strong></summary>
 
-<!-- markdownlint-restore -->
-
-### Create a Dev Box Definition 📦
-
-Dev Box definitions are created within a project and they carry information about the dev box and any requirements for using it to create VMs. This includes the image version, the size of the VM, and the virtual network to connect to.
+#### Create a Dev Box Definition 📦
 
 ```bash
 source scripts/01-basic-devbox/01-create-dev-box-definition.sh
 ```
 
-### Create a Dev Box Pool
-
-A dev box pool is a collection of dev boxes that are created from the same dev box definition. You can create a dev box pool for each team or group of people that will use the same dev boxes.
+#### Create a Dev Box Pool
 
 ```bash
 source scripts/01-basic-devbox/02-create-dev-box-pool.sh
 ```
 
-### Access to the Developer Portal
+#### Access the Developer Portal
 
-Congrats 🎉, you have created a dev box pool. Now you can access the Developer Portal and create a new dev box.
-
-The URL for the developer portal is <https://devportal.microsoft.com>
-
-You can access with any user in the Devs group 👩🏼‍💻👨🏻‍💻
+Congrats 🎉! Access the [Developer Portal](https://devportal.microsoft.com) and create a new dev box using any user in the Devs group 👩🏼‍💻👨🏻‍💻.
 
 </details>
 
+---
+
 <details>
-<summary><h4>Create a custom image</h4></summary>
+<summary><strong>Create a Custom Image 🖼️</strong></summary>
 
-We have two options to create a custom image: using Azure Image Builder or using Packer.
+### Option 1: Azure Image Builder
 
-### Using Azure Image Builder
-
-Azure Image Builder is a service that allows you to create custom images in Azure. You can use it to create a custom image from a managed image, a shared image gallery image, or a generalized VM. You can also use it to create a custom image from a Packer template.
-
-### Create a Gallery 🖼
-
-The first thing we need is a gallery.
+#### 1. Create a Gallery 🖼
 
 ```bash
 source scripts/02-custom-devbox/image-builder/01-create-azure-compute-gallery.sh
 ```
 
-### Create the image definition ✏
-
-Image definitions are created within a gallery and they carry information about the image and any requirements for using it to create VMs. This includes whether the image is Windows or Linux, release notes, and minimum and maximum memory requirements. It's a definition of a type of image.
+#### 2. Create Image Definition ✏
 
 ```bash
 source scripts/02-custom-devbox/image-builder/02-create-image-definition.sh
 ```
 
-### Create image version 🏞️
+#### 3. Create Image Version 🏞️
 
-An image version is what you use to create a VM when using a gallery. You can have multiple versions of an image as needed for your environment. Like a managed image, when you use an image version to create a VM, the image version is used to create new disks for the VM. Image versions can be used multiple times.
-
-In order to create your custom image you can use Azure Image Builder and for that you need a identity. This identity needs some permissions but there is no built-in role. So let's create a custom role for the image builder too.
+Set up identity and custom role for Image Builder:
 
 ```bash
 source scripts/02-custom-devbox/image-builder/03-create-azure-image-builder-identity-and-role.sh
 ```
 
-Lastly you need to define the ingredients for your new image: what is the image base, if some customization is needed and how much time it has the builder to build it.
-
-We are going to use this template: `custom-images/win11-with-vscode.json` which install Visual Studio Code in a Windows 11.
+Define your image template (e.g., `custom-images/win11-with-vscode.json`):
 
 ```bash
 source scripts/02-custom-devbox/image-builder/04-create-an-image-template.sh
 ```
 
-And now just wait... a little bit ⌚
-
-Congrats 🎉, you have created a custom image. Now you can use it to create a new dev box.
+#### 4. Use the Custom Image
 
 ```bash
 source scripts/02-custom-devbox/image-builder/05-create-dev-box-definition.sh
-```
-
-After that you can create a dev box pool
-
-```bash
 source scripts/02-custom-devbox/image-builder/06-create-dev-box-pool.sh
 ```
 
-and access the Developer Portal to create a new dev box.
+Access the [Developer Portal](https://devportal.microsoft.com) to create a dev box with your custom image.
 
-Developer Portal URL: <https://devportal.microsoft.com>
+---
 
-You should see a Windows 11 with VS Code installed.
+### Option 2: Packer
 
-### Create image template with Packer
-
-The other option to create a custom image is to use Packer. Packer is a tool for creating identical machine images for multiple platforms from a single source configuration.
-
-The first thing you need to do is to [install Packer](https://developer.hashicorp.com/packer/install?product_intent=packer). Once you have Packer installed, you can create a Packer template. In this repo we have several examples of Packer templates. You can use the `packer-for-image-generation` folder to create a custom image with Packer.
-
-But first we need to create a new gallery for these packages. In order to execute packer you need a service principal:
+1. [Install Packer](https://developer.hashicorp.com/packer/install?product_intent=packer).
+2. Create a service principal:
 
 ```bash
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 RESULT=$(az ad sp create-for-rbac --name hcp-packer --role Contributor --scopes /subscriptions/$SUBSCRIPTION_ID)
 ```
 
->IMPORTANT: Please replace the `variables.pkr.hcl` file with your own values.
+Set environment variables:
 
 ```bash
 export ARM_CLIENT_SECRET=$(echo $RESULT | jq -r .password)
@@ -188,131 +156,101 @@ export ARM_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 export ARM_RESOURCE_GROUP_NAME=$PACKER_GALLERY_RESOURCE_GROUP
 ```
 
-With that in place, you can create this resources using the terrafom script in the `terraform` folder.
+> **IMPORTANT:** Update `variables.pkr.hcl` with your own values.
+
+3. Create resources using Terraform:
 
 ```bash
 source scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh
 ```
 
-Once you have the custom images created, you need to attach the gallery to the Dev Center:
+4. Attach the gallery and create definitions/pools:
 
 ```bash
 source scripts/02-custom-devbox/packer/02-assign-packer-gallery.sh
-```
-
-Create the Dev Box definitions:
-
-```bash
 source scripts/02-custom-devbox/packer/03-create-dev-box-definitions-for-packer-images.sh
-```
-
-And create the Dev Box Pools:
-
-```bash
 source scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-images.sh
 ```
 
-Check the portal and create a new dev box with the new images.
-
-<https://devportal.microsoft.com>
+Check the [Developer Portal](https://devportal.microsoft.com) for your new images.
 
 </details>
 
+---
+
 <details>
-<summary><h4>Configuration-as-code customization (preview)</h4></summary>
+<summary><strong>Configuration-as-Code Customization (Preview) ⚙️</strong></summary>
 
-You can use configuration-as-code to customize the dev box. Configuration-as-code allows you to define the configuration of a dev box in a YAML file. You can use configuration-as-code to customize the dev box by installing software, configuring settings, and running scripts.
+You can use configuration-as-code (YAML) to customize dev boxes by installing software, configuring settings, and running scripts.
 
-But first platform admin teams must choose which tasks are available to their developers by defining a Catalog of tasks. A Catalog is a collection of tasks that developers can use to customize their dev boxes. Each task in the catalog is a YAML file that defines a task that can be run on a dev box plus a script that is executed when the task is run.
-
-For this environment we are going to allow the tasks in the `allowed-tasks` folder. So we need to attach this folder to the Dev Center.
+Platform admins define a Catalog of allowed tasks (YAML + script). Attach the `allowed-tasks` folder to the Dev Center:
 
 ```bash
 source scripts/02-custom-devbox/customizations/00-attach-catalog-with-allowed-tasks.sh
 ```
 
-So now you can create a new dev box with some customizations. Just go to the Developer Portal and upload the `devbox-customizations/workload.yaml` file.
-After creation you should see all this installed:
+Create a new dev box with customizations by uploading `devbox-customizations/workload.yaml` in the Developer Portal.
 
-- Visual Studio Code
+Installed example: Visual Studio Code
 
 </details>
 
+---
+
 <details>
-<summary>
-### Integrate Dev Box with a virtual network
-</summary
+<summary><strong>Integrate Dev Box with a Virtual Network 🌐</strong></summary>
 
-### Create a network connections 📞
-
-If you need to connect to a virtual network, you can create a network connection. A network connection is a connection between a dev box and a virtual network. You can create a network connection for each virtual network that you want to connect to a dev box. After you create a network connection, you have to attach it to a dev center.
+#### Create Network Connections 📞
 
 ```bash
 source scripts/03-network-integration/01-create-vnet-and-network-connections.sh
 ```
 
-#### Create a SQL Server virtual machine  in the vnet
+#### Create a SQL Server VM in the VNet
 
 ```bash
 source scripts/03-network-integration/02-create-vm-with-sql-server-in-that-vnet.sh
 ```
 
-##### Create a dev box pool 🖥️
-
-No we can create a new dev box pool with the network connection using the dev box definition what we have with vscode.
+#### Create a Dev Box Pool 🖥️
 
 ```bash
 source scripts/03-network-integration/03-create-dev-box-pool.sh
 ```
 
-### Got to the developer portal and create a dev box 👩🏼‍💻
-
-The URL for the developer portal is <https://devportal.microsoft.com>
+Go to the [Developer Portal](https://devportal.microsoft.com) and create a dev box 👩🏼‍💻.
 
 </details>
-<!-- markdownlint-disable -->
+
+---
+
 <details>
-<summary><h4>Azure Deployment Environments</h4></summary>
-<!-- markdownlint-restore -->
+<summary><strong>Azure Deployment Environments ☁️</strong></summary>
 
 ### Using ARM
 
-An environment definition is composed of least two files:
+An environment definition consists of:
 
-- An Azure Resource Manager template (ARM template) in JSON file format. For example, azuredeploy.json.
-- A configuration file that provides metadata about the template. This file should be named environment.yaml.
+- An ARM template (e.g., `azuredeploy.json`)
+- A configuration file (`environment.yaml`)
 
-You can see some examples in the `catalog` folder.
+See examples in the `catalog` folder.
 
 ```bash
 source scripts/04-environments/01-create-a-catalog.sh
 ```
 
-### How to define environments
-
-You can use BICEP and then convert it to ARM template.
+#### Define Environments with Bicep
 
 ```bash
 az bicep build --file {bicep_file} --outfile {out_file}
-```
-
-for example:
-
-```bash
+# Example:
 az bicep build --file catalog/ARMTemplates/tour-of-heroes-environment/main.bicep --outfile catalog/ARMTemplates/tour-of-heroes-environment/azuredeploy.json
 ```
 
-### Azure Deployment Environments extensibility model
+#### ADE Extensibility Model
 
-Or now you can use Azure Deployment Environments (ADE) extensibility model which allows you to provide a curated set of IaC templates that your developers can use to deploy environments. You can use any IaC tool that you want. For example, Bicep, Terraform, or Pulumi templates.
-
-For this scenario you need a create a Docker image that contains the tools that you want to use.
-
-```bash
-source scripts/04-environments/02-ade-extensibility-model.sh
-```
-
->![IMPORTANT] Don't try to create the resource group in your terraform files. Instead do this:
+You can use Bicep, Terraform, or Pulumi templates. For Terraform, **do not create the resource group** in your files:
 
 ```terraform
 variable "resource_group_name" {}
@@ -322,52 +260,47 @@ data "azurerm_resource_group" "rg" {
 }
 ```
 
-Because the resource group is created by the Dev Center.
+The resource group is created by Dev Center.
 
-If you want to check if the deployment went well you can check the logs:
+#### Check Deployment Logs
 
 ```bash
 az devcenter dev environment list --project $PROJECT_FOR_ENVIRONMENTS --dev-center $DEV_CENTER_NAME
-```
-
-And you can check for environment name:
-
-```bash
 az devcenter dev environment show --environment-name $DEV_ENVIRONMENT_TYPE --project $PROJECT_FOR_ENVIRONMENTS --dev-center $DEV_CENTER_NAME
 ```
 
+Get operation logs:
+
 ```bash
 YOUR_ENVIRONMENT_NAME="direwolvescosmos"
-
-# Get list of operations on the environment, choose the latest operation
 OPERATION_ID=$(az devcenter dev environment list-operation \
---environment-name $YOUR_ENVIRONMENT_NAME \
---project $PROJECT_FOR_ENVIRONMENTS \
---dev-center $DEV_CENTER_NAME \
---query "[-1].operationId" -o tsv)
+  --environment-name $YOUR_ENVIRONMENT_NAME \
+  --project $PROJECT_FOR_ENVIRONMENTS \
+  --dev-center $DEV_CENTER_NAME \
+  --query "[-1].operationId" -o tsv)
 
-# Using the latest operation ID, view the operation logs
 watch az devcenter dev environment show-logs-by-operation \
---environment-name $YOUR_ENVIRONMENT_NAME \
---project $PROJECT_FOR_ENVIRONMENTS \
---operation-id $OPERATION_ID \
---dev-center $DEV_CENTER_NAME
+  --environment-name $YOUR_ENVIRONMENT_NAME \
+  --project $PROJECT_FOR_ENVIRONMENTS \
+  --operation-id $OPERATION_ID \
+  --dev-center $DEV_CENTER_NAME
 ```
 
 Delete an environment:
 
 ```bash
 az devcenter dev environment delete \
---environment-name direwolvesweb \
---project $PROJECT_FOR_ENVIRONMENTS \
---dev-center $DEV_CENTER_NAME
+  --environment-name direwolvesweb \
+  --project $PROJECT_FOR_ENVIRONMENTS \
+  --dev-center $DEV_CENTER_NAME
 ```
 
 </details>
-<!-- markdownlint-disable -->
+
+---
+
 <details>
-<summary><h4>Check the usage</h4>
-<!-- markdownlint-restore -->
+<summary><strong>Check Usage 📊</strong></summary>
 
 ```bash
 source scripts/05-usage/11-check-usage.sh
@@ -375,11 +308,13 @@ source scripts/05-usage/11-check-usage.sh
 
 </details>
 
-### Clean up
+---
 
-Congratulations 🎉 You did it! Now you can delete all and go to sleep 🛌💤
+## 🧹 Clean Up
 
-Please keep in mind that before you delete the resources, you need to delete the environments created by the users.
+🎉 Congratulations! You did it! To clean up all resources:
+
+> **Note:** Delete user-created environments before deleting resources.
 
 ```bash
 source scripts/clean-up.sh
