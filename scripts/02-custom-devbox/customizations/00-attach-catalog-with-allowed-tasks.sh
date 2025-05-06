@@ -5,6 +5,12 @@ az keyvault create \
 --location $LOCATION \
 --enable-rbac-authorization false
 
+# Enable the Key Vault to be accessed publicly
+az keyvault update \
+--name $KEY_VAULT_NAME \
+--resource-group $RESOURCE_GROUP \
+--public-network-access enabled
+
 DEV_CENTER_CLIENT_ID=$(az devcenter admin devcenter show \
 --name $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP \

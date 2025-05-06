@@ -179,7 +179,7 @@ Check the [Developer Portal](https://devportal.microsoft.com) for your new image
 ---
 
 <details>
-<summary><strong>Configuration-as-Code Customization (Preview) ⚙️</strong></summary>
+<summary><strong>Configuration-as-Code Customization ⚙️</strong></summary>
 
 You can use configuration-as-code (YAML) to customize dev boxes by installing software, configuring settings, and running scripts.
 
