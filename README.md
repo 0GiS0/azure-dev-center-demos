@@ -2,9 +2,24 @@
 
 👋🏻 Welcome, developer! This repository contains scripts and resources to help you understand how Microsoft Dev Box and Azure Deployment Environments work.
 
+## 📑 Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Setup Options](#setup-options)
+  - [Minimal Setup](#minimal-setup)
+  - [Basic Dev Box Setup](#basic-dev-box-setup)
+  - [Custom Image Creation](#custom-image-creation)
+  - [Individual Customization](#individual-customization)
+  - [Team Customizations](#team-customizations)
+  - [Network Integration](#network-integration)
+  - [Azure Deployment Environments](#azure-deployment-environments)
+  - [Usage Monitoring](#usage-monitoring)
+- [Clean Up](#clean-up)
+
 ---
 
-## 🛠️ Prerequisites
+## 🛠️ <a name="prerequisites"></a>Prerequisites
 
 This repo use [Dev Containers extension with Visual Studio Code](https://marketplace.visualstudio.com/items/?itemName=ms-vscode-remote.remote-containers) to get all required tools pre-installed.
 
@@ -22,7 +37,7 @@ You will also need a `.env` file with a personal access token to read GitHub rep
 
 ---
 
-## 🚦 Getting Started
+## 🚦 <a name="getting-started"></a>Getting Started
 
 ### 1. Install Azure Dev Center Extension 🧩
 
@@ -44,8 +59,10 @@ source scripts/00-minimal-setup/00-variables-and-registrations.sh
 
 ---
 
+## <a name="setup-options"></a>Setup Options
+
 <details>
-<summary><strong>Minimal Setup: Resource Group 📦, Dev Center 🏢, and Projects 👷🏼‍♀️👷🏻‍♂️</strong></summary>
+<summary><strong><a name="minimal-setup"></a>Minimal Setup: Resource Group 📦, Dev Center 🏢, and Projects 👷🏼‍♀️👷🏻‍♂️</strong></summary>
 
 #### Create a Resource Group 📦
 
@@ -80,7 +97,7 @@ source scripts/00-minimal-setup/03-create-projects.sh
 ---
 
 <details>
-<summary><strong>Basic Setup: Create a Dev Box from Azure Marketplace Image 🖥️</strong></summary>
+<summary><strong><a name="basic-dev-box-setup"></a>Basic Setup: Create a Dev Box from Azure Marketplace Image 🖥️</strong></summary>
 
 #### Create a Dev Box Definition 📦
 
@@ -103,7 +120,7 @@ Congrats 🎉! Access the [Developer Portal](https://devportal.microsoft.com) an
 ---
 
 <details>
-<summary><strong>Create a Custom Image 🖼️</strong></summary>
+<summary><strong><a name="custom-image-creation"></a>Create a Custom Image 🖼️</strong></summary>
 
 ### Option 1: Azure Image Builder
 
@@ -187,7 +204,7 @@ Check the [Developer Portal](https://devportal.microsoft.com) for your new image
 ---
 
 <details>
-<summary><strong>Individual Customization 👩🏼‍💻</strong></summary>
+<summary><strong><a name="individual-customization"></a>Individual Customization 👩🏼‍💻</strong></summary>
 
 The Microsoft Dev Box customizations feature helps you streamline the setup of the developer environment. With customizations, you can configure ready-to-code workstations with the necessary applications, tools, repositories, code libraries, packages, and build scripts.
 
@@ -206,7 +223,7 @@ Installed example: Visual Studio Code
 ---
 
 <details>
-<summary><strong>Team Customizations 👩🏽‍🤝‍👨🏾</strong></summary>
+<summary><strong><a name="team-customizations"></a>Team Customizations 👩🏽‍🤝‍👨🏾</strong></summary>
 
 Team customizations are used to create a shared configuration for a team of developers. In this folder `team-customization-files` you can find the YAML files that define the team customizations.
 
@@ -225,7 +242,7 @@ More information on [Team Customizations](https://learn.microsoft.com/en-us/azur
 ---
 
 <details>
-<summary><strong>Integrate Dev Box with a Virtual Network 🌐</strong></summary>
+<summary><strong><a name="network-integration"></a>Integrate Dev Box with a Virtual Network 🌐</strong></summary>
 
 #### Create Network Connections 📞
 
@@ -252,7 +269,7 @@ Go to the [Developer Portal](https://devportal.microsoft.com) and create a dev b
 ---
 
 <details>
-<summary><strong>Azure Deployment Environments ☁️</strong></summary>
+<summary><strong><a name="azure-deployment-environments"></a>Azure Deployment Environments ☁️</strong></summary>
 
 ### Using ARM
 
@@ -326,9 +343,8 @@ az devcenter dev environment delete \
 
 ---
 
-
 <details>
-<summary><strong>Check Usage 📊</strong></summary>
+<summary><strong><a name="usage-monitoring"></a>Check Usage 📊</strong></summary>
 
 ```bash
 source scripts/05-usage/11-check-usage.sh
@@ -338,7 +354,7 @@ source scripts/05-usage/11-check-usage.sh
 
 ---
 
-## 🧹 Clean Up
+## 🧹 <a name="clean-up"></a>Clean Up
 
 🎉 Congratulations! You did it! To clean up all resources:
 
