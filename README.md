@@ -53,6 +53,7 @@ az login --use-device-code
 
 ### 3. Set Environment Variables
 
+[View Script: 00-variables-and-registrations.sh](scripts/00-minimal-setup/00-variables-and-registrations.sh)
 ```bash
 source scripts/00-minimal-setup/00-variables-and-registrations.sh
 ```
@@ -65,12 +66,14 @@ source scripts/00-minimal-setup/00-variables-and-registrations.sh
 
 #### Create a Resource Group 📦
 
+[View Script: 01-create-rg.sh](scripts/00-minimal-setup/01-create-rg.sh)
 ```bash
 source scripts/00-minimal-setup/01-create-rg.sh
 ```
 
 #### Create a Dev Center 🏢
 
+[View Script: 02-create-dev-center.sh](scripts/00-minimal-setup/02-create-dev-center.sh)
 ```bash
 source scripts/00-minimal-setup/02-create-dev-center.sh
 ```
@@ -81,12 +84,14 @@ Dev Center uses Microsoft Entra ID groups to manage access to projects. You can 
 
 Create a Microsoft Entra ID Group for your developers:
 
+[View Script: 03-create-entra-id-groups.sh](scripts/00-minimal-setup/03-create-entra-id-groups.sh)
 ```bash
 source scripts/00-minimal-setup/03-create-entra-id-groups.sh
 ```
 
 Create projects:
 
+[View Script: 03-create-projects.sh](scripts/00-minimal-setup/03-create-projects.sh)
 ```bash
 source scripts/00-minimal-setup/03-create-projects.sh
 ```
@@ -97,12 +102,14 @@ source scripts/00-minimal-setup/03-create-projects.sh
 
 #### Create a Dev Box Definition 📦
 
+[View Script: 01-create-dev-box-definition.sh](scripts/01-basic-devbox/01-create-dev-box-definition.sh)
 ```bash
 source scripts/01-basic-devbox/01-create-dev-box-definition.sh
 ```
 
 #### Create a Dev Box Pool
 
+[View Script: 02-create-dev-box-pool.sh](scripts/01-basic-devbox/02-create-dev-box-pool.sh)
 ```bash
 source scripts/01-basic-devbox/02-create-dev-box-pool.sh
 ```
@@ -119,12 +126,14 @@ Congrats 🎉! Access the [Developer Portal](https://devportal.microsoft.com) an
 
 #### 1. Create a Gallery 🖼
 
+[View Script: 01-create-azure-compute-gallery.sh](scripts/02-custom-devbox/image-builder/01-create-azure-compute-gallery.sh)
 ```bash
 source scripts/02-custom-devbox/image-builder/01-create-azure-compute-gallery.sh
 ```
 
 #### 2. Create Image Definition ✏
 
+[View Script: 02-create-image-definition.sh](scripts/02-custom-devbox/image-builder/02-create-image-definition.sh)
 ```bash
 source scripts/02-custom-devbox/image-builder/02-create-image-definition.sh
 ```
@@ -133,20 +142,27 @@ source scripts/02-custom-devbox/image-builder/02-create-image-definition.sh
 
 Set up identity and custom role for Image Builder:
 
+[View Script: 03-create-azure-image-builder-identity-and-role.sh](scripts/02-custom-devbox/image-builder/03-create-azure-image-builder-identity-and-role.sh)
 ```bash
 source scripts/02-custom-devbox/image-builder/03-create-azure-image-builder-identity-and-role.sh
 ```
 
 Define your image template (e.g., `custom-images/win11-with-vscode.json`):
 
+[View Script: 04-create-an-image-template.sh](scripts/02-custom-devbox/image-builder/04-create-an-image-template.sh)
 ```bash
 source scripts/02-custom-devbox/image-builder/04-create-an-image-template.sh
 ```
 
 #### 4. Use the Custom Image
 
+[View Script: 05-create-dev-box-definition.sh](scripts/02-custom-devbox/image-builder/05-create-dev-box-definition.sh)
 ```bash
 source scripts/02-custom-devbox/image-builder/05-create-dev-box-definition.sh
+```
+
+[View Script: 06-create-dev-box-pool.sh](scripts/02-custom-devbox/image-builder/06-create-dev-box-pool.sh)
+```bash
 source scripts/02-custom-devbox/image-builder/06-create-dev-box-pool.sh
 ```
 
@@ -178,15 +194,25 @@ export ARM_RESOURCE_GROUP_NAME=$PACKER_GALLERY_RESOURCE_GROUP
 
 3. Create resources using Terraform:
 
+[View Script: 01-create-resources-using-tf.sh](scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh)
 ```bash
 source scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh
 ```
 
 4. Attach the gallery and create definitions/pools:
 
+[View Script: 02-assign-packer-gallery.sh](scripts/02-custom-devbox/packer/02-assign-packer-gallery.sh)
 ```bash
 source scripts/02-custom-devbox/packer/02-assign-packer-gallery.sh
+```
+
+[View Script: 03-create-dev-box-definitions-for-packer-images.sh](scripts/02-custom-devbox/packer/03-create-dev-box-definitions-for-packer-images.sh)
+```bash
 source scripts/02-custom-devbox/packer/03-create-dev-box-definitions-for-packer-images.sh
+```
+
+[View Script: 04-create-dev-box-pool-with-packer-images.sh](scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-images.sh)
+```bash
 source scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-images.sh
 ```
 
@@ -200,6 +226,7 @@ The Microsoft Dev Box customizations feature helps you streamline the setup of t
 
 Platform admins define a Catalog of allowed tasks (YAML + script). Attach the `allowed-tasks` folder to the Dev Center:
 
+[View Script: 00-attach-catalog-with-allowed-tasks.sh](scripts/02-custom-devbox/customizations/00-attach-catalog-with-allowed-tasks.sh)
 ```bash
 source scripts/02-custom-devbox/customizations/00-attach-catalog-with-allowed-tasks.sh
 ```
@@ -216,6 +243,7 @@ Team customizations are used to create a shared configuration for a team of deve
 
 And with this script you can attach the team customizations folder to a particular project in your dev center:
 
+[View Script: 01-attach-project-catalog-with-team-customizations.sh](scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh)
 ```bash
 source scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh
 ```
@@ -230,18 +258,21 @@ More information on [Team Customizations](https://learn.microsoft.com/en-us/azur
 
 #### Create Network Connections 📞
 
+[View Script: 01-create-vnet-and-network-connections.sh](scripts/03-network-integration/01-create-vnet-and-network-connections.sh)
 ```bash
 source scripts/03-network-integration/01-create-vnet-and-network-connections.sh
 ```
 
 #### Create a SQL Server VM in the VNet
 
+[View Script: 02-create-vm-with-sql-server-in-that-vnet.sh](scripts/03-network-integration/02-create-vm-with-sql-server-in-that-vnet.sh)
 ```bash
 source scripts/03-network-integration/02-create-vm-with-sql-server-in-that-vnet.sh
 ```
 
 #### Create a Dev Box Pool 🖥️
 
+[View Script: 03-create-dev-box-pool.sh](scripts/03-network-integration/03-create-dev-box-pool.sh)
 ```bash
 source scripts/03-network-integration/03-create-dev-box-pool.sh
 ```
@@ -261,6 +292,7 @@ An environment definition consists of:
 
 See examples in the `catalog` folder.
 
+[View Script: 01-create-a-catalog.sh](scripts/04-environments/01-create-a-catalog.sh)
 ```bash
 source scripts/04-environments/01-create-a-catalog.sh
 ```
@@ -324,6 +356,7 @@ az devcenter dev environment delete \
 
 ## 📊 <a name="usage-monitoring"></a>Check Usage 📊
 
+[View Script: 11-check-usage.sh](scripts/05-usage/11-check-usage.sh)
 ```bash
 source scripts/05-usage/11-check-usage.sh
 ```
@@ -336,6 +369,7 @@ source scripts/05-usage/11-check-usage.sh
 
 > **Note:** Delete user-created environments before deleting resources.
 
+[View Script: clean-up.sh](scripts/clean-up.sh)
 ```bash
 source scripts/clean-up.sh
 ```
