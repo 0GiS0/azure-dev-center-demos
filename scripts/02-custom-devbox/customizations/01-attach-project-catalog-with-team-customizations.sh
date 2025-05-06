@@ -1,5 +1,3 @@
-PROJECT_TASK_CATALOG_NAME="team-customization-files"
-
 # Get object id of the project
 PROJECT_OBJ_ID=$(az devcenter admin project show \
 --name $PROJECT_FOR_ENVIRONMENTS \

@@ -37,3 +37,4 @@ terraform.rc
 packer-for-image-generation/terraform/.terraform.lock.hcl
 .env
 .DS_Store
+.env_gof

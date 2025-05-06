@@ -21,7 +21,8 @@
 				"ms-azuretools.vscode-azureterraform",
 				"4ops.packer",
 				"humao.rest-client",
-				"ms-azuretools.vscode-azure-github-copilot"
+				"ms-azuretools.vscode-azure-github-copilot",
+				"shakram02.bash-beautify"
 			]
 		}
 	}
