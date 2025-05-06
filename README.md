@@ -23,7 +23,7 @@
 
 This repo use [Dev Containers extension with Visual Studio Code](https://marketplace.visualstudio.com/items/?itemName=ms-vscode-remote.remote-containers) to get all required tools pre-installed.
 
-If you don't want to use Dev Containers, you can install the following tools manually:
+If you don't want to use Dev Containers, you can install the following tools manually 😅:
 
 - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 - [jq](https://stedolan.github.io/jq/)
@@ -61,8 +61,7 @@ source scripts/00-minimal-setup/00-variables-and-registrations.sh
 
 ## <a name="setup-options"></a>Setup Options
 
-<details>
-<summary><strong><a name="minimal-setup"></a>Minimal Setup: Resource Group 📦, Dev Center 🏢, and Projects 👷🏼‍♀️👷🏻‍♂️</strong></summary>
+## 📦 <a name="minimal-setup"></a>Minimal Setup: Resource Group 📦, Dev Center 🏢, and Projects 👷🏼‍♀️👷🏻‍♂️
 
 #### Create a Resource Group 📦
 
@@ -92,12 +91,9 @@ Create projects:
 source scripts/00-minimal-setup/03-create-projects.sh
 ```
 
-</details>
-
 ---
 
-<details>
-<summary><strong><a name="basic-dev-box-setup"></a>Basic Setup: Create a Dev Box from Azure Marketplace Image 🖥️</strong></summary>
+## 🖥️ <a name="basic-dev-box-setup"></a>Basic Setup: Create a Dev Box from Azure Marketplace Image 🖥️
 
 #### Create a Dev Box Definition 📦
 
@@ -115,12 +111,9 @@ source scripts/01-basic-devbox/02-create-dev-box-pool.sh
 
 Congrats 🎉! Access the [Developer Portal](https://devportal.microsoft.com) and create a new dev box using any user in the Devs group 👩🏼‍💻👨🏻‍💻.
 
-</details>
-
 ---
 
-<details>
-<summary><strong><a name="custom-image-creation"></a>Create a Custom Image 🖼️</strong></summary>
+## 🖼️ <a name="custom-image-creation"></a>Create a Custom Image 🖼️
 
 ### Option 1: Azure Image Builder
 
@@ -199,12 +192,9 @@ source scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-images
 
 Check the [Developer Portal](https://devportal.microsoft.com) for your new images.
 
-</details>
-
 ---
 
-<details>
-<summary><strong><a name="individual-customization"></a>Individual Customization 👩🏼‍💻</strong></summary>
+## 👩🏼‍💻 <a name="individual-customization"></a>Individual Customization 👩🏼‍💻
 
 The Microsoft Dev Box customizations feature helps you streamline the setup of the developer environment. With customizations, you can configure ready-to-code workstations with the necessary applications, tools, repositories, code libraries, packages, and build scripts.
 
@@ -218,12 +208,9 @@ Create a new dev box with customizations by uploading `devbox-customizations/wor
 
 Installed example: Visual Studio Code
 
-</details>
-
 ---
 
-<details>
-<summary><strong><a name="team-customizations"></a>Team Customizations 👩🏽‍🤝‍👨🏾</strong></summary>
+## 👩🏽‍🤝‍👨🏾 <a name="team-customizations"></a>Team Customizations 👩🏽‍🤝‍👨🏾
 
 Team customizations are used to create a shared configuration for a team of developers. In this folder `team-customization-files` you can find the YAML files that define the team customizations.
 
@@ -237,12 +224,9 @@ It will create a new pool for each team customization.
 
 More information on [Team Customizations](https://learn.microsoft.com/en-us/azure/dev-box/concept-what-are-team-customizations?tabs=team-customizations).
 
-</details>
-
 ---
 
-<details>
-<summary><strong><a name="network-integration"></a>Integrate Dev Box with a Virtual Network 🌐</strong></summary>
+## 🌐 <a name="network-integration"></a>Integrate Dev Box with a Virtual Network 🌐
 
 #### Create Network Connections 📞
 
@@ -264,12 +248,9 @@ source scripts/03-network-integration/03-create-dev-box-pool.sh
 
 Go to the [Developer Portal](https://devportal.microsoft.com) and create a dev box 👩🏼‍💻.
 
-</details>
-
 ---
 
-<details>
-<summary><strong><a name="azure-deployment-environments"></a>Azure Deployment Environments ☁️</strong></summary>
+## ☁️ <a name="azure-deployment-environments"></a>Azure Deployment Environments ☁️
 
 ### Using ARM
 
@@ -339,18 +320,13 @@ az devcenter dev environment delete \
   --dev-center $DEV_CENTER_NAME
 ```
 
-</details>
-
 ---
 
-<details>
-<summary><strong><a name="usage-monitoring"></a>Check Usage 📊</strong></summary>
+## 📊 <a name="usage-monitoring"></a>Check Usage 📊
 
 ```bash
 source scripts/05-usage/11-check-usage.sh
 ```
-
-</details>
 
 ---
 
