@@ -187,7 +187,7 @@ Check the [Developer Portal](https://devportal.microsoft.com) for your new image
 ---
 
 <details>
-<summary><strong>Configuration-as-Code Customization ⚙️</strong></summary>
+<summary><strong>Individual Customization 👩🏼‍💻</strong></summary>
 
 The Microsoft Dev Box customizations feature helps you streamline the setup of the developer environment. With customizations, you can configure ready-to-code workstations with the necessary applications, tools, repositories, code libraries, packages, and build scripts.
 
@@ -206,7 +206,7 @@ Installed example: Visual Studio Code
 ---
 
 <details>
-<summary><strong>Team Customizations</strong></summary>
+<summary><strong>Team Customizations 👩🏽‍🤝‍👨🏾</strong></summary>
 
 Team customizations are used to create a shared configuration for a team of developers. In this folder `team-customization-files` you can find the YAML files that define the team customizations.
 
@@ -216,7 +216,7 @@ And with this script you can attach the team customizations folder to a particul
 source scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh
 ```
 
-It will create a new pool for each team customization. 
+It will create a new pool for each team customization.
 
 More information on [Team Customizations](https://learn.microsoft.com/en-us/azure/dev-box/concept-what-are-team-customizations?tabs=team-customizations).
 
