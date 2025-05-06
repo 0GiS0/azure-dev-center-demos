@@ -1,6 +1,3 @@
-# az ad group create --display-name $ENTRA_ID_GROUP_NAME --mail-nickname $ENTRA_ID_GROUP_NAME
-#
-
 for group_name in "${group_names[@]}"
 do
 
