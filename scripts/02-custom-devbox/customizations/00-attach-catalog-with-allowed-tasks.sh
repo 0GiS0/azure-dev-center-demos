@@ -49,3 +49,10 @@ az devcenter admin catalog get-sync-error-detail \
 --name $TASK_CATALOG_NAME \
 --dev-center $DEV_CENTER_NAME \
 --resource-group $RESOURCE_GROUP
+
+# Sync the catalog
+az devcenter admin catalog sync \
+--name $TASK_CATALOG_NAME \
+--dev-center $DEV_CENTER_NAME \
+--resource-group $RESOURCE_GROUP
+
