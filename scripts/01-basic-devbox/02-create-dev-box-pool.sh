@@ -1,8 +1,6 @@
 project_name=${projects_names[0]}
 
-echo -e "Project name: $project_name"
-
-echo -e "Create Dev Box pool $DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX"
+gum style --foreground 212 "🏗️ Creating Dev Box pool $DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX in project $project_name"
 
 time az devcenter admin pool create \
 --name "${DEV_BOX_POOL_NAME_FOR_BASIC_DEVBOX}" \
