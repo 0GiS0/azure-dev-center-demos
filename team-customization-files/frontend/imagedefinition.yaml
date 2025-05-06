@@ -1,0 +1,26 @@
+$schema: "1.0"
+name: "frontend-customization"
+image: microsoftvisualstudio_windowsplustools_base-win11-gen2
+description: "This definition is for the frontend environment"
+
+tasks:
+
+  - name: tasks-catalog/choco
+    description: Install KeePass
+    parameters:
+      package:  keepass
+
+  - name: ~/winget
+    description: Install AZD
+    parameters:
+      package:  Microsoft.Azd
+
+  - name: ~/winget
+    description: Install Visual Studio Code
+    parameters:
+      package:  Microsoft.VisualStudioCode
+
+  - name: ~/powershell
+    parameters:
+      command: |
+        $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') 
