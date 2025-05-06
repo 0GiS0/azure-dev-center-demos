@@ -6,11 +6,17 @@
 
 ## 🛠️ Prerequisites
 
-To follow this tutorial, ensure you have the following:
+This repo use [Dev Containers extension with Visual Studio Code](https://marketplace.visualstudio.com/items/?itemName=ms-vscode-remote.remote-containers) to get all required tools pre-installed.
 
-- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+If you don't want to use Dev Containers, you can install the following tools manually:
 
-Alternatively, you can use [Dev Containers extension with Visual Studio Code](https://marketplace.visualstudio.com/items/?itemName=ms-vscode-remote.remote-containers). Just open this repo in a container to get all required tools pre-installed.
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+- [jq](https://stedolan.github.io/jq/)
+- [Git](https://git-scm.com/)
+- [Terraform](https://www.terraform.io/downloads.html)
+- [Packer](https://developer.hashicorp.com/packer/downloads)
+- [Azure Dev Center CLI](https://learn.microsoft.com/en-us/cli/azure/devcenter?view=azure-cli-latest)
+- [Gum](https://github.com/charmbracelet/gum)
 
 You will also need a `.env` file with a personal access token to read GitHub repo contents. See `.env-sample` for the expected format.
 
