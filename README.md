@@ -4,18 +4,18 @@
 
 ## 📑 Table of Contents
 
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Setup Options](#setup-options)
-  - [Minimal Setup](#minimal-setup)
-  - [Basic Dev Box Setup](#basic-dev-box-setup)
-  - [Custom Image Creation](#custom-image-creation)
-  - [Individual Customization](#individual-customization)
-  - [Team Customizations](#team-customizations)
-  - [Network Integration](#network-integration)
-  - [Azure Deployment Environments](#azure-deployment-environments)
-  - [Usage Monitoring](#usage-monitoring)
-- [Clean Up](#clean-up)
+- [🛠️ Prerequisites](#prerequisites)
+- [🚦 Getting Started](#getting-started)
+- [⚙️ Setup Options](#setup-options)
+  - [📦 Minimal Setup](#minimal-setup)
+  - [🖥️ Basic Dev Box Setup](#basic-dev-box-setup)
+  - [🖼️ Custom Image Creation](#custom-image-creation)
+  - [👩🏼‍💻 Individual Customization](#individual-customization)
+  - [👩🏽‍🤝‍👨🏾 Team Customizations](#team-customizations)
+  - [🌐 Network Integration](#network-integration)
+  - [☁️ Azure Deployment Environments](#azure-deployment-environments)
+  - [📊 Usage Monitoring](#usage-monitoring)
+- [🧹 Clean Up](#clean-up)
 
 ---
 
@@ -33,7 +33,9 @@ If you don't want to use Dev Containers, you can install the following tools man
 - [Azure Dev Center CLI](https://learn.microsoft.com/en-us/cli/azure/devcenter?view=azure-cli-latest)
 - [Gum](https://github.com/charmbracelet/gum)
 
-You will also need a `.env` file with a personal access token to read GitHub repo contents. See `.env-sample` for the expected format.
+**Important:** You will also need a `.env` file with a personal access token (PAT) to read GitHub repo contents.
+- Create a `.env` file by copying the `.env-sample`.
+- Populate it with your GitHub PAT. See [GitHub documentation on creating a PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) if you need help.
 
 ---
 
@@ -60,7 +62,7 @@ source scripts/00-minimal-setup/00-variables-and-registrations.sh
 
 ---
 
-## <a name="setup-options"></a>Setup Options
+## ⚙️ <a name="setup-options"></a>Setup Options
 
 ## 📦 <a name="minimal-setup"></a>Minimal Setup: Resource Group 📦, Dev Center 🏢, and Projects 👷🏼‍♀️👷🏻‍♂️
 
