@@ -5,7 +5,7 @@ description: "This definition is for the frontend engineering environment"
 
 tasks:
 
-  - name: ~/choco
+  - name: tasks-catalog/choco
     description: Install KeePass
     parameters:
       package:  keepass
