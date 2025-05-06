@@ -61,6 +61,8 @@ source scripts/00-minimal-setup/02-create-dev-center.sh
 
 #### Create Projects and Entra ID Groups
 
+Dev Center uses Microsoft Entra ID groups to manage access to projects. You can create a group (or use existing ones) for developers and assign them to the project.
+
 Create a Microsoft Entra ID Group for your developers:
 
 ```bash
@@ -187,7 +189,7 @@ Check the [Developer Portal](https://devportal.microsoft.com) for your new image
 <details>
 <summary><strong>Configuration-as-Code Customization ⚙️</strong></summary>
 
-You can use configuration-as-code (YAML) to customize dev boxes by installing software, configuring settings, and running scripts.
+The Microsoft Dev Box customizations feature helps you streamline the setup of the developer environment. With customizations, you can configure ready-to-code workstations with the necessary applications, tools, repositories, code libraries, packages, and build scripts.
 
 Platform admins define a Catalog of allowed tasks (YAML + script). Attach the `allowed-tasks` folder to the Dev Center:
 
@@ -198,6 +200,25 @@ source scripts/02-custom-devbox/customizations/00-attach-catalog-with-allowed-ta
 Create a new dev box with customizations by uploading `devbox-customizations/workload.yaml` in the Developer Portal.
 
 Installed example: Visual Studio Code
+
+</details>
+
+---
+
+<details>
+<summary><strong>Team Customizations</strong></summary>
+
+Team customizations are used to create a shared configuration for a team of developers. In this folder `team-customization-files` you can find the YAML files that define the team customizations.
+
+And with this script you can attach the team customizations folder to a particular project in your dev center:
+
+```bash
+source scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh
+```
+
+It will create a new pool for each team customization. 
+
+More information on [Team Customizations](https://learn.microsoft.com/en-us/azure/dev-box/concept-what-are-team-customizations?tabs=team-customizations).
 
 </details>
 
@@ -304,6 +325,7 @@ az devcenter dev environment delete \
 </details>
 
 ---
+
 
 <details>
 <summary><strong>Check Usage 📊</strong></summary>
