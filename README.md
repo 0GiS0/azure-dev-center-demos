@@ -1,4 +1,4 @@
-# 🚀 Microsoft Dev Box & Azure Deployments Demos for Platform Engineering
+# 🚀 Microsoft Dev Box 💻 & Azure Deployment Environments 🏗️ Demos for Platform Engineering
 
 👋🏻 Welcome, developer! This repository contains scripts and resources to help you understand how Microsoft Dev Box and Azure Deployment Environments work.
 
@@ -10,7 +10,7 @@ To follow this tutorial, ensure you have the following:
 
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
-Alternatively, you can use Dev Containers with Visual Studio Code. Just open this repo in a container to get all required tools pre-installed.
+Alternatively, you can use [Dev Containers extension with Visual Studio Code](https://marketplace.visualstudio.com/items/?itemName=ms-vscode-remote.remote-containers). Just open this repo in a container to get all required tools pre-installed.
 
 You will also need a `.env` file with a personal access token to read GitHub repo contents. See `.env-sample` for the expected format.
 
