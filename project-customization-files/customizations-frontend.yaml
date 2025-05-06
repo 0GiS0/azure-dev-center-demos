@@ -1,6 +1,6 @@
 $schema: "1.0"
 name: "frontend-eng"
-image: microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2
+image: microsoftvisualstudio_windowsplustools_base-win11-gen2
 description: "This definition is for the eShop frontend engineering environment"
 
 tasks:
