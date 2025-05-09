@@ -1,4 +1,4 @@
-echo -e "Creating image definition $VSCODE_IMAGE_DEFINITION in Azure Compute Gallery $IMAGE_BUILDER_GALLERY_NAME"
+gum style --foreground 212 --bold "🚀 Creating image definition $VSCODE_IMAGE_DEFINITION in Azure Compute Gallery $IMAGE_BUILDER_GALLERY_NAME 🌐"
 
 az sig image-definition create \
 --resource-group $RESOURCE_GROUP \
