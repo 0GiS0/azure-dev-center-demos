@@ -10,14 +10,7 @@ do
     --name $project_name \
     --resource-group $RESOURCE_GROUP \
     --dev-center-id $DEV_CENTER_ID \
-    --max-dev-boxes-per-user 2
-
-    gum style --foreground 212 "🔑 Give access to your developers to this project" 
-
-    az role assignment create \
-    --role "DevCenter Dev Box User" \
-    --assignee $ENTRA_ID_GROUP_ID \
-    --scope $(az devcenter admin project show --name $project_name --resource-group $RESOURCE_GROUP --query id -o tsv)
+    --max-dev-boxes-per-user 2    
 
 done
 
