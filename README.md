@@ -197,23 +197,27 @@ export ARM_RESOURCE_GROUP_NAME=$PACKER_GALLERY_RESOURCE_GROUP
 3. Create resources using Terraform:
 
 [View Script: 01-create-resources-using-tf.sh](scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh)
+
 ```bash
 source scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh
 ```
 
-4. Attach the gallery and create definitions/pools:
+4.Attach the gallery and create definitions/pools:
 
 [View Script: 02-assign-packer-gallery.sh](scripts/02-custom-devbox/packer/02-assign-packer-gallery.sh)
+
 ```bash
 source scripts/02-custom-devbox/packer/02-assign-packer-gallery.sh
 ```
 
 [View Script: 03-create-dev-box-definitions-for-packer-images.sh](scripts/02-custom-devbox/packer/03-create-dev-box-definitions-for-packer-images.sh)
+
 ```bash
 source scripts/02-custom-devbox/packer/03-create-dev-box-definitions-for-packer-images.sh
 ```
 
 [View Script: 04-create-dev-box-pool-with-packer-images.sh](scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-images.sh)
+
 ```bash
 source scripts/02-custom-devbox/packer/04-create-dev-box-pool-with-packer-images.sh
 ```

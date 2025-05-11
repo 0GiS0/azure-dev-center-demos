@@ -45,3 +45,16 @@ EOF
 gum style --foreground 212 --bold "Checking if the custom role was created successfully 🎉"
 
 az role definition list --custom-role-only -o table
+
+gum style --foreground 212 --bold "Assigning the custom role to the Azure Image Builder identity $IMAGE_BUILDER_IDENTITY 🔑"
+
+az role assignment create \
+--role "Azure Image Builder Service Image Creation Role" \
+--assignee $IDENTITY_CLIENT_ID \
+--scope $(az sig show --gallery-name $IMAGE_BUILDER_GALLERY_NAME --resource-group $RESOURCE_GROUP --query id -o tsv)
+
+gum style --foreground 212 --bold "Verify permissions of $IMAGE_BUILDER_IDENTITY 🔑"
+
+az role assignment list \
+--assignee $IDENTITY_CLIENT_ID \
+--query "[].{role:roleDefinitionName, scope:scope}" --all -o table 

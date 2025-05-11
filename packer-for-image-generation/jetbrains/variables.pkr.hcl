@@ -20,17 +20,17 @@ variable "resource_group" {
 }
 variable "location" {
   type    = string
-  default = "northeurope"
+  default = "${env("LOCATION")}"
 }
 
 variable "gallery_resource_group" {
   type    = string
-  default = "packer-rg"
+  default = "${env("PACKER_GALLERY_RESOURCE_GROUP")}"
 }
 
 variable "gallery_name" {
   type    = string
-  default = "packer_gallery"
+  default = "${env("PACKER_GALLERY_NAME")}"
 }
 
 variable "image_name" {
