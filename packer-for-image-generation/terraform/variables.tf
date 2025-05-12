@@ -22,7 +22,7 @@ variable "image_names" {
   default = {
     # vscode_with_extensions = "vscode_with_extensions"
     # secure_vscode          = "secure_vscode"
-    # eclipse                = "eclipse"
+    eclipse                = "eclipse"
     jetbrains              = "jetbrains"
     # docker                 = "docker"
   }

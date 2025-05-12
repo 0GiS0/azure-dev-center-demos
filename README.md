@@ -194,7 +194,7 @@ export ARM_RESOURCE_GROUP_NAME=$PACKER_GALLERY_RESOURCE_GROUP
 
 > **IMPORTANT:** Update `variables.pkr.hcl` with your own values.
 
-3. Create resources using Terraform:
+3.Create resources using Terraform:
 
 [View Script: 01-create-resources-using-tf.sh](scripts/02-custom-devbox/packer/01-create-resources-using-tf.sh)
 

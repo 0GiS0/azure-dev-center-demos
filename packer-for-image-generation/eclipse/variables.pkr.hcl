@@ -38,6 +38,7 @@ variable "gallery_name" {
   default = "${env("PACKER_GALLERY_NAME")}"
 }
 
+
 variable "image_version" {
   type    = string
   default = "1.0.0"
