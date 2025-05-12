@@ -250,6 +250,7 @@ Team customizations are used to create a shared configuration for a team of deve
 And with this script you can attach the team customizations folder to a particular project in your dev center:
 
 [View Script: 01-attach-project-catalog-with-team-customizations.sh](scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh)
+
 ```bash
 source scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh
 ```

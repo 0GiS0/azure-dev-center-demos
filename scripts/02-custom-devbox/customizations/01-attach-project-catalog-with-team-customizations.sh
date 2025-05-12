@@ -1,3 +1,14 @@
+# If some command fails, the script will stop executing
+# and the error will be printed to the console
+# This is useful for debugging and ensuring that the script runs correctly
+set -e
+
+# Assign identity to the project
+az devcenter admin project update \
+--name $PROJECT_FOR_ENVIRONMENTS \
+--resource-group $RESOURCE_GROUP \
+--identity-type SystemAssigned
+
 # Get object id of the project
 PROJECT_OBJ_ID=$(az devcenter admin project show \
 --name $PROJECT_FOR_ENVIRONMENTS \
