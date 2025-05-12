@@ -2,9 +2,8 @@ index=0
 
 for project_name in "${projects_names[@]}"
 do
-    
-    echo "Creating dev box pool ${image_names[0]}-pool for $project_name"
-    echo "Defining dev box definition for ${image_names[$index]}-definition-from-packer"
+    gum style --foreground 212 --bold "🚀 Creating dev box pool:" "${image_names[0]}-pool" "for project:" "$project_name"
+    gum style --foreground 44 --bold "📝 Defining dev box definition:" "${image_names[$index]}-definition-from-packer"
     
     time az devcenter admin pool create \
     --name "${image_names[0]}-pool" \
