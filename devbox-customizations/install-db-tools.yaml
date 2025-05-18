@@ -4,9 +4,9 @@ tasks:
   - name: tasks-catalog/choco
     parameters:
       package: sql-server-express
-  - name: tasks-catalog/choco
+  - name: powershell
     parameters:
-      package: azure-data-studio     
+      command: 'Invoke-Sqlcmd -ServerInstance "localhost\SQLEXPRESS" -Query "IF NOT EXISTS(SELECT * FROM sys.server_principals WHERE name = N:''$env:USERDOMAIN\$env:USERNAME'') CREATE LOGIN [$env:USERDOMAIN\$env:USERNAME] FROM WINDOWS; ALTER SERVER ROLE [sysadmin] ADD MEMBER [$env:USERDOMAIN\$env:USERNAME];"'  
   - name: tasks-catalog/choco
     parameters:
       package: sql-server-management-studio
@@ -18,3 +18,6 @@ tasks:
     parameters:
       source: "https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak"
       databaseName: "AdventureWorksLT2022"
+  # - name: tasks-catalog/choco
+  #   parameters:
+  #     package: azure-data-studio   
