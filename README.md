@@ -233,6 +233,7 @@ The Microsoft Dev Box customizations feature helps you streamline the setup of t
 Platform admins define a Catalog of allowed tasks (YAML + script). Attach the `allowed-tasks` folder to the Dev Center:
 
 [View Script: 00-attach-catalog-with-allowed-tasks.sh](scripts/02-custom-devbox/customizations/00-attach-catalog-with-allowed-tasks.sh)
+
 ```bash
 source scripts/02-custom-devbox/customizations/00-attach-catalog-with-allowed-tasks.sh
 ```
