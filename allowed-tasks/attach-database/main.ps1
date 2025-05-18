@@ -1,7 +1,8 @@
 param(
     [string]$Source,
     [string]$DatabaseName,
-    [string]$DatabaseFilePath   
+    [string]$DatabaseFilePath,
+    [string]$serverName
 )
 
 function createFolderIfNotExists {
@@ -35,6 +36,5 @@ ALTER DATABASE [$DatabaseName] SET READ_WRITE;
 ALTER DATABASE [$DatabaseName] SET MULTI_USER;
 "@
 # Execute the SQL query to attach the database
-Invoke-Sqlcmd -Query $sqlQuery -ServerInstance "localhost" -ErrorAction Stop
+Invoke-Sqlcmd -Query $sqlQuery -ServerInstance $serverName -ErrorAction Stop -TrustServerCertificate
 Write-Host "Database '$DatabaseName' has been successfully attached from '$DatabaseFilePath'."
-

@@ -23,3 +23,10 @@ parameters:
     required: false
     description: |
       The local path where the database backup file will be downloaded and stored.
+  serverName:
+    default: 'localhost\SQLEXPRESS'
+    type: 'string'
+    required: false
+    description: |
+      The name of the SQL Server instance to which the database will be attached.
+      Defaults to 'localhost\SQLEXPRESS' if not specified.
