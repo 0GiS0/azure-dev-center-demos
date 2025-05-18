@@ -242,23 +242,6 @@ Create a new dev box with customizations by uploading `devbox-customizations/wor
 
 Installed example: Visual Studio Code
 
----
-
-## 👩🏽‍🤝‍👨🏾 <a name="team-customizations"></a>Team Customizations 👩🏽‍🤝‍👨🏾
-
-Team customizations are used to create a shared configuration for a team of developers. In this folder `team-customization-files` you can find the YAML files that define the team customizations.
-
-And with this script you can attach the team customizations folder to a particular project in your dev center:
-
-[View Script: 01-attach-project-catalog-with-team-customizations.sh](scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh)
-
-```bash
-source scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh
-```
-
-It will create a new pool for each team customization.
-
-More information on [Team Customizations](https://learn.microsoft.com/en-us/azure/dev-box/concept-what-are-team-customizations?tabs=team-customizations).
 
 ---
 
@@ -281,11 +264,32 @@ source scripts/03-network-integration/02-create-vm-with-sql-server-in-that-vnet.
 #### Create a Dev Box Pool 🖥️
 
 [View Script: 03-create-dev-box-pool.sh](scripts/03-network-integration/03-create-dev-box-pool.sh)
+
 ```bash
 source scripts/03-network-integration/03-create-dev-box-pool.sh
 ```
 
 Go to the [Developer Portal](https://devportal.microsoft.com) and create a dev box 👩🏼‍💻.
+
+---
+
+---
+
+## 👩🏽‍🤝‍👨🏾 <a name="team-customizations"></a>Team Customizations 👩🏽‍🤝‍👨🏾
+
+Team customizations are used to create a shared configuration for a team of developers. In this folder `team-customization-files` you can find the YAML files that define the team customizations.
+
+And with this script you can attach the team customizations folder to a particular project in your dev center:
+
+[View Script: 01-attach-project-catalog-with-team-customizations.sh](scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh)
+
+```bash
+source scripts/02-custom-devbox/customizations/01-attach-project-catalog-with-team-customizations.sh
+```
+
+It will create a new pool for each team customization.
+
+More information on [Team Customizations](https://learn.microsoft.com/en-us/azure/dev-box/concept-what-are-team-customizations?tabs=team-customizations).
 
 ---
 

@@ -1,7 +1,7 @@
 # If some command fails, the script will stop executing
 # and the error will be printed to the console
 # This is useful for debugging and ensuring that the script runs correctly
-set -e
+# set -e                                                                                                                                                                                                                                                                                                                                                                                                                                             qqqq    
 
 # Assign identity to the project
 az devcenter admin project update \
@@ -30,7 +30,7 @@ az devcenter admin project-catalog create \
 
 
 # Get the names of the images definitions we have in the project
-IMAGE_DEFINITIONS=$(az devcenter admin image-definition list \
+IMAGE_DEFINITIONS=$(az devcenter admin project-image-definition list \
     --project-name "$PROJECT_FOR_ENVIRONMENTS" \
     --catalog-name "$PROJECT_TASK_CATALOG_NAME" \
     --resource-group "$RESOURCE_GROUP" \
