@@ -2,7 +2,7 @@ $schema: 1.0
 name: attach-database
 description: Attaches a database to the SQL Server instance.
 author: Microsoft Corporation
-command: './main.ps1 -Source {{source}} -DatabaseName {{databaseName}} -DatabaseFilePath {{databaseFilePath}}'
+command: './main.ps1 -Source {{source}} -DatabaseName {{databaseName}} -DatabaseFilePath {{databaseFilePath}} -ServerName {{serverName}}'
 parameters:
   source:
     default: ''
