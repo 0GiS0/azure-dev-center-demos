@@ -39,7 +39,7 @@ RESTORE DATABASE [$DatabaseName]
 FROM DISK = N'$DatabaseFilePath'
 WITH
     MOVE 'AdventureWorksLT2022_Data' TO '$SQLDataFolder\$DatabaseName.mdf',
-    MOVE 'AdventureWorksLT2022_Log' TO '$SQLDataFolder\$DatabaseName_log.ldf',
+    MOVE 'AdventureWorksLT2022_Log' TO '$SQLDataFolder\$DatabaseName.ldf',
     FILE = 1,
     NOUNLOAD,
     STATS = 5;
