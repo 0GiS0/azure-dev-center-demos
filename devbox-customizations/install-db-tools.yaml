@@ -10,10 +10,10 @@ tasks:
   - name: tasks-catalog/choco
     parameters:
       package: sql-server-management-studio
-  - name: tasks-catalog/powershell
-    parameters:
-      command: "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';C:\\Program Files\\Microsoft VS Code\\bin'; code --install-extension ms-mssql.mssql --install-extension ms-vscode.vscode-node-azure-pack"
-      runAsUser: true
+#  - name: tasks-catalog/powershell
+#    parameters:
+#      command: "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';C:\\Program Files\\Microsoft VS Code\\bin'; code --install-extension ms-mssql.mssql --install-extension ms-vscode.vscode-node-azure-pack"
+#      runAsUser: true
   - name: tasks-catalog/attach-database
     parameters:
       source: "https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak"
