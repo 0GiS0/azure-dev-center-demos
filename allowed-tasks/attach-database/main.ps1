@@ -27,15 +27,18 @@ if (!(Test-Path -Path $DatabaseFilePath)) {
 }
 
 # Attach the database to the SQL Server instance from a .bak file
-# $sqlQuery = @"
-# USE [master];
-# CREATE DATABASE [$DatabaseName]
-# ON (FILENAME = '$DatabaseFilePath')
-# FOR ATTACH;
-# ALTER DATABASE [$DatabaseName] SET READ_WRITE;
-# ALTER DATABASE [$DatabaseName] SET MULTI_USER;
-# "@
-# # Execute the SQL query to attach the database
-# Invoke-Sqlcmd -Query $sqlQuery -ServerInstance $serverName -ErrorAction Stop -TrustServerCertificate
-# Write-Host "Database '$DatabaseName' has been successfully attached from '$DatabaseFilePath'."
-Restore-SqlDatabase -ServerInstance $serverName -Database $DatabaseName -BackupFile $DatabaseFilePath
+$sqlQuery = @"
+
+USE [master]
+RESTORE DATABASE [$DatabaseName]
+FROM DISK = N'$DatabaseFilePath' 
+WITH MOVE N'Datos' TO N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\[$DatabaseName].mdf', 
+MOVE N'Log' TO N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\[$DatabaseName].ldf', 
+NOUNLOAD,
+STATS = 5;
+GO
+
+"@
+# Execute the SQL query to attach the database
+Invoke-Sqlcmd -Query $sqlQuery -ServerInstance $serverName -ErrorAction Stop -TrustServerCertificate
+Write-Host "Database '$DatabaseName' has been successfully attached from '$DatabaseFilePath'."
