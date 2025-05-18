@@ -18,7 +18,7 @@ parameters:
     description: |
       The name of the database to attach.
   databaseFilePath:
-    default: 'C:\Databases\AdventureWorksLT2022.bak'
+    default: 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\Backup\AdventureWorksLT2022.bak'
     type: 'string'
     required: false
     description: |
