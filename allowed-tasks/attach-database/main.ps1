@@ -40,5 +40,5 @@ GO
 
 "@
 # Execute the SQL query to attach the database
-Invoke-Sqlcmd -Query $sqlQuery -ServerInstance $serverName -ErrorAction Stop -TrustServerCertificate
+Invoke-Sqlcmd -Query $sqlQuery -ServerInstance $serverName -ErrorAction Stop
 Write-Host "Database '$DatabaseName' has been successfully attached from '$DatabaseFilePath'."
