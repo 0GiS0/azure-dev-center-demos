@@ -14,7 +14,7 @@ tasks:
     parameters:
       command: "$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';C:\\Program Files\\Microsoft VS Code\\bin'; code --install-extension ms-mssql.mssql --install-extension ms-vscode.vscode-node-azure-pack"
       runAsUser: true
-  - name: attach-database
+  - name: tasks-catalog/attach-database
     parameters:
       source: "https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak"
       databaseName: "AdventureWorksLT2022"
