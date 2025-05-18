@@ -25,19 +25,16 @@ if (!(Test-Path -Path $DatabaseFilePath)) {
     New-Item -Path $DatabaseFilePath -ItemType File | Out-Null
 }
 
-# Attach the database to the SQL Server instance
-$connectionString = "Server=localhost;Database=master;Integrated Security=True;"
+# Attach the database to the SQL Server instance from a .bak file
 $sqlQuery = @"
-IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = '$DatabaseName')
-BEGIN
-    CREATE DATABASE [$DatabaseName]
-END
-USE [$DatabaseName]
-IF NOT EXISTS (SELECT * FROM sys.master_files WHERE name = '$DatabaseName')
-BEGIN
-    CREATE DATABASE [$DatabaseName] 
-    ON (FILENAME = '$DatabaseFilePath')
-    FOR ATTACH
-END
+USE [master];
+CREATE DATABASE [$DatabaseName]
+ON (FILENAME = '$DatabaseFilePath')
+FOR ATTACH;
+ALTER DATABASE [$DatabaseName] SET READ_WRITE;
+ALTER DATABASE [$DatabaseName] SET MULTI_USER;
 "@
-Invoke-Sqlcmd -ConnectionString $connectionString -Query $sqlQuery -ErrorAction Stop
+# Execute the SQL query to attach the database
+Invoke-Sqlcmd -Query $sqlQuery -ServerInstance "localhost" -ErrorAction Stop
+Write-Host "Database '$DatabaseName' has been successfully attached from '$DatabaseFilePath'."
+
