@@ -26,17 +26,25 @@ if (!(Test-Path -Path $DatabaseFilePath)) {
     New-Item -Path $DatabaseFilePath -ItemType File | Out-Null
 }
 
+# Create folder for SQL data files if it does not exist
+$SQLDataFolder = "C:\SQLData"
+createFolderIfNotExists -folderPath $SQLDataFolder
+
 # Attach the database to the SQL Server instance from a .bak file
 $sqlQuery = @"
+
 USE [master];
 GO
 RESTORE DATABASE [$DatabaseName]
 FROM DISK = N'$DatabaseFilePath'
 WITH
+    MOVE 'AdventureWorksLT2022_Data' TO '[$SQLDataFolder]\[$DatabaseName].mdf',
+    MOVE 'AdventureWorksLT2022_Log' TO '[$SQLDataFolder]\[$DatabaseName]_log.ldf',
     FILE = 1,
     NOUNLOAD,
     STATS = 5;
 GO
+
 "@
 
 # Execute the SQL query to attach the database
