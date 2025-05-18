@@ -38,8 +38,8 @@ GO
 RESTORE DATABASE [$DatabaseName]
 FROM DISK = N'$DatabaseFilePath'
 WITH
-    MOVE 'AdventureWorksLT2022_Data' TO 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\$DatabaseName.mdf',
-    MOVE 'AdventureWorksLT2022_Log' TO 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\$DatabaseName.ldf',
+    MOVE '${DatabaseName}_Data' TO 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\$DatabaseName.mdf',
+    MOVE '${DatabaseName}_Log' TO 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\$DatabaseName.ldf',
     FILE = 1,
     NOUNLOAD,
     STATS = 5;
