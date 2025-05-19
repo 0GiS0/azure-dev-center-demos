@@ -1,0 +1,18 @@
+$schema: 1.0
+name: grant-sql-access
+description: Grants a user access to the SQL Server instance.
+author: Microsoft Corporation
+command: './main.ps1 -SqlUser {{sqlUser}} -SqlInstance {{sqlInstance}}'
+parameters:
+  sqlUser:
+    default: 'Elsa'
+    type: 'string'
+    required: true
+    description: |
+      The SQL Server user to grant access to.
+  sqlInstance:
+    default: 'localhost\SQLEXPRESS'
+    type: 'string'
+    required: true
+    description: |
+      The SQL Server instance to grant access on.
