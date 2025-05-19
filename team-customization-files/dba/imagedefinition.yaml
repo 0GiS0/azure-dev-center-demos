@@ -5,15 +5,15 @@ description: "This definition is for the dba environment"
 
 tasks:
 
-  - name: tasks-catalog/choco
-    description: Install KeePass
-    parameters:
-      package:  keepass
+  # - name: tasks-catalog/choco
+  #   description: Install KeePass
+  #   parameters:
+  #     package:  keepass
 
-  - name: ~/winget
-    description: Install AZD
-    parameters:
-      package:  Microsoft.Azd
+  # - name: ~/winget
+  #   description: Install AZD
+  #   parameters:
+  #     package:  Microsoft.Azd
 
   - name: ~/winget
     description: Install Visual Studio Code
@@ -24,3 +24,12 @@ tasks:
     parameters:
       command: |
         $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') 
+
+userTasks:
+    - name: tasks-catalog/choco
+      parameters:
+        package: sql-server-express
+    
+    - name: tasks-catalog/choco
+      parameters:
+        package: sql-server-management-studio
