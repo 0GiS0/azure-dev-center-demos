@@ -6,7 +6,7 @@ tasks:
       package: sql-server-express
   - name: tasks-catalog/grant-sql-access
     parameters:
-      sqlUser: "Elsa"
+      sqlUser: "elsa"
       sqlInstance: "localhost\\SQLEXPRESS"
   - name: tasks-catalog/choco
     parameters:

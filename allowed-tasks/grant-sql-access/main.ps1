@@ -4,11 +4,11 @@ param(
 )
 
 $sql = @"
-IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'$env:COMPUTERNAME\$sqlUser')
+IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'azuread\$sqlUser')
 BEGIN
-    CREATE LOGIN [$env:COMPUTERNAME\$sqlUser] FROM WINDOWS;
+    CREATE LOGIN [azuread\$sqlUser] FROM WINDOWS;
 END
-ALTER SERVER ROLE [sysadmin] ADD MEMBER [$env:COMPUTERNAME\$sqlUser];
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [azuread\$sqlUser];
 "@
 
 $sql | sqlcmd -S $sqlInstance -E
