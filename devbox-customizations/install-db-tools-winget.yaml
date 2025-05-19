@@ -4,7 +4,7 @@ tasks:
   - name: winget
     description: "Install SQL Server Developer Edition"
     parameters:
-      package: Microsoft.SQLServer.2022.Developer
+      package: Microsoft.SQLServer.2019.Developer
 
   - name: winget
     description: "Install SQL Server Management Studio"
