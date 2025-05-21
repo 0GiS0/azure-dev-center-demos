@@ -1,0 +1,12 @@
+{
+    "servers": {
+        "Dev Box MCP": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "https://aka.ms/devbox/mcp/preview"
+            ]
+        }
+    }
+}
