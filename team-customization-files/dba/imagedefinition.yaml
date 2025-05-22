@@ -13,17 +13,16 @@ tasks:
   - name: powershell
     parameters:
       command: |
-        $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') 
+        $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User')
+
+  - name: tasks-catalog/choco
+    parameters:
+      package: sql-server-management-studio
 
 userTasks:
     - name: ~/winget
       parameters:
-        # package: Microsoft.SQLServer.2019.Developer
-        package: Microsoft.SQLServer.2022.Developer
-    
-    - name: tasks-catalog/choco
-      parameters:
-        package: sql-server-management-studio
+        package: Microsoft.SQLServer.2022.Developer 
 
     - name: powershell
       parameters:
@@ -32,3 +31,7 @@ userTasks:
           code --install-extension github.copilot-chat;
           code --install-extension github.vscode-pull-request-github;
           code --install-extension ms-mssql.mssql;
+
+    - name: powershell
+      parameters:
+        command: './attach-database.ps1 -DatabaseFilePath {{databaseFilePath}}'
