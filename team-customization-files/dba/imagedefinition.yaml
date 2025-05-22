@@ -18,7 +18,8 @@ tasks:
 userTasks:
     - name: ~/winget
       parameters:
-        package: Microsoft.SQLServer.2019.Developer
+        # package: Microsoft.SQLServer.2019.Developer
+        package: Microsoft.SQLServer.2022.Developer
     
     - name: tasks-catalog/choco
       parameters:
