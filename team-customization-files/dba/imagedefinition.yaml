@@ -20,6 +20,14 @@ userTasks:
       parameters:
         package: Microsoft.SQLServer.2019.Developer
     
-    - name: ~/winget
+    - name: tasks-catalog/choco
       parameters:
-        package: Microsoft.SQLServerManagementStudio
+        package: sql-server-management-studio
+
+    - name: powershell
+      parameters:
+        command: |
+          code --install-extension github.copilot;
+          code --install-extension github.copilot-chat;
+          code --install-extension github.vscode-pull-request-github;
+          code --install-extension ms-mssql.mssql;
