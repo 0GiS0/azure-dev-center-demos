@@ -33,7 +33,7 @@ userTasks:
           code --install-extension ms-mssql.mssql;
 
 
-    # - name: tasks-catalog/attach-database
-    #   parameters:
-    #     folder: C:\Databases
+    - name: tasks-catalog/attach-database
+      parameters:
+        folder: C:\Databases
    
