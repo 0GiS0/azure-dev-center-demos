@@ -1,5 +1,6 @@
 param(      
-    [string]$DatabaseFilePath
+    [string]$DatabaseFilePath,
+    [string]$SqlDataFolderPath = "C:\SQLData"
 )
 
 function createFolderIfNotExists {
@@ -24,10 +25,11 @@ try {
     $DatabaseName = [System.IO.Path]::GetFileNameWithoutExtension($DatabaseBakFile)
 
     # Create folder for SQL data files if it does not exist
-    $SQLDataFolder = "C:\SQLData"
-    createFolderIfNotExists -folderPath $SQLDataFolder
+    createFolderIfNotExists -folderPath $SqlDataFolderPath
 
     # Attach the database to the SQL Server instance from a .bak file
+    $mdfPath = Join-Path $SqlDataFolderPath "$DatabaseName.mdf"
+    $ldfPath = Join-Path $SqlDataFolderPath "$DatabaseName.ldf"
     $sqlQuery = @"
 
 USE [master];
@@ -35,8 +37,8 @@ GO
 RESTORE DATABASE [$DatabaseName]
 FROM DISK = N'$DatabaseBakFile'
 WITH
-    MOVE '${DatabaseName}_Data' TO 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\$DatabaseName.mdf',
-    MOVE '${DatabaseName}_Log' TO 'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\$DatabaseName.ldf',
+    MOVE '${DatabaseName}_Data' TO '$mdfPath',
+    MOVE '${DatabaseName}_Log' TO '$ldfPath',
     FILE = 1,
     NOUNLOAD,
     STATS = 5;

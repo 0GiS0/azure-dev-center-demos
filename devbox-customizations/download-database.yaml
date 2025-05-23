@@ -1,0 +1,7 @@
+$schema: "1.0"
+name: "Attach database"
+tasks:
+  - name: tasks-catalog/download-database
+    parameters:
+      source: "https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak"
+      databaseName: "AdventureWorksLT2022"
