@@ -32,6 +32,8 @@ userTasks:
           code --install-extension github.vscode-pull-request-github;
           code --install-extension ms-mssql.mssql;
 
-    - name: powershell
+
+    - name: tasks-catalog/attach-database
       parameters:
-        command: './attach-database.ps1 -DatabaseFilePath {{databaseFilePath}}'
+        folder: C:\Databases
+   
