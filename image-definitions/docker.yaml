@@ -1,0 +1,20 @@
+$schema: "1.0"
+name: "docker-environments"
+image: microsoftwindowsdesktop_windows-ent-cpc_win11-23h2-ent-cpc
+description: "This definition is for .NET developers who need to work with Visual Studio and other frontend tools."
+
+tasks:
+  - name: ~/winget
+    description: "Install Docker Desktop"
+    parameters:
+      package:  Docker.DockerDesktop
+
+  - name: ~/winget
+    description: "Install Visual Studio Code"
+    parameters:
+      package:  Microsoft.VisualStudioCode
+
+  - name: ~/powershell
+    parameters:
+      command: |
+        $env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path','User') 
