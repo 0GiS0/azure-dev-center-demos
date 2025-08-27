@@ -7,7 +7,7 @@ az provider register --namespace Microsoft.KeyVault --wait
 # General variables
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 RESOURCE_GROUP="devbox-demos"
-LOCATION="northeurope"
+LOCATION="westeurope"
 
 # Dev center variables
 DEV_CENTER_NAME="heroes-devcenter"
